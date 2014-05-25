@@ -11,8 +11,10 @@
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
         android:ems="10"
-        android:inputType="textEmailAddress" />
-
+        android:inputType="textEmailAddress"
+        android:hint="@string/la_user_name_hint"
+        />
+	<requestFocus />
     <EditText
         android:id="@+id/password"
         android:layout_width="wrap_content"
@@ -22,18 +24,21 @@
         android:layout_below="@id/user_name"
         android:layout_marginTop="24dp"
         android:ems="10"
-        android:inputType="numberPassword" >
+        android:inputType="textPassword"
+        android:hint="@string/la_password_hint"
+        >
 
-        <requestFocus />
     </EditText>
 
     <Button
         android:id="@+id/submit_credentials"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/password"
+        android:layout_alignRight="@+id/password"
         android:layout_below="@id/password"
-        android:layout_centerHorizontal="true"
         android:layout_marginTop="31dp"
-        android:text="@string/login_button" />
+        android:onClick="submitAuthentication"
+        android:text="@string/la_login_button" />
 
 </RelativeLayout>

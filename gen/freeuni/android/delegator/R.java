@@ -59,7 +59,8 @@ public final class R {
         public static final int user_name=0x7f090000;
     }
     public static final class layout {
-        public static final int activity_login=0x7f030000;
+        public static final int activity_home=0x7f030000;
+        public static final int activity_login=0x7f030001;
     }
     public static final class menu {
         public static final int main=0x7f080000;
@@ -69,7 +70,10 @@ public final class R {
         public static final int app_name=0x7f060000;
         /**  Login activity 
          */
-        public static final int login_button=0x7f060002;
+        public static final int la_login_button=0x7f060002;
+        public static final int la_password_hint=0x7f060004;
+        public static final int la_user_name_hint=0x7f060003;
+        public static final int la_wrong_pass_or_name=0x7f060005;
     }
     public static final class style {
         /** 
