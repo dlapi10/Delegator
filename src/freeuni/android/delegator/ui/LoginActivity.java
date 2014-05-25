@@ -46,6 +46,7 @@ public class LoginActivity extends SuperActivity{
 			Intent homeIntent = new Intent(this, HomeActivity.class);
 			homeIntent.putExtra(INTENT_EXTRA_MESSAGE_KEY_USER_NAME, username);
 			startActivity(homeIntent);
+			finish();
 		}else{
 			Toast.makeText(getApplicationContext(), freeuni.android.delegator.R.string.la_wrong_pass_or_name, Toast.LENGTH_LONG).show();
 		}
