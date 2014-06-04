@@ -11,5 +11,31 @@ public class TaskStatus {
 	//Private Variables
 	private String status;
 	private Color statusColor;
+	/**
+	 * @return the status
+	 */
+	public String getStatus() {
+		return status;
+	}
+	/**
+	 * @return the statusColor
+	 */
+	public Color getStatusColor() {
+		return statusColor;
+	}
+	/**
+	 * @param status the status to set
+	 */
+	public void setStatus(String status) {
+		this.status = status;
+	}
+	/**
+	 * @param statusColor the statusColor to set
+	 */
+	public void setStatusColor(Color statusColor) {
+		this.statusColor = statusColor;
+	}
+	
+	
 	
 }
