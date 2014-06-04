@@ -2,14 +2,13 @@ package freeuni.android.delegator.ui;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.text.Editable;
 import android.util.Log;
 import android.view.Menu;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 import freeuni.android.delegator.R;
+import freeuni.android.delegator.model.User;
 
 
 public class LoginActivity extends SuperActivity{
@@ -18,7 +17,7 @@ public class LoginActivity extends SuperActivity{
 	public static final String INTENT_EXTRA_MESSAGE_KEY_USER_NAME = "freeuni.android.delegator.ui.LoginActivity.usernameKey";
 	
 	//Private constants
-	public static final String LOG_CAT_TAG = "Login";
+	private static final String LOG_CAT_TAG = "Login";
 	
 	
 	/**
@@ -28,7 +27,19 @@ public class LoginActivity extends SuperActivity{
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		if(userLoggedIn()!=null){
+			//TODO GO to Home Activity
+		}
 		setContentView(R.layout.activity_login);
+	}
+	
+	/**
+	 * Checks if user has already logged in. If true, returns User object, null otherwise
+	 * @return User object or null
+	 */
+	private User userLoggedIn(){
+		//TODO
+		return null;
 	}
 	
 	
@@ -53,7 +64,7 @@ public class LoginActivity extends SuperActivity{
 	}
 	
 	/**
-	 * Checking credentials of user. returns true if given information matches
+	 * Checking credentials of user. Returns true if given information matches
 	 * @param name user name
 	 * @param pass password
 	 * @return false if there is not such user with password, true otherwise
