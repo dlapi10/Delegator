@@ -8,6 +8,8 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 import freeuni.android.delegator.R;
+import freeuni.android.delegator.app.App;
+import freeuni.android.delegator.communicator.FakeCommunicator;
 import freeuni.android.delegator.model.User;
 
 
@@ -53,7 +55,7 @@ public class LoginActivity extends SuperActivity{
 		Log.i(LOG_CAT_TAG, "submitted");
 		String username = ((EditText)findViewById(freeuni.android.delegator.R.id.user_name)).getText().toString();
 		String password = ((EditText) findViewById(freeuni.android.delegator.R.id.password)).getText().toString();
-		if(checkCredentials(password,password)){
+		if(App.getCommunicator().checkCredentials(username,password)){
 			Intent homeIntent = new Intent(this, HomeActivity.class);
 			homeIntent.putExtra(INTENT_EXTRA_MESSAGE_KEY_USER_NAME, username);
 			startActivity(homeIntent);
@@ -63,16 +65,6 @@ public class LoginActivity extends SuperActivity{
 		}
 	}
 	
-	/**
-	 * Checking credentials of user. Returns true if given information matches
-	 * @param name user name
-	 * @param pass password
-	 * @return false if there is not such user with password, true otherwise
-	 */
-	public boolean checkCredentials(String name, String pass){
-		//TODO
-		return true;
-	}
 	
 	/**
 	 * Menu for the Login activity.

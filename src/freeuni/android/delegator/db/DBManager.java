@@ -1,11 +1,14 @@
 package freeuni.android.delegator.db;
 
+import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-import android.database.sqlite.SQLiteDatabase.CursorFactory;
 import android.database.sqlite.SQLiteOpenHelper;
-import android.graphics.Bitmap;
 import android.util.Log;
+import freeuni.android.delegator.app.App;
+import freeuni.android.delegator.model.Processing;
+import freeuni.android.delegator.model.User;
 
 public class DBManager extends SQLiteOpenHelper{
 
@@ -22,8 +25,8 @@ public class DBManager extends SQLiteOpenHelper{
 	/*
 	 * Users
 	 */
-	public static final String TABLE_USERS = "CONTACTS";
-	public static final String USR_USER_ID = "ID";
+	public static final String TABLE_USERS = "USERS";
+	public static final String USR_USER_ID = "USER_ID";
 	public static final String USR_USER_NAME = "USER_NAME";
 	public static final String USR_IMAGE = "IMAGE";
 	
@@ -78,5 +81,35 @@ public class DBManager extends SQLiteOpenHelper{
 		db.execSQL("DROP TABLE IF EXISTS"+TABLE_USERS);
 		onCreate(db);
 	}
+	
+	/**
+	 * Add user
+	 * @param user
+	 */
+	public void addUser(User user){
+		ContentValues values = new ContentValues();
+		values.put(USR_USER_ID, user.getUserID());
+		values.put(USR_USER_NAME, user.getUserName());
+		values.put(USR_IMAGE, Processing.bitmapToByteArray(user.getAvatar()));
+		db.insert(TABLE_USERS, null, values);
+		Log.i(LOG_TAG, "User added");
+	}
 
+	/**
+	 * Get User
+	 * @param userID
+	 * @return
+	 */
+	public User getUser(int userID){
+		String query="SELECT * FROM "+TABLE_USERS+"WHERE "+USR_USER_ID+"="+userID+"";
+		Cursor c = db.rawQuery(query, null);
+		c.moveToFirst();
+		String userName = c.getString(c.getColumnIndex(USR_USER_NAME));
+		byte[] image = c.getBlob(c.getColumnIndex(USR_IMAGE));
+		User user = new User(userID, userName);
+		user.setAvatar(Processing.byteArrayToBitmap(image, App.getAvatarDimension(), App.getAvatarDimension()));
+		return user;
+	}
+	
+	
 }

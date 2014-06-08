@@ -36,6 +36,9 @@ public final class R {
          */
         public static final int activity_horizontal_margin=0x7f050000;
         public static final int activity_vertical_margin=0x7f050001;
+        /**  Image sizes 
+         */
+        public static final int user_image_size=0x7f050002;
     }
     public static final class drawable {
         public static final int ic_action_accept=0x7f020000;
@@ -70,10 +73,11 @@ public final class R {
         public static final int app_name=0x7f060000;
         /**  Login activity 
          */
-        public static final int la_login_button=0x7f060002;
-        public static final int la_password_hint=0x7f060004;
-        public static final int la_user_name_hint=0x7f060003;
-        public static final int la_wrong_pass_or_name=0x7f060005;
+        public static final int la_login_button=0x7f060003;
+        public static final int la_password_hint=0x7f060005;
+        public static final int la_user_name_hint=0x7f060004;
+        public static final int la_wrong_pass_or_name=0x7f060006;
+        public static final int preference_file_key=0x7f060002;
     }
     public static final class style {
         /** 
