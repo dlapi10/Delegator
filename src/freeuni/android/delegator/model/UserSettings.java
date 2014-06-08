@@ -5,6 +5,8 @@ public class UserSettings {
 	//Private Variables;
 	private String alarmSoundPath;
 	private boolean notificationsOn;
+	
+	
 	/**
 	 * @return the alarmSoundPath
 	 */

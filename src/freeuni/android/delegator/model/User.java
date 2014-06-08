@@ -19,6 +19,19 @@ public class User {
 	private UserSettings settings;
 	private List<Request> requests;
 	
+	
+	
+	
+	/**
+	 * @param userID
+	 * @param userName
+	 */
+	public User(int userID, String userName) {
+		super();
+		this.userID = userID;
+		this.userName = userName;
+	}
+	
 	/**
 	 * @return the userID
 	 */

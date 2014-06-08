@@ -10,6 +10,33 @@ public class Group {
 	private int groupID;
 	private List<User> group;
 	private Bitmap groupImage;
+	
+	
+	
+	/**
+	 * @param groupID
+	 * @param group
+	 * @param groupImage
+	 */
+	public Group(int groupID, List<User> group, Bitmap groupImage) {
+		super();
+		this.groupID = groupID;
+		this.group = group;
+		this.groupImage = groupImage;
+	}
+	
+	
+	
+	/**
+	 * @param groupID
+	 */
+	public Group(int groupID) {
+		super();
+		this.groupID = groupID;
+	}
+
+
+
 	/**
 	 * @return the groupID
 	 */

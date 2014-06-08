@@ -7,6 +7,19 @@ public class TaskCategory {
 	//Private variables
 	private String categoryName;
 	private Color categoryColor;
+	
+	
+	/**
+	 * @param categoryName
+	 * @param categoryColor
+	 */
+	public TaskCategory(String categoryName, Color categoryColor) {
+		super();
+		this.categoryName = categoryName;
+		this.categoryColor = categoryColor;
+	}
+	
+	
 	/**
 	 * @return the categoryName
 	 */

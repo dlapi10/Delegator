@@ -1,10 +1,30 @@
 package freeuni.android.delegator.model;
 
+
+/**
+ * Work is the work component on which team is currently working. maybe it can be a project.
+ * @author Admin
+ *
+ */
 public class Work {
 
 	//Private variables
 	private int workID;
 	private String name;
+	
+	
+	
+	/**
+	 * @param workID
+	 * @param name
+	 */
+	public Work(int workID, String name) {
+		super();
+		this.workID = workID;
+		this.name = name;
+	}
+	
+	
 	/**
 	 * @return the workID
 	 */

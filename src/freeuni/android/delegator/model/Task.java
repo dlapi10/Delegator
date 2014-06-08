@@ -28,6 +28,18 @@ public class Task {
 	private Work work; 
 	private List<Integer> subtaskIDs;
 	private List<Comment> commments;
+	
+	
+	
+	/**
+	 * @param taskID
+	 */
+	public Task(int taskID) {
+		super();
+		this.taskID = taskID;
+	}
+	
+	
 	/**
 	 * @return the taskID
 	 */

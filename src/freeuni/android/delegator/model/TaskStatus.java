@@ -11,6 +11,19 @@ public class TaskStatus {
 	//Private Variables
 	private String status;
 	private Color statusColor;
+	
+	
+	
+	/**
+	 * @param status
+	 * @param statusColor
+	 */
+	public TaskStatus(String status, Color statusColor) {
+		super();
+		this.status = status;
+		this.statusColor = statusColor;
+	}
+	
 	/**
 	 * @return the status
 	 */

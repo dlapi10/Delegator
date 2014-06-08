@@ -9,6 +9,33 @@ public class Comment {
 	private User CommentAuthor;
 	private Calendar postDate; 
 	private String comment;
+	
+	
+	/**
+	 * @param commentID
+	 * @param commentAuthor
+	 * @param postDate
+	 * @param comment
+	 */
+	public Comment(int commentID, User commentAuthor, Calendar postDate,
+			String comment) {
+		super();
+		this.commentID = commentID;
+		CommentAuthor = commentAuthor;
+		this.postDate = postDate;
+		this.comment = comment;
+	}
+	
+	
+	
+	/**
+	 * @param commentID
+	 */
+	public Comment(int commentID) {
+		super();
+		this.commentID = commentID;
+	}
+
 	/**
 	 * @return the commentID
 	 */
