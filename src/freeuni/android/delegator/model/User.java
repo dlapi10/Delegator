@@ -7,7 +7,6 @@ import android.graphics.Bitmap;
 public class User {
 	
 	// Private variables
-	private int userID;
 	private String userName;
 	private String firstName;
 	private String lastName;
@@ -26,18 +25,11 @@ public class User {
 	 * @param userID
 	 * @param userName
 	 */
-	public User(int userID, String userName) {
+	public User(String userName) {
 		super();
-		this.userID = userID;
 		this.userName = userName;
 	}
 	
-	/**
-	 * @return the userID
-	 */
-	public int getUserID() {
-		return userID;
-	}
 	/**
 	 * @return the userName
 	 */
@@ -97,12 +89,6 @@ public class User {
 	 */
 	public List<Request> getRequests() {
 		return requests;
-	}
-	/**
-	 * @param userID the userID to set
-	 */
-	public void setUserID(int userID) {
-		this.userID = userID;
 	}
 	/**
 	 * @param userName the userName to set

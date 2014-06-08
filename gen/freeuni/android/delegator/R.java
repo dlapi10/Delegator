@@ -70,13 +70,16 @@ public final class R {
     }
     public static final class string {
         public static final int action_settings=0x7f060001;
+        /**  Shared Preference keys 
+         */
+        public static final int active_session_username=0x7f060003;
         public static final int app_name=0x7f060000;
         /**  Login activity 
          */
-        public static final int la_login_button=0x7f060003;
-        public static final int la_password_hint=0x7f060005;
-        public static final int la_user_name_hint=0x7f060004;
-        public static final int la_wrong_pass_or_name=0x7f060006;
+        public static final int la_login_button=0x7f060004;
+        public static final int la_password_hint=0x7f060006;
+        public static final int la_user_name_hint=0x7f060005;
+        public static final int la_wrong_pass_or_name=0x7f060007;
         public static final int preference_file_key=0x7f060002;
     }
     public static final class style {

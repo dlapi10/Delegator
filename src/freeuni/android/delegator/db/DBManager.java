@@ -26,14 +26,12 @@ public class DBManager extends SQLiteOpenHelper{
 	 * Users
 	 */
 	public static final String TABLE_USERS = "USERS";
-	public static final String USR_USER_ID = "USER_ID";
 	public static final String USR_USER_NAME = "USER_NAME";
 	public static final String USR_IMAGE = "IMAGE";
 	
 	private static final String TABLE_USR_CREATE = 
 			"CREATE TABLE " + TABLE_USERS + " (" +
-					USR_USER_ID + " INTEGER PRIMARY KEY, "+
-					USR_USER_NAME + " TEXT, "+
+					USR_USER_NAME + " TEXT PRIMARY KEY, "+
 					USR_IMAGE + " BLOB) ";
 	
 	
@@ -88,7 +86,6 @@ public class DBManager extends SQLiteOpenHelper{
 	 */
 	public void addUser(User user){
 		ContentValues values = new ContentValues();
-		values.put(USR_USER_ID, user.getUserID());
 		values.put(USR_USER_NAME, user.getUserName());
 		values.put(USR_IMAGE, Processing.bitmapToByteArray(user.getAvatar()));
 		db.insert(TABLE_USERS, null, values);
@@ -100,13 +97,12 @@ public class DBManager extends SQLiteOpenHelper{
 	 * @param userID
 	 * @return
 	 */
-	public User getUser(int userID){
-		String query="SELECT * FROM "+TABLE_USERS+"WHERE "+USR_USER_ID+"="+userID+"";
+	public User getUser(String userName){
+		String query="SELECT * FROM "+TABLE_USERS+"WHERE "+USR_USER_NAME+"="+userName+"";
 		Cursor c = db.rawQuery(query, null);
 		c.moveToFirst();
-		String userName = c.getString(c.getColumnIndex(USR_USER_NAME));
 		byte[] image = c.getBlob(c.getColumnIndex(USR_IMAGE));
-		User user = new User(userID, userName);
+		User user = new User(userName);
 		user.setAvatar(Processing.byteArrayToBitmap(image, App.getAvatarDimension(), App.getAvatarDimension()));
 		return user;
 	}

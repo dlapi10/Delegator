@@ -5,6 +5,9 @@
     <string name="action_settings">Settings</string>
     <string name="preference_file_key">freeuni.android.delegator.PREFERENCE_FILE_KEY</string>
     
+    <!-- Shared Preference keys -->
+    <string name="active_session_username">active_session_username</string>
+    
     <!-- Login activity -->
 	<string name="la_login_button">Sign in</string>
 	<string name="la_user_name_hint">Username</string>
