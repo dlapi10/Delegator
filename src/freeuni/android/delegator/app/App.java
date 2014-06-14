@@ -3,7 +3,6 @@ package freeuni.android.delegator.app;
 import freeuni.android.delegator.communicator.FakeCommunicator;
 import freeuni.android.delegator.communicator.NetworkCommunicator;
 import android.app.Application;
-import android.util.Log;
 
 public class App extends Application{
 	private static int avatarDimension;

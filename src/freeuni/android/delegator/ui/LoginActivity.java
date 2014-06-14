@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.View;
 import android.widget.EditText;
@@ -13,11 +14,28 @@ import freeuni.android.delegator.app.App;
 
 
 public class LoginActivity extends SuperActivity{
+	
+	//Private constants
+	private static final String LOG_MESSAGE = "LOGIN";
 
 	// Public constants
 	public static final String INTENT_EXTRA_MESSAGE_KEY_USER_NAME = "freeuni.android.delegator.ui.LoginActivity.usernameKey";
-	public static final String INTENT_LOG_OUT_MESSAGE  = "freeuni.android.delegator.ui.LoginActivity.log.out";
 
+	
+	
+	/*
+	 * Activity LifeCycle and helper Methods, dedicated to this cycle
+	 */
+	
+	/**
+	 * Handling Incoming Intent;
+	 */
+	private void handleIncomingIntent(){
+		Intent intent = getIntent();
+		if(intent!=null && intent.getBooleanExtra(SuperActivity.INTENT_SIGN_OUT_MESSAGE,false)){
+			stopActiveSession();
+		}
+	}
 
 	/**
 	 * Method called after creating of activity.
@@ -26,24 +44,71 @@ public class LoginActivity extends SuperActivity{
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		Intent intent = getIntent();
-		if(intent!=null && intent.getBooleanExtra(INTENT_LOG_OUT_MESSAGE,false)){
-			stopActiveSession();
-		}
+		Log.i(LOG_MESSAGE,"onCreate");
+		handleIncomingIntent();
 		String userName = userLoggedIn();
 		if(userName!=null){
 			goToHomeActivity(userName);
 		}
 		setContentView(R.layout.activity_login);
 	}
+	
+	
+	/**
+	 * On resume
+	 */
+	@Override
+	protected void onResume() {
+		super.onResume();
+		Log.i(LOG_MESSAGE,"onResume");
+	}
+	
+	/**
+	 * On Pause
+	 */
+	@Override
+	protected void onPause() {
+		// TODO Auto-generated method stub
+		super.onPause();
+		Log.i(LOG_MESSAGE,"onPause");
+	}
+	
+	/**
+	 * 
+	 */
+	@Override
+	protected void onStart() {
+		// TODO Auto-generated method stub
+		super.onStart();
+		Log.i(LOG_MESSAGE,"onStart");
+	}
+	
+	@Override
+	protected void onDestroy() {
+		// TODO Auto-generated method stub
+		super.onDestroy();
+		Log.i(LOG_MESSAGE,"onDestroy");
+	}
+	
+	@Override
+	protected void onStop() {
+		// TODO Auto-generated method stub
+		super.onStop();
+		Log.i(LOG_MESSAGE,"onStop");
+	}
+	
 
+	/*
+	 * Other methods
+	 */
+	
 	/**
 	 * Deleting active session user
 	 */
 	private void stopActiveSession(){
 		SharedPreferences pref = getSharedPreferences(App.getPrefFile(), Context.MODE_PRIVATE);
 		SharedPreferences.Editor editor = pref.edit();
-		editor.putString(getString(R.string.active_session_username), null);
+		editor.remove(getString(R.string.active_session_username));
 		editor.commit();
 	}
 
@@ -107,4 +172,7 @@ public class LoginActivity extends SuperActivity{
 		getMenuInflater().inflate(R.menu.main, menu);
 		return false;
 	}
+
+	
+	
 }

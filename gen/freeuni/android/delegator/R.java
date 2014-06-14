@@ -41,23 +41,24 @@ public final class R {
         public static final int user_image_size=0x7f050002;
     }
     public static final class drawable {
-        public static final int ic_action_accept=0x7f020000;
-        public static final int ic_action_back=0x7f020001;
-        public static final int ic_action_chat=0x7f020002;
-        public static final int ic_action_edit=0x7f020003;
-        public static final int ic_action_group=0x7f020004;
-        public static final int ic_action_new=0x7f020005;
-        public static final int ic_action_person=0x7f020006;
-        public static final int ic_action_remove=0x7f020007;
-        public static final int ic_action_search=0x7f020008;
-        public static final int ic_action_send_now=0x7f020009;
-        public static final int ic_action_settings=0x7f02000a;
-        public static final int ic_action_time=0x7f02000b;
-        public static final int ic_launcher=0x7f02000c;
+        public static final int app_logo=0x7f020000;
+        public static final int ic_action_accept=0x7f020001;
+        public static final int ic_action_back=0x7f020002;
+        public static final int ic_action_chat=0x7f020003;
+        public static final int ic_action_edit=0x7f020004;
+        public static final int ic_action_group=0x7f020005;
+        public static final int ic_action_new=0x7f020006;
+        public static final int ic_action_person=0x7f020007;
+        public static final int ic_action_remove=0x7f020008;
+        public static final int ic_action_search=0x7f020009;
+        public static final int ic_action_send_now=0x7f02000a;
+        public static final int ic_action_settings=0x7f02000b;
+        public static final int ic_action_time=0x7f02000c;
+        public static final int ic_launcher=0x7f02000d;
     }
     public static final class id {
-        public static final int action_settings=0x7f090003;
         public static final int password=0x7f090001;
+        public static final int sign_out=0x7f090003;
         public static final int submit_credentials=0x7f090002;
         public static final int user_name=0x7f090000;
     }
@@ -81,6 +82,10 @@ public final class R {
         public static final int la_user_name_hint=0x7f060005;
         public static final int la_wrong_pass_or_name=0x7f060007;
         public static final int preference_file_key=0x7f060002;
+        /**  Home activity 
+ Menu 
+         */
+        public static final int sign_out=0x7f060008;
     }
     public static final class style {
         /** 

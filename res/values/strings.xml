@@ -17,4 +17,7 @@
 	<!-- Home activity -->
 	
 	
+	<!-- Menu -->
+	<string name="sign_out">Sign out</string>
+	
 </resources>
