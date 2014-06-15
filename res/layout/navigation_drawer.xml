@@ -22,6 +22,35 @@
         android:orientation="vertical" >
 
         <LinearLayout
+            android:id="@+id/profile_section"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/navigation_line_margins"
+            android:orientation="horizontal" >
+
+            <ImageView
+                android:id="@+id/profile_image"
+                android:layout_width="@dimen/profile_image_size"
+                android:layout_height="@dimen/profile_image_size"
+                android:contentDescription="@string/navigation_profile_image_content_description"
+                android:src="@drawable/me" />
+
+            <TextView
+                android:id="@+id/profile_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginLeft="@dimen/navigation_margin_to_image"
+                android:textColor="@color/dark_grey"
+                android:textSize="20sp" />
+        </LinearLayout>
+
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="1dp"
+            android:background="@color/grey" />
+
+        <LinearLayout
             android:id="@+id/nav_home"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

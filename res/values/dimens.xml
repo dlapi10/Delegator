@@ -11,5 +11,7 @@
 	<!-- Navigation drawable -->
 	<dimen name="navigation_line_margins">10dp</dimen>
 	<dimen name="navigation_margin_to_image">20dp</dimen>
+	<dimen name="profile_image_size">90dp</dimen>
+	<dimen name="username_name_size">20sp</dimen>
 	
 </resources>

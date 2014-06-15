@@ -18,7 +18,7 @@ public class GroupsActivity extends SuperActivity{
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		Log.i(LOG_MESSAGE,"onCreate");
-
+		this.setTitle(getResources().getString(R.string.navigation_groups));
 		ViewStub stub = (ViewStub) findViewById(R.id.layout_stub);
 		stub.setLayoutResource(R.layout.activity_groups);
 		stub.inflate();

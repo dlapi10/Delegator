@@ -17,7 +17,7 @@ public class SubordinatesActivity extends SuperActivity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		Log.i(LOG_MESSAGE,"onCreate");
-
+		this.setTitle(getResources().getString(R.string.navigation_subordinates));
 		ViewStub stub = (ViewStub) findViewById(R.id.layout_stub);
 		stub.setLayoutResource(R.layout.activity_subordinates);
 		stub.inflate();

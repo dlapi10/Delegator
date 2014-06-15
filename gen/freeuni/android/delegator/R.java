@@ -40,9 +40,11 @@ public final class R {
          */
         public static final int navigation_line_margins=0x7f050003;
         public static final int navigation_margin_to_image=0x7f050004;
+        public static final int profile_image_size=0x7f050005;
         /**  Image sizes 
          */
         public static final int user_image_size=0x7f050002;
+        public static final int username_name_size=0x7f050006;
     }
     public static final class drawable {
         public static final int app_logo=0x7f020000;
@@ -66,24 +68,28 @@ public final class R {
         public static final int ic_action_view_as_list=0x7f020012;
         public static final int ic_drawer=0x7f020013;
         public static final int ic_launcher=0x7f020014;
-        public static final int navigation_list_format=0x7f020015;
+        public static final int me=0x7f020015;
+        public static final int navigation_list_format=0x7f020016;
     }
     public static final class id {
         public static final int content=0x7f090006;
         public static final int drawer_layout=0x7f090004;
         public static final int layout_stub=0x7f090005;
         public static final int left_drawer=0x7f090007;
-        public static final int nav_groups=0x7f09000e;
-        public static final int nav_groups_image=0x7f09000f;
-        public static final int nav_groups_text=0x7f090010;
-        public static final int nav_home=0x7f090008;
-        public static final int nav_home_image=0x7f090009;
-        public static final int nav_home_text=0x7f09000a;
-        public static final int nav_subordiantes_text=0x7f09000d;
-        public static final int nav_subordinates=0x7f09000b;
-        public static final int nav_subordinates_image=0x7f09000c;
+        public static final int nav_groups=0x7f090011;
+        public static final int nav_groups_image=0x7f090012;
+        public static final int nav_groups_text=0x7f090013;
+        public static final int nav_home=0x7f09000b;
+        public static final int nav_home_image=0x7f09000c;
+        public static final int nav_home_text=0x7f09000d;
+        public static final int nav_subordiantes_text=0x7f090010;
+        public static final int nav_subordinates=0x7f09000e;
+        public static final int nav_subordinates_image=0x7f09000f;
         public static final int password=0x7f090002;
-        public static final int sign_out=0x7f090011;
+        public static final int profile_image=0x7f090009;
+        public static final int profile_name=0x7f09000a;
+        public static final int profile_section=0x7f090008;
+        public static final int sign_out=0x7f090014;
         public static final int submit_credentials=0x7f090003;
         public static final int textView1=0x7f090000;
         public static final int user_name=0x7f090001;
@@ -104,6 +110,8 @@ public final class R {
          */
         public static final int active_session_username=0x7f060003;
         public static final int app_name=0x7f060000;
+        public static final int drawer_close=0x7f060011;
+        public static final int drawer_open=0x7f060010;
         /**  Login activity 
          */
         public static final int la_login_button=0x7f060004;
@@ -114,6 +122,7 @@ public final class R {
         public static final int navigation_groups_img_content_description=0x7f06000e;
         public static final int navigation_home=0x7f06000a;
         public static final int navigation_home_img_content_description=0x7f06000c;
+        public static final int navigation_profile_image_content_description=0x7f06000f;
         /**  Navigation Drawable 
          */
         public static final int navigation_subordinates=0x7f060009;

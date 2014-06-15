@@ -27,6 +27,8 @@
 	<string name="navigation_home_img_content_description">navigation home</string>
 	<string name="navigation_subordinates_img_content_description">navigation groups</string>
 	<string name="navigation_groups_img_content_description">navigation subordinates</string>
-	
+	<string name="navigation_profile_image_content_description">profile image</string>
+	<string name="drawer_open">open drawer</string>
+	<string name="drawer_close">close drawers</string>
 	
 </resources>
