@@ -69,26 +69,31 @@ public final class R {
         public static final int navigation_list_format=0x7f020015;
     }
     public static final class id {
-        public static final int content_frame=0x7f090001;
-        public static final int drawer_layout=0x7f090000;
-        public static final int left_drawer=0x7f090002;
-        public static final int nav_groups=0x7f090009;
-        public static final int nav_groups_image=0x7f09000a;
-        public static final int nav_groups_text=0x7f09000b;
-        public static final int nav_home=0x7f090003;
-        public static final int nav_home_image=0x7f090004;
-        public static final int nav_home_text=0x7f090005;
-        public static final int nav_subordiantes_text=0x7f090008;
-        public static final int nav_subordinates=0x7f090006;
-        public static final int nav_subordinates_image=0x7f090007;
-        public static final int password=0x7f09000d;
-        public static final int sign_out=0x7f09000f;
-        public static final int submit_credentials=0x7f09000e;
-        public static final int user_name=0x7f09000c;
+        public static final int content=0x7f090006;
+        public static final int drawer_layout=0x7f090004;
+        public static final int layout_stub=0x7f090005;
+        public static final int left_drawer=0x7f090007;
+        public static final int nav_groups=0x7f09000e;
+        public static final int nav_groups_image=0x7f09000f;
+        public static final int nav_groups_text=0x7f090010;
+        public static final int nav_home=0x7f090008;
+        public static final int nav_home_image=0x7f090009;
+        public static final int nav_home_text=0x7f09000a;
+        public static final int nav_subordiantes_text=0x7f09000d;
+        public static final int nav_subordinates=0x7f09000b;
+        public static final int nav_subordinates_image=0x7f09000c;
+        public static final int password=0x7f090002;
+        public static final int sign_out=0x7f090011;
+        public static final int submit_credentials=0x7f090003;
+        public static final int textView1=0x7f090000;
+        public static final int user_name=0x7f090001;
     }
     public static final class layout {
-        public static final int activity_home=0x7f030000;
-        public static final int activity_login=0x7f030001;
+        public static final int activity_groups=0x7f030000;
+        public static final int activity_home=0x7f030001;
+        public static final int activity_login=0x7f030002;
+        public static final int activity_subordinates=0x7f030003;
+        public static final int navigation_drawer=0x7f030004;
     }
     public static final class menu {
         public static final int main=0x7f080000;

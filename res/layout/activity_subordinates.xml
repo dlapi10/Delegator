@@ -3,4 +3,5 @@
     android:id="@+id/textView1"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:text="here will be Task list" />
+    android:text="here will be subordinates" />
+

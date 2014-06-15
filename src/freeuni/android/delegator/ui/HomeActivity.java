@@ -2,10 +2,9 @@ package freeuni.android.delegator.ui;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v4.widget.DrawerLayout;
 import android.util.Log;
 import android.view.Menu;
-import android.widget.ListView;
+import android.view.ViewStub;
 import freeuni.android.delegator.R;
 
 public class HomeActivity extends SuperActivity{
@@ -16,7 +15,6 @@ public class HomeActivity extends SuperActivity{
 
 	//Private variables
 	private String userName;
-    private DrawerLayout drawerLayout;
 
 	/*
 	 * Activity LifeCycle and helper Methods, dedicated to this cycle
@@ -45,7 +43,9 @@ public class HomeActivity extends SuperActivity{
 		
 		Log.i(LOG_MESSAGE,"onCreate");
 		
-		setContentView(freeuni.android.delegator.R.layout.activity_home);
+		ViewStub stub = (ViewStub) findViewById(R.id.layout_stub);
+		stub.setLayoutResource(R.layout.activity_home);
+		stub.inflate();
 	}
 
 
@@ -102,4 +102,5 @@ public class HomeActivity extends SuperActivity{
 		getMenuInflater().inflate(R.menu.main, menu);
 		return true;
 	}
+	
 }
