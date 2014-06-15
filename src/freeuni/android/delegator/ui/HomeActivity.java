@@ -1,6 +1,5 @@
 package freeuni.android.delegator.ui;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -14,22 +13,10 @@ public class HomeActivity extends SuperActivity{
 
 
 	//Private variables
-	private String userName;
 
 	/*
 	 * Activity LifeCycle and helper Methods, dedicated to this cycle
 	 */
-
-
-	/**
-	 * Handling Incoming Intent;
-	 */
-	private void handleIncomingIntent(){
-		Intent intent = getIntent();
-		if(intent!=null){
-			userName = intent.getStringExtra(LoginActivity.INTENT_EXTRA_MESSAGE_KEY_USER_NAME);
-		}
-	}
 
 	/**
 	 * Method called after creating of activity.
@@ -38,9 +25,6 @@ public class HomeActivity extends SuperActivity{
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		handleIncomingIntent();
-		this.setTitle(userName);
-		
 		Log.i(LOG_MESSAGE,"onCreate");
 		
 		ViewStub stub = (ViewStub) findViewById(R.id.layout_stub);

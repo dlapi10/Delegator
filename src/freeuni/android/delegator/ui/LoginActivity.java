@@ -114,7 +114,7 @@ public class LoginActivity extends Activity{
 	}
 
 	/**
-	 * srating active session
+	 * starting active session
 	 * @param username
 	 */
 	private void startActiveSession(String username){
@@ -158,7 +158,6 @@ public class LoginActivity extends Activity{
 	private void goToHomeActivity(String username){
 		startActiveSession(username);
 		Intent homeIntent = new Intent(this, HomeActivity.class);
-		homeIntent.putExtra(INTENT_EXTRA_MESSAGE_KEY_USER_NAME, username);
 		startActivity(homeIntent);
 		finish();
 	}
