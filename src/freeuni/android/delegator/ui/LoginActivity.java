@@ -1,5 +1,6 @@
 package freeuni.android.delegator.ui;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -13,7 +14,7 @@ import freeuni.android.delegator.R;
 import freeuni.android.delegator.app.App;
 
 
-public class LoginActivity extends SuperActivity{
+public class LoginActivity extends Activity{
 	
 	//Private constants
 	private static final String LOG_MESSAGE = "LOGIN";
@@ -43,7 +44,6 @@ public class LoginActivity extends SuperActivity{
 	 */
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
 		Log.i(LOG_MESSAGE,"onCreate");
 		handleIncomingIntent();
 		String userName = userLoggedIn();
@@ -51,6 +51,7 @@ public class LoginActivity extends SuperActivity{
 			goToHomeActivity(userName);
 		}
 		setContentView(R.layout.activity_login);
+		super.onCreate(savedInstanceState);
 	}
 	
 	
@@ -59,8 +60,8 @@ public class LoginActivity extends SuperActivity{
 	 */
 	@Override
 	protected void onResume() {
-		super.onResume();
 		Log.i(LOG_MESSAGE,"onResume");
+		super.onResume();
 	}
 	
 	/**
@@ -69,8 +70,8 @@ public class LoginActivity extends SuperActivity{
 	@Override
 	protected void onPause() {
 		// TODO Auto-generated method stub
-		super.onPause();
 		Log.i(LOG_MESSAGE,"onPause");
+		super.onPause();
 	}
 	
 	/**
@@ -79,22 +80,22 @@ public class LoginActivity extends SuperActivity{
 	@Override
 	protected void onStart() {
 		// TODO Auto-generated method stub
-		super.onStart();
 		Log.i(LOG_MESSAGE,"onStart");
+		super.onStart();
 	}
 	
 	@Override
 	protected void onDestroy() {
 		// TODO Auto-generated method stub
-		super.onDestroy();
 		Log.i(LOG_MESSAGE,"onDestroy");
+		super.onDestroy();
 	}
 	
 	@Override
 	protected void onStop() {
 		// TODO Auto-generated method stub
-		super.onStop();
 		Log.i(LOG_MESSAGE,"onStop");
+		super.onStop();
 	}
 	
 
@@ -169,7 +170,7 @@ public class LoginActivity extends SuperActivity{
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.main, menu);
+		//getMenuInflater().inflate(R.menu.main, menu);
 		return false;
 	}
 

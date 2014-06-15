@@ -36,31 +36,55 @@ public final class R {
          */
         public static final int activity_horizontal_margin=0x7f050000;
         public static final int activity_vertical_margin=0x7f050001;
+        /**  Navigation drawable 
+         */
+        public static final int navigation_line_margins=0x7f050003;
+        public static final int navigation_margin_to_image=0x7f050004;
         /**  Image sizes 
          */
         public static final int user_image_size=0x7f050002;
     }
     public static final class drawable {
         public static final int app_logo=0x7f020000;
-        public static final int ic_action_accept=0x7f020001;
-        public static final int ic_action_back=0x7f020002;
-        public static final int ic_action_chat=0x7f020003;
-        public static final int ic_action_edit=0x7f020004;
-        public static final int ic_action_group=0x7f020005;
-        public static final int ic_action_new=0x7f020006;
-        public static final int ic_action_person=0x7f020007;
-        public static final int ic_action_remove=0x7f020008;
-        public static final int ic_action_search=0x7f020009;
-        public static final int ic_action_send_now=0x7f02000a;
-        public static final int ic_action_settings=0x7f02000b;
-        public static final int ic_action_time=0x7f02000c;
-        public static final int ic_launcher=0x7f02000d;
+        public static final int drawer_shadow=0x7f020001;
+        public static final int ic_action_accept=0x7f020002;
+        public static final int ic_action_back=0x7f020003;
+        public static final int ic_action_chat=0x7f020004;
+        public static final int ic_action_copy=0x7f020005;
+        public static final int ic_action_edit=0x7f020006;
+        public static final int ic_action_group=0x7f020007;
+        public static final int ic_action_important=0x7f020008;
+        public static final int ic_action_new=0x7f020009;
+        public static final int ic_action_person=0x7f02000a;
+        public static final int ic_action_refresh=0x7f02000b;
+        public static final int ic_action_remove=0x7f02000c;
+        public static final int ic_action_search=0x7f02000d;
+        public static final int ic_action_send_now=0x7f02000e;
+        public static final int ic_action_settings=0x7f02000f;
+        public static final int ic_action_share=0x7f020010;
+        public static final int ic_action_time=0x7f020011;
+        public static final int ic_action_view_as_list=0x7f020012;
+        public static final int ic_drawer=0x7f020013;
+        public static final int ic_launcher=0x7f020014;
+        public static final int navigation_list_format=0x7f020015;
     }
     public static final class id {
-        public static final int password=0x7f090001;
-        public static final int sign_out=0x7f090003;
-        public static final int submit_credentials=0x7f090002;
-        public static final int user_name=0x7f090000;
+        public static final int content_frame=0x7f090001;
+        public static final int drawer_layout=0x7f090000;
+        public static final int left_drawer=0x7f090002;
+        public static final int nav_groups=0x7f090009;
+        public static final int nav_groups_image=0x7f09000a;
+        public static final int nav_groups_text=0x7f09000b;
+        public static final int nav_home=0x7f090003;
+        public static final int nav_home_image=0x7f090004;
+        public static final int nav_home_text=0x7f090005;
+        public static final int nav_subordiantes_text=0x7f090008;
+        public static final int nav_subordinates=0x7f090006;
+        public static final int nav_subordinates_image=0x7f090007;
+        public static final int password=0x7f09000d;
+        public static final int sign_out=0x7f09000f;
+        public static final int submit_credentials=0x7f09000e;
+        public static final int user_name=0x7f09000c;
     }
     public static final class layout {
         public static final int activity_home=0x7f030000;
@@ -81,6 +105,14 @@ public final class R {
         public static final int la_password_hint=0x7f060006;
         public static final int la_user_name_hint=0x7f060005;
         public static final int la_wrong_pass_or_name=0x7f060007;
+        public static final int navigation_groups=0x7f06000b;
+        public static final int navigation_groups_img_content_description=0x7f06000e;
+        public static final int navigation_home=0x7f06000a;
+        public static final int navigation_home_img_content_description=0x7f06000c;
+        /**  Navigation Drawable 
+         */
+        public static final int navigation_subordinates=0x7f060009;
+        public static final int navigation_subordinates_img_content_description=0x7f06000d;
         public static final int preference_file_key=0x7f060002;
         /**  Home activity 
  Menu 

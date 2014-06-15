@@ -20,4 +20,13 @@
 	<!-- Menu -->
 	<string name="sign_out">Sign out</string>
 	
+	<!-- Navigation Drawable -->
+	<string name="navigation_subordinates">Subordinates</string>
+	<string name="navigation_home">My Tasks</string>
+	<string name="navigation_groups">Groups</string>
+	<string name="navigation_home_img_content_description">navigation home</string>
+	<string name="navigation_subordinates_img_content_description">navigation groups</string>
+	<string name="navigation_groups_img_content_description">navigation subordinates</string>
+	
+	
 </resources>

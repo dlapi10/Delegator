@@ -7,4 +7,9 @@
     <!-- Image sizes -->
 	<dimen name="user_image_size">50dp</dimen>
     
+	
+	<!-- Navigation drawable -->
+	<dimen name="navigation_line_margins">10dp</dimen>
+	<dimen name="navigation_margin_to_image">20dp</dimen>
+	
 </resources>
