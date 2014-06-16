@@ -9,10 +9,10 @@ import android.os.Bundle;
 import android.support.v4.app.ActionBarDrawerToggle;
 import android.support.v4.widget.DrawerLayout;
 import android.view.Gravity;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
-import android.widget.Toast;
 import freeuni.android.delegator.R;
 import freeuni.android.delegator.app.App;
 
@@ -38,6 +38,7 @@ public class SuperActivity extends Activity{
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
+		App.setCurrentActivity(this); // To know which activity is this
 		setContentView(freeuni.android.delegator.R.layout.navigation_drawer);
 		SharedPreferences pref = getSharedPreferences(App.getPrefFile(), Context.MODE_PRIVATE);
 		String userName = pref.getString(getString(R.string.active_session_username),null);
@@ -98,16 +99,25 @@ public class SuperActivity extends Activity{
 	 * Listeners
 	 */
 	
+    /**
+     * Handles where to go or stay. If we are on the same activity we stay, elsewhere we go to another
+     * @param activity
+     */
+    private void handleReference(Class<?> activity){
+    	if(activity.isInstance(App.getCurrentActivity())){
+			drawer.closeDrawer(Gravity.LEFT);
+		}else{
+			Intent intent = new Intent(this, activity);
+			startActivity(intent);
+		}
+    }
+    
 	/**
 	 * Shows home, my tasks, If clicked on navigation drawable
 	 * @param v
 	 */
 	public void goHome(View v){
-		drawer.closeDrawer(Gravity.LEFT);
-		Toast.makeText(getApplicationContext(), "Home", Toast.LENGTH_LONG).show();
-		Intent homeIntent = new Intent(this, HomeActivity.class);
-		startActivity(homeIntent);
-		//TODO if current activity is already HOME don't go
+		handleReference(HomeActivity.class);
 	}
 	
 	/**
@@ -115,10 +125,7 @@ public class SuperActivity extends Activity{
 	 * @param v
 	 */
 	public void showSubordinates(View v){
-		Toast.makeText(getApplicationContext(), "Subordinates", Toast.LENGTH_LONG).show();
-		Intent subordinatesIntent = new Intent(this, SubordinatesActivity.class);
-		startActivity(subordinatesIntent);
-		//TODO if current activity is already subordinates don't go
+		handleReference(SubordinatesActivity.class);
 	}
 	
 	/**
@@ -126,9 +133,13 @@ public class SuperActivity extends Activity{
 	 * @param v
 	 */
 	public void showGroups(View v){
-		Toast.makeText(getApplicationContext(), "Groups", Toast.LENGTH_LONG).show();
-		Intent groupIntent = new Intent(this, GroupsActivity.class);
-		startActivity(groupIntent);
-		//TODO if current activity is already groups don't go
+		handleReference(GroupsActivity.class);
+	}
+	
+	
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+		getMenuInflater().inflate(R.menu.main, menu);
+		return super.onCreateOptionsMenu(menu);
 	}
 }

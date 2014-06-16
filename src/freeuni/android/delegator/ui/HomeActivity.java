@@ -5,6 +5,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.ViewStub;
 import freeuni.android.delegator.R;
+import freeuni.android.delegator.app.App;
 
 public class HomeActivity extends SuperActivity{
 
@@ -78,13 +79,12 @@ public class HomeActivity extends SuperActivity{
 
 	/**
 	 * Menu for the Home activity.
-	 * Not used 
 	 */
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.main, menu);
-		return true;
+		//getMenuInflater().inflate(R.menu.main, menu);
+		return super.onCreateOptionsMenu(menu);
 	}
 	
 }
