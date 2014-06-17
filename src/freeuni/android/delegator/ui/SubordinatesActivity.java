@@ -19,7 +19,7 @@ public class SubordinatesActivity extends SuperActivity {
 		Log.i(LOG_MESSAGE,"onCreate");
 		this.setTitle(getResources().getString(R.string.navigation_subordinates));
 		ViewStub stub = (ViewStub) findViewById(R.id.layout_stub);
-		stub.setLayoutResource(R.layout.activity_subordinates);
+		stub.setLayoutResource(R.layout.subordinates_list);
 		stub.inflate();
 	}
 

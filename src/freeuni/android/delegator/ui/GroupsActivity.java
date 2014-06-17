@@ -20,7 +20,7 @@ public class GroupsActivity extends SuperActivity{
 		Log.i(LOG_MESSAGE,"onCreate");
 		this.setTitle(getResources().getString(R.string.navigation_groups));
 		ViewStub stub = (ViewStub) findViewById(R.id.layout_stub);
-		stub.setLayoutResource(R.layout.activity_groups);
+		stub.setLayoutResource(R.layout.groups_list);
 		stub.inflate();
 	}
 

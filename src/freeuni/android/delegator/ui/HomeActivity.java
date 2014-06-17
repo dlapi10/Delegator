@@ -29,7 +29,7 @@ public class HomeActivity extends SuperActivity{
 		Log.i(LOG_MESSAGE,"onCreate");
 		this.setTitle(getResources().getString(R.string.navigation_home));
 		ViewStub stub = (ViewStub) findViewById(R.id.layout_stub);
-		stub.setLayoutResource(R.layout.activity_home);
+		stub.setLayoutResource(R.layout.tasks_list);
 		stub.inflate();
 	}
 
