@@ -36,43 +36,55 @@ public final class R {
          */
         public static final int activity_horizontal_margin=0x7f050000;
         public static final int activity_vertical_margin=0x7f050001;
+        public static final int avatar_margin=0x7f05000d;
+        public static final int between_task_n_and_text=0x7f05000c;
+        public static final int list_item_padding=0x7f05000e;
+        public static final int list_separator=0x7f050002;
+        public static final int navigation_drawable_width=0x7f050009;
         /**  Navigation drawable 
          */
-        public static final int navigation_line_margins=0x7f050003;
-        public static final int navigation_margin_to_image=0x7f050004;
-        public static final int profile_image_size=0x7f050005;
+        public static final int navigation_line_margins=0x7f050005;
+        public static final int navigation_margin_to_image=0x7f050006;
+        public static final int profile_image_size=0x7f050007;
+        public static final int subordinate_avatar_size=0x7f050004;
+        public static final int user_current_tasks_size=0x7f05000b;
         /**  Image sizes 
          */
-        public static final int user_image_size=0x7f050002;
-        public static final int username_name_size=0x7f050006;
+        public static final int user_image_size=0x7f050003;
+        public static final int username_name_size=0x7f050008;
+        /**  List text sizes 
+         */
+        public static final int username_text_size=0x7f05000a;
     }
     public static final class drawable {
         public static final int app_logo=0x7f020000;
-        public static final int drawer_shadow=0x7f020001;
-        public static final int ic_action_accept=0x7f020002;
-        public static final int ic_action_back=0x7f020003;
-        public static final int ic_action_chat=0x7f020004;
-        public static final int ic_action_copy=0x7f020005;
-        public static final int ic_action_edit=0x7f020006;
-        public static final int ic_action_group=0x7f020007;
-        public static final int ic_action_important=0x7f020008;
-        public static final int ic_action_new=0x7f020009;
-        public static final int ic_action_person=0x7f02000a;
-        public static final int ic_action_refresh=0x7f02000b;
-        public static final int ic_action_remove=0x7f02000c;
-        public static final int ic_action_search=0x7f02000d;
-        public static final int ic_action_send_now=0x7f02000e;
-        public static final int ic_action_settings=0x7f02000f;
-        public static final int ic_action_share=0x7f020010;
-        public static final int ic_action_time=0x7f020011;
-        public static final int ic_action_view_as_list=0x7f020012;
-        public static final int ic_drawer=0x7f020013;
-        public static final int ic_launcher=0x7f020014;
-        public static final int me=0x7f020015;
-        public static final int navigation_list_format=0x7f020016;
+        public static final int default_user_image=0x7f020001;
+        public static final int drawer_shadow=0x7f020002;
+        public static final int ic_action_accept=0x7f020003;
+        public static final int ic_action_back=0x7f020004;
+        public static final int ic_action_chat=0x7f020005;
+        public static final int ic_action_copy=0x7f020006;
+        public static final int ic_action_edit=0x7f020007;
+        public static final int ic_action_group=0x7f020008;
+        public static final int ic_action_important=0x7f020009;
+        public static final int ic_action_new=0x7f02000a;
+        public static final int ic_action_person=0x7f02000b;
+        public static final int ic_action_refresh=0x7f02000c;
+        public static final int ic_action_remove=0x7f02000d;
+        public static final int ic_action_search=0x7f02000e;
+        public static final int ic_action_send_now=0x7f02000f;
+        public static final int ic_action_settings=0x7f020010;
+        public static final int ic_action_share=0x7f020011;
+        public static final int ic_action_time=0x7f020012;
+        public static final int ic_action_view_as_list=0x7f020013;
+        public static final int ic_drawer=0x7f020014;
+        public static final int ic_launcher=0x7f020015;
+        public static final int me=0x7f020016;
+        public static final int navigation_list_format=0x7f020017;
     }
     public static final class id {
         public static final int content=0x7f090007;
+        public static final int current_tasks=0x7f090016;
         public static final int drawer_layout=0x7f090005;
         public static final int group_list=0x7f090004;
         public static final int groups=0x7f090003;
@@ -91,12 +103,13 @@ public final class R {
         public static final int profile_image=0x7f09000a;
         public static final int profile_name=0x7f09000b;
         public static final int profile_section=0x7f090009;
-        public static final int sign_out=0x7f090019;
+        public static final int sign_out=0x7f09001b;
         public static final int submit_credentials=0x7f090002;
-        public static final int subordinate_list=0x7f090016;
-        public static final int subordinates=0x7f090015;
-        public static final int task_list=0x7f090018;
-        public static final int tasks=0x7f090017;
+        public static final int subordinate_avatar=0x7f090015;
+        public static final int subordinate_list=0x7f090018;
+        public static final int subordinates=0x7f090017;
+        public static final int task_list=0x7f09001a;
+        public static final int tasks=0x7f090019;
         public static final int user_name=0x7f090000;
     }
     public static final class layout {
@@ -140,6 +153,10 @@ public final class R {
  Menu 
          */
         public static final int sign_out=0x7f060008;
+        public static final int subordinate_current_task_desc=0x7f060013;
+        /**  List strings 
+         */
+        public static final int subortinate_avatar_descrip=0x7f060012;
     }
     public static final class style {
         /** 

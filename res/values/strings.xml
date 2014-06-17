@@ -31,4 +31,8 @@
 	<string name="drawer_open">open drawer</string>
 	<string name="drawer_close">close drawers</string>
 	
+	<!-- List strings -->
+	<string name="subortinate_avatar_descrip">Subordinate avatar</string>
+	<string name="subordinate_current_task_desc">current tasks</string>
+	
 </resources>

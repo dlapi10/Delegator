@@ -19,19 +19,16 @@ public class GroupListAdapter extends BaseAdapter{
 	
 	@Override
 	public int getCount() {
-		// TODO Auto-generated method stub
-		return 0;
+		return groups.size();
 	}
 
 	@Override
-	public Object getItem(int position) {
-		// TODO Auto-generated method stub
-		return null;
+	public Object getItem(int index) {
+		return groups.get(index);
 	}
 
 	@Override
 	public long getItemId(int position) {
-		// TODO Auto-generated method stub
 		return 0;
 	}
 

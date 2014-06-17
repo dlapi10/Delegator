@@ -15,7 +15,7 @@
 
     <LinearLayout
         android:id="@+id/left_drawer"
-        android:layout_width="290dp"
+        android:layout_width="@dimen/navigation_drawable_width"
         android:layout_height="match_parent"
         android:layout_gravity="start"
         android:background="@color/light_grey"
@@ -42,12 +42,12 @@
                 android:layout_gravity="center"
                 android:layout_marginLeft="@dimen/navigation_margin_to_image"
                 android:textColor="@color/dark_grey"
-                android:textSize="20sp" />
+                android:textSize="@dimen/username_name_size" />
         </LinearLayout>
 
         <View
             android:layout_width="fill_parent"
-            android:layout_height="1dp"
+            android:layout_height="@dimen/list_separator"
             android:background="@color/grey" />
 
         <LinearLayout
@@ -77,7 +77,7 @@
 
         <View
             android:layout_width="fill_parent"
-            android:layout_height="1dp"
+            android:layout_height="@dimen/list_separator"
             android:background="@color/grey" />
 
         <LinearLayout
@@ -107,7 +107,7 @@
 
         <View
             android:layout_width="fill_parent"
-            android:layout_height="1dp"
+            android:layout_height="@dimen/list_separator"
             android:background="@color/grey" />
 
         <LinearLayout
@@ -137,7 +137,7 @@
 
         <View
             android:layout_width="fill_parent"
-            android:layout_height="1dp"
+            android:layout_height="@dimen/list_separator"
             android:background="@color/grey" />
     </LinearLayout>
 
