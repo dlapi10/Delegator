@@ -34,5 +34,6 @@
 	<!-- List strings -->
 	<string name="subortinate_avatar_descrip">Subordinate avatar</string>
 	<string name="subordinate_current_task_desc">current tasks</string>
+	<string name="assignee_assigner_desc">Who I gave, or gave me</string>
 	
 </resources>

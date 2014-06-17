@@ -38,6 +38,9 @@ public final class R {
         public static final int activity_vertical_margin=0x7f050001;
         public static final int avatar_margin=0x7f05000d;
         public static final int between_task_n_and_text=0x7f05000c;
+        public static final int group_name_margin=0x7f050010;
+        public static final int group_name_size=0x7f05000f;
+        public static final int list_avatar_size=0x7f050004;
         public static final int list_item_padding=0x7f05000e;
         public static final int list_separator=0x7f050002;
         public static final int navigation_drawable_width=0x7f050009;
@@ -45,8 +48,8 @@ public final class R {
          */
         public static final int navigation_line_margins=0x7f050005;
         public static final int navigation_margin_to_image=0x7f050006;
+        public static final int priority_margin=0x7f050011;
         public static final int profile_image_size=0x7f050007;
-        public static final int subordinate_avatar_size=0x7f050004;
         public static final int user_current_tasks_size=0x7f05000b;
         /**  Image sizes 
          */
@@ -83,33 +86,38 @@ public final class R {
         public static final int navigation_list_format=0x7f020017;
     }
     public static final class id {
-        public static final int content=0x7f090007;
-        public static final int current_tasks=0x7f090016;
-        public static final int drawer_layout=0x7f090005;
-        public static final int group_list=0x7f090004;
-        public static final int groups=0x7f090003;
-        public static final int layout_stub=0x7f090006;
-        public static final int left_drawer=0x7f090008;
-        public static final int nav_groups=0x7f090012;
-        public static final int nav_groups_image=0x7f090013;
-        public static final int nav_groups_text=0x7f090014;
-        public static final int nav_home=0x7f09000c;
-        public static final int nav_home_image=0x7f09000d;
-        public static final int nav_home_text=0x7f09000e;
-        public static final int nav_subordiantes_text=0x7f090011;
-        public static final int nav_subordinates=0x7f09000f;
-        public static final int nav_subordinates_image=0x7f090010;
+        public static final int assignee_assigner=0x7f09001a;
+        public static final int content=0x7f090008;
+        public static final int current_tasks=0x7f090017;
+        public static final int drawer_layout=0x7f090006;
+        public static final int group_list=0x7f090005;
+        public static final int group_name=0x7f090003;
+        public static final int groups=0x7f090004;
+        public static final int layout_stub=0x7f090007;
+        public static final int left_drawer=0x7f090009;
+        public static final int nav_groups=0x7f090013;
+        public static final int nav_groups_image=0x7f090014;
+        public static final int nav_groups_text=0x7f090015;
+        public static final int nav_home=0x7f09000d;
+        public static final int nav_home_image=0x7f09000e;
+        public static final int nav_home_text=0x7f09000f;
+        public static final int nav_subordiantes_text=0x7f090012;
+        public static final int nav_subordinates=0x7f090010;
+        public static final int nav_subordinates_image=0x7f090011;
         public static final int password=0x7f090001;
-        public static final int profile_image=0x7f09000a;
-        public static final int profile_name=0x7f09000b;
-        public static final int profile_section=0x7f090009;
-        public static final int sign_out=0x7f09001b;
+        public static final int profile_image=0x7f09000b;
+        public static final int profile_name=0x7f09000c;
+        public static final int profile_section=0x7f09000a;
+        public static final int sign_out=0x7f090020;
         public static final int submit_credentials=0x7f090002;
-        public static final int subordinate_avatar=0x7f090015;
-        public static final int subordinate_list=0x7f090018;
-        public static final int subordinates=0x7f090017;
-        public static final int task_list=0x7f09001a;
-        public static final int tasks=0x7f090019;
+        public static final int subordinate_avatar=0x7f090016;
+        public static final int subordinate_list=0x7f090019;
+        public static final int subordinates=0x7f090018;
+        public static final int task_list=0x7f09001f;
+        public static final int task_name=0x7f09001b;
+        public static final int task_priority=0x7f09001d;
+        public static final int task_status=0x7f09001c;
+        public static final int tasks=0x7f09001e;
         public static final int user_name=0x7f090000;
     }
     public static final class layout {
@@ -131,6 +139,7 @@ public final class R {
          */
         public static final int active_session_username=0x7f060003;
         public static final int app_name=0x7f060000;
+        public static final int assignee_assigner_desc=0x7f060014;
         public static final int drawer_close=0x7f060011;
         public static final int drawer_open=0x7f060010;
         /**  Login activity 

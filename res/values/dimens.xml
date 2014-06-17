@@ -6,8 +6,8 @@
     <dimen name="list_separator">1dp</dimen>
 
     <!-- Image sizes -->
-	<dimen name="user_image_size">60dp</dimen>
-	<dimen name="subordinate_avatar_size">50dp</dimen>
+	<dimen name="user_image_size">50dp</dimen>
+	<dimen name="list_avatar_size">40dp</dimen>
     
 	
 	<!-- Navigation drawable -->
@@ -21,8 +21,11 @@
 	<!-- List text sizes -->
 	<dimen name="username_text_size">15sp</dimen>
 	<dimen name="user_current_tasks_size">10sp</dimen>
-	<dimen name="between_task_n_and_text">10dp</dimen>
-	<dimen name="avatar_margin">10dp</dimen>
+	<dimen name="between_task_n_and_text">5dp</dimen>
+	<dimen name="avatar_margin">5dp</dimen>
 	<dimen name="list_item_padding">5dp</dimen>
+	<dimen name="group_name_size">20sp</dimen>
+	<dimen name="group_name_margin">10dp</dimen>
+	<dimen name="priority_margin">10dp</dimen>
 	
 </resources>
