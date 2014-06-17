@@ -1,11 +1,18 @@
 package freeuni.android.delegator.ui;
 
+import java.util.ArrayList;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
+import android.view.View;
 import android.view.ViewStub;
+import android.widget.AdapterView.OnItemClickListener;
+import android.widget.AdapterView;
+import android.widget.ListAdapter;
+import android.widget.ListView;
 import freeuni.android.delegator.R;
-import freeuni.android.delegator.app.App;
+import freeuni.android.delegator.model.Task;
+import freeuni.android.delegator.ui.model.TaskListAdapter;
 
 public class HomeActivity extends SuperActivity{
 
@@ -14,6 +21,10 @@ public class HomeActivity extends SuperActivity{
 
 
 	//Private variables
+	private ListView taskListView;
+	private ListAdapter taskListAdapter;
+	private ArrayList<Task> tasks;
+	
 
 	/*
 	 * Activity LifeCycle and helper Methods, dedicated to this cycle
@@ -28,9 +39,39 @@ public class HomeActivity extends SuperActivity{
 		super.onCreate(savedInstanceState);
 		Log.i(LOG_MESSAGE,"onCreate");
 		this.setTitle(getResources().getString(R.string.navigation_home));
+		
+		retrieveTasks();
+		setupList();
+		
+		//Setting layout to the stub
 		ViewStub stub = (ViewStub) findViewById(R.id.layout_stub);
 		stub.setLayoutResource(R.layout.tasks_list);
 		stub.inflate();
+		
+	}
+	
+	
+	/**
+	 * Retrieving tasks from database
+	 */
+	private void retrieveTasks(){
+		//TODO
+	}
+	
+	/**
+	 * Setup for List
+	 */
+	private void setupList(){
+		taskListView = (ListView)findViewById(R.id.task_list);
+		taskListAdapter = new TaskListAdapter(getLayoutInflater(),tasks);
+		taskListView.setAdapter(taskListAdapter);
+		taskListView.setOnItemClickListener(new OnItemClickListener() {
+			@Override
+			public void onItemClick(AdapterView<?> parent, View view,
+					int position, long id) {
+				// TODO Auto-generated method stub
+			}
+		});
 	}
 
 

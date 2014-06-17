@@ -1,14 +1,28 @@
 package freeuni.android.delegator.ui;
 
+import java.util.ArrayList;
+
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.view.ViewStub;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
+import android.widget.ListAdapter;
+import android.widget.ListView;
 import freeuni.android.delegator.R;
+import freeuni.android.delegator.model.Group;
+import freeuni.android.delegator.ui.model.GroupListAdapter;
 
 public class GroupsActivity extends SuperActivity{
 
 	//Private constants
 	private static final String LOG_MESSAGE = "Groups";
+
+	//Private variables
+	private ListView groupListView;
+	private ListAdapter groupListAdapter;
+	private ArrayList<Group> groups;
 
 	/**
 	 * Method called after creating of activity.
@@ -19,11 +33,39 @@ public class GroupsActivity extends SuperActivity{
 		super.onCreate(savedInstanceState);
 		Log.i(LOG_MESSAGE,"onCreate");
 		this.setTitle(getResources().getString(R.string.navigation_groups));
+
+		retrieveGroups();
+		setupList();
+
+		//Setting layout to the stub
 		ViewStub stub = (ViewStub) findViewById(R.id.layout_stub);
 		stub.setLayoutResource(R.layout.groups_list);
 		stub.inflate();
 	}
 
+
+	/**
+	 * Retrieving groups from database
+	 */
+	private void retrieveGroups(){
+		//TODO
+	}
+
+	/**
+	 * Setup for List
+	 */
+	private void setupList(){
+		groupListView = (ListView)findViewById(R.id.task_list);
+		groupListAdapter = new GroupListAdapter(getLayoutInflater(),groups);
+		groupListView.setAdapter(groupListAdapter);
+		groupListView.setOnItemClickListener(new OnItemClickListener() {
+			@Override
+			public void onItemClick(AdapterView<?> parent, View view,
+					int position, long id) {
+				// TODO Auto-generated method stub
+			}
+		});
+	}
 
 	/**
 	 * On resume

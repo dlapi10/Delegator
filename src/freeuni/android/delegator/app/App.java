@@ -23,6 +23,7 @@ public class App extends Application{
 	
 	/**
 	 * Initializing application
+	 * Everything fake should be changed here
 	 */
 	private void initApp() {
 		communicator = new FakeCommunicator();
