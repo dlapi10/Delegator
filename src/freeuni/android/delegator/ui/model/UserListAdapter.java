@@ -1,21 +1,24 @@
 package freeuni.android.delegator.ui.model;
 
 import java.util.ArrayList;
-import freeuni.android.delegator.model.User;
+
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ImageView;
+import android.widget.TextView;
+import freeuni.android.delegator.model.User;
 
 public class UserListAdapter extends BaseAdapter{
 	private ArrayList<User> users;
 	private LayoutInflater inflater;
-	
+
 	public UserListAdapter(LayoutInflater inflater, ArrayList<User> items){
 		this.users = items;
 		this.inflater = inflater;
 	}
-	
+
 	@Override
 	public int getCount() {
 		return users.size();
@@ -33,10 +36,32 @@ public class UserListAdapter extends BaseAdapter{
 
 	@Override
 	public View getView(int position, View convertView, ViewGroup parent) {
-		// TODO Auto-generated method stub
-		return null;
+		UserHolder userHolder;
+		if(convertView == null){
+			convertView = inflater.inflate(freeuni.android.delegator.R.layout.subordinate_list_item, null,false);
+			userHolder = new UserHolder();
+			userHolder.userName = (TextView)convertView.findViewById(freeuni.android.delegator.R.id.user_name);
+			userHolder.avatar = (ImageView)convertView.findViewById(freeuni.android.delegator.R.id.subordinate_avatar);
+			userHolder.currentTaskCount = (TextView) convertView.findViewById(freeuni.android.delegator.R.id.current_tasks);
+			convertView.setTag(userHolder);
+		}else {
+			userHolder = (UserHolder) convertView.getTag();
+		}
+		User subordinate = users.get(position);
+		if(subordinate.getAvatar()==null){
+			userHolder.avatar.setImageResource(freeuni.android.delegator.R.drawable.default_user_image);
+		}else{
+			userHolder.avatar.setImageBitmap(subordinate.getAvatar());
+		}
+		userHolder.userName.setText(subordinate.getUserName());
+		userHolder.currentTaskCount.setText(null);//TODO
+		return convertView;
 	}
 
-	
-	
+	private static class UserHolder{
+		ImageView avatar;
+		TextView userName;
+		TextView currentTaskCount;
+	}
+
 }

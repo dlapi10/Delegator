@@ -27,7 +27,7 @@ public class TaskStatus {
 	/**
 	 * @return the status
 	 */
-	public String getStatus() {
+	public String getStatusName() {
 		return status;
 	}
 	/**

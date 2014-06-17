@@ -10,6 +10,7 @@ public class Group {
 	private int groupID;
 	private List<User> group;
 	private Bitmap groupImage;
+	private String groupName;
 	
 	
 	
@@ -35,7 +36,12 @@ public class Group {
 		this.groupID = groupID;
 	}
 
-
+	/**
+	 * @return the groupName
+	 */
+	public String getGroupName() {
+		return groupName;
+	}
 
 	/**
 	 * @return the groupID
@@ -43,35 +49,47 @@ public class Group {
 	public int getGroupID() {
 		return groupID;
 	}
+	
 	/**
 	 * @return the group
 	 */
 	public List<User> getGroup() {
 		return group;
 	}
+	
 	/**
 	 * @return the groupImage
 	 */
 	public Bitmap getGroupImage() {
 		return groupImage;
 	}
+	
 	/**
 	 * @param groupID the groupID to set
 	 */
 	public void setGroupID(int groupID) {
 		this.groupID = groupID;
 	}
+	
 	/**
 	 * @param group the group to set
 	 */
 	public void setGroup(List<User> group) {
 		this.group = group;
 	}
+	
 	/**
 	 * @param groupImage the groupImage to set
 	 */
 	public void setGroupImage(Bitmap groupImage) {
 		this.groupImage = groupImage;
+	}
+	
+	/**
+	 * @param groupName the groupName to set
+	 */
+	public void setGroupName(String groupName) {
+		this.groupName = groupName;
 	}
 	
 	
