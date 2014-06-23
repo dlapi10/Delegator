@@ -40,13 +40,15 @@ public class HomeActivity extends SuperActivity{
 		Log.i(LOG_MESSAGE,"onCreate");
 		this.setTitle(getResources().getString(R.string.navigation_home));
 		
-		retrieveTasks();
-		setupList();
+		
 		
 		//Setting layout to the stub
 		ViewStub stub = (ViewStub) findViewById(R.id.layout_stub);
 		stub.setLayoutResource(R.layout.tasks_list);
 		stub.inflate();
+		
+		retrieveTasks();
+		setupList();
 		
 	}
 	

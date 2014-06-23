@@ -1,5 +1,8 @@
 package freeuni.android.delegator.db;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
@@ -7,6 +10,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 import freeuni.android.delegator.app.App;
+import freeuni.android.delegator.model.Group;
 import freeuni.android.delegator.model.Processing;
 import freeuni.android.delegator.model.User;
 
@@ -38,6 +42,27 @@ public class DBManager extends SQLiteOpenHelper{
 	/*
 	 * Groups
 	 */
+	public static final String TABLE_GROUPS = "GROUPS";
+	public static final String GRP_ID = "GROUP_ID";
+	public static final String GRP_NAME = "GROUP_NAME";
+	public static final String GRP_OWNER = "GROUP_OWNER";
+	
+	private static final String TABLE_GROUPS_CREATE = 
+			"CREATE TABLE " + TABLE_GROUPS + " (" +
+					GRP_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "+
+					GRP_NAME + " TEXT,"+
+					GRP_OWNER + "TEXT REFERENCES " + TABLE_USERS +"("+USR_USER_NAME+") )";
+	
+	public static final String TABLE_USER_TO_GROUPS = "USER_TO_GROUPS";
+	public static final String UTG_USER_NAME = "USER_NAME";
+	public static final String UTG_GROUP_ID = "GROUP_ID";
+	
+	private static final String TABLE_USER_TO_GROUPS_CREATE = 
+			"CREATE TABLE " + TABLE_USER_TO_GROUPS + " (" +
+					UTG_USER_NAME + " TEXT, "+
+					UTG_GROUP_ID + " INTEGER,"+ 
+					"PRIMARY KEY ("+ UTG_USER_NAME +","+UTG_GROUP_ID +")";
+	
 	
 	/*
 	 * Subordinates
@@ -71,12 +96,16 @@ public class DBManager extends SQLiteOpenHelper{
 	@Override
 	public void onCreate(SQLiteDatabase db) {
 		db.execSQL(TABLE_USR_CREATE);
+		db.execSQL(TABLE_GROUPS_CREATE);
+		db.execSQL(TABLE_USER_TO_GROUPS_CREATE);
 		Log.i(LOG_TAG, "tables created");
 	}
 
 	@Override
 	public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
 		db.execSQL("DROP TABLE IF EXISTS"+TABLE_USERS);
+		db.execSQL("DROP TABLE IF EXISTS"+TABLE_GROUPS);
+		db.execSQL("DROP TABLE IF EXISTS"+TABLE_USER_TO_GROUPS);
 		onCreate(db);
 	}
 	
@@ -107,5 +136,45 @@ public class DBManager extends SQLiteOpenHelper{
 		return user;
 	}
 	
+
+	/**
+	 * Add group for user (manager)
+	 * @param group
+	 * @param user group owner
+	 * @return returns group ID.
+	 */
+	public int addGroup(Group group, User user){
+		ContentValues values = new ContentValues();
+		values.put(GRP_NAME, group.getGroupName());
+		values.put(GRP_OWNER, user.getUserName());
+		db.insert(TABLE_GROUPS, null, values);
+		String query="SELECT MAX("+GRP_ID+") FROM "+TABLE_GROUPS+"";
+		Cursor c = db.rawQuery(query, null);
+		c.moveToFirst();
+		int grpID = c.getInt(c.getColumnIndex(GRP_ID));
+		return grpID;
+	}
 	
+	/**
+	 * Adding user to group
+	 * @param group
+	 * @param user
+	 */
+	public void addUserToGroup(Group group, User user){
+		ContentValues values = new ContentValues();
+		values.put(UTG_GROUP_ID, group.getGroupID());
+		values.put(UTG_USER_NAME, user.getUserName());
+		db.insert(TABLE_USER_TO_GROUPS, null, values);
+	}
+	
+	public Group getGroup(int id){
+		Group group = null;
+		return group;
+	}
+	
+	
+	public List<Group> getUsersGroups(User user){
+		ArrayList<Group> userGroups = null;
+		return userGroups;
+	}
 }
