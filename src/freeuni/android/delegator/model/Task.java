@@ -12,7 +12,8 @@ public class Task {
 	private int taskID;
 	private User reporter;
 	private boolean assigneeType;
-	private List<User> assignees;
+	private List<User> assignees; // Not Used
+	private User assignee;
 	private Group assigneeGroup;
 	private TaskStatus status;
 	private int priority;
@@ -29,7 +30,10 @@ public class Task {
 	private List<Integer> subtaskIDs;
 	private List<Comment> commments;
 	
-	
+
+	public Task(){
+		
+	}
 	
 	/**
 	 * @param taskID
@@ -39,6 +43,21 @@ public class Task {
 		this.taskID = taskID;
 	}
 	
+	
+
+	/**
+	 * @return the assignee
+	 */
+	public User getAssignee() {
+		return assignee;
+	}
+
+	/**
+	 * @param assignee the assignee to set
+	 */
+	public void setAssignee(User assignee) {
+		this.assignee = assignee;
+	}
 	
 	/**
 	 * @return the taskID

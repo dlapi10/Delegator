@@ -1,6 +1,10 @@
 package freeuni.android.delegator.db;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 import android.content.ContentValues;
@@ -12,6 +16,8 @@ import android.util.Log;
 import freeuni.android.delegator.app.App;
 import freeuni.android.delegator.model.Group;
 import freeuni.android.delegator.model.Processing;
+import freeuni.android.delegator.model.Task;
+import freeuni.android.delegator.model.TaskStatus;
 import freeuni.android.delegator.model.User;
 
 public class DBManager extends SQLiteOpenHelper{
@@ -32,13 +38,13 @@ public class DBManager extends SQLiteOpenHelper{
 	public static final String TABLE_USERS = "USERS";
 	public static final String USR_USER_NAME = "USER_NAME";
 	public static final String USR_IMAGE = "IMAGE";
-	
+
 	private static final String TABLE_USR_CREATE = 
 			"CREATE TABLE " + TABLE_USERS + " (" +
 					USR_USER_NAME + " TEXT PRIMARY KEY, "+
 					USR_IMAGE + " BLOB) ";
-	
-	
+
+
 	/*
 	 * Groups
 	 */
@@ -46,38 +52,38 @@ public class DBManager extends SQLiteOpenHelper{
 	public static final String GRP_ID = "GROUP_ID";
 	public static final String GRP_NAME = "GROUP_NAME";
 	public static final String GRP_OWNER = "GROUP_OWNER";
-	
+
 	private static final String TABLE_GROUPS_CREATE = 
 			"CREATE TABLE " + TABLE_GROUPS + " (" +
 					GRP_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "+
 					GRP_NAME + " TEXT,"+
 					GRP_OWNER + "TEXT REFERENCES " + TABLE_USERS +"("+USR_USER_NAME+") )";
-	
+
 	public static final String TABLE_USER_TO_GROUPS = "USER_TO_GROUPS";
 	public static final String UTG_USER_NAME = "USER_NAME";
 	public static final String UTG_GROUP_ID = "GROUP_ID";
-	
+
 	private static final String TABLE_USER_TO_GROUPS_CREATE = 
 			"CREATE TABLE " + TABLE_USER_TO_GROUPS + " (" +
 					UTG_USER_NAME + " TEXT, "+
 					UTG_GROUP_ID + " INTEGER,"+ 
 					"PRIMARY KEY ("+ UTG_USER_NAME +","+UTG_GROUP_ID +"))";
-	
-	
+
+
 	/*
 	 * Subordinates
 	 */
 	public static final String TABLE_SUBORDINATES = "SUBORDINATES";
 	public static final String SUB_MANAGER = "MANAGER";
 	public static final String SUB_SUBORDINATE = "SUBORDINATE";
-	
+
 	private static final String TABLE_SUB_CREATE = 
 			"CREATE TABLE " + TABLE_SUBORDINATES + " (" +
 					SUB_MANAGER + " TEXT REFERENCES " + TABLE_USERS +"("+USR_USER_NAME+"), "+
 					SUB_SUBORDINATE + " TEXT REFERENCES " + TABLE_USERS +"("+USR_USER_NAME+"), "+
 					"PRIMARY KEY ("+ SUB_MANAGER +","+SUB_SUBORDINATE +"))";
-	
-	
+
+
 	/*
 	 * Tasks
 	 */
@@ -85,47 +91,54 @@ public class DBManager extends SQLiteOpenHelper{
 	public static final String TSK_ID = "ID";
 	public static final String TSK_REPORTER = "REPORTER";
 	public static final String TSK_ASSIGNEE = "ASSIGNEE";
-	public static final String TSK_STATUS = "REPORTER";
-	public static final String TSK_DESCRIPTION = "REPORTER";
-	public static final String TSK_PRIORITY = "REPORTER";
-	public static final String TSK_COMPLETION = "REPORTER";
-	public static final String TSK_START_DATE = "REPORTER";
-	public static final String TSK_DEADLINE = "REPORTER";
-	public static final String TSK_TITLE = "REPORTER";
-	
+	public static final String TSK_STATUS = "STATUS";
+	public static final String TSK_DESCRIPTION = "DESCRIPTION";
+	public static final String TSK_PRIORITY = "PRIORITY";
+	public static final String TSK_COMPLETION = "COMPLETEION";
+	public static final String TSK_START_DATE = "START_DATE";
+	public static final String TSK_DEADLINE = "DEADLINE";
+	public static final String TSK_TITLE = "TITLE";
+
 	private static final String TABLE_TASKS_CREATE = 
-			"CREATE TABLE " + TABLE_SUBORDINATES + " (" +
-					SUB_MANAGER + " TEXT REFERENCES " + TABLE_USERS +"("+USR_USER_NAME+"), "+
-					SUB_SUBORDINATE + " TEXT REFERENCES " + TABLE_USERS +"("+USR_USER_NAME+"), "+
-					"PRIMARY KEY ("+ SUB_MANAGER +","+SUB_SUBORDINATE +"))";
-	
+			"CREATE TABLE " + TABLE_TASKS + " (" +
+					TSK_ID + " TEXT INTEGER PRIMARY KEY AUTOINCREMENT,"+
+					TSK_REPORTER + " TEXT REFERENCES " + TABLE_USERS +"("+USR_USER_NAME+"), "+
+					TSK_ASSIGNEE + " TEXT REFERENCES " + TABLE_USERS +"("+USR_USER_NAME+"), "+
+					TSK_STATUS + " TEXT, "+
+					TSK_DESCRIPTION + " TEXT, "+
+					TSK_PRIORITY + " INTEGER, "+
+					TSK_COMPLETION + " INTEGER, "+
+					TSK_START_DATE + " TEXT, "+
+					TSK_DEADLINE + " TEXT, "+
+					TSK_TITLE + " TEXT )";
+
 	/*
 	 * TaskCategory
 	 */
-	
+
 	public static final String TABLE_TASK_CATEGORIES = "TASK_CATEGORIES";
 	public static final String TCAT_CATEGORY = "CATEGORY";
 	public static final String TCAT_COLOR = "COLOR";
-	
+
 	private static final String TABLE_TCAT_CREATE = 
 			"CREATE TABLE " + TABLE_TASK_CATEGORIES + " (" +
 					TCAT_CATEGORY + " TEXT PRIMARY KEY, "+
 					TCAT_COLOR + " TEXT)";
-	
+
 	/*
 	 * TaskCategory to task
 	 */
 	public static final String TABLE_TASK_CAT_TO_TASK = "TASK_CAT_TO_TASK";
 	public static final String TCTT_CATEGORY = "CATEGORY";
 	public static final String TCTT_TASK_ID = "TASK_ID";
-	
+
 	private static final String TABLE_TCTT_CREATE = 
 			"CREATE TABLE " + TABLE_TASK_CAT_TO_TASK + " (" +
 					TCTT_CATEGORY + " TEXT REFERENCES " + TABLE_TASK_CATEGORIES +"("+TCAT_CATEGORY+"), "+
 					TCTT_TASK_ID + " INTEGER REFERENCES " + TABLE_TASKS +"("+TSK_ID+"), "+
 					"PRIMARY KEY ("+ TCTT_CATEGORY +","+TCTT_TASK_ID +"))";
-	
-	
+
+
 	// Implementation
 
 	public DBManager(Context context) {
@@ -156,7 +169,7 @@ public class DBManager extends SQLiteOpenHelper{
 		db.execSQL("DROP TABLE IF EXISTS"+TABLE_TASK_CAT_TO_TASK);
 		onCreate(db);
 	}
-	
+
 	/**
 	 * Add user
 	 * @param user
@@ -184,7 +197,7 @@ public class DBManager extends SQLiteOpenHelper{
 		c.close();
 		return user;
 	}
-	
+
 
 	/**
 	 * Add group for user (manager)
@@ -204,7 +217,7 @@ public class DBManager extends SQLiteOpenHelper{
 		c.close();
 		return grpID;
 	}
-	
+
 	/**
 	 * Adding user to group
 	 * @param group
@@ -216,7 +229,7 @@ public class DBManager extends SQLiteOpenHelper{
 		values.put(UTG_USER_NAME, user.getUserName());
 		db.insert(TABLE_USER_TO_GROUPS, null, values);
 	}
-	
+
 	/**
 	 * Get groups by ID
 	 * @param id
@@ -239,7 +252,7 @@ public class DBManager extends SQLiteOpenHelper{
 		c.close();
 		return group;
 	}
-	
+
 	/**
 	 * Get groups for user
 	 * @param user
@@ -257,7 +270,7 @@ public class DBManager extends SQLiteOpenHelper{
 		c.close();
 		return userGroups;
 	}
-	
+
 	/**
 	 * Sets subordinate to user
 	 * @param manager 
@@ -269,7 +282,7 @@ public class DBManager extends SQLiteOpenHelper{
 		values.put(SUB_SUBORDINATE, subordinate.getUserName());
 		db.insert(TABLE_SUBORDINATES, null, values);
 	}
-	
+
 	/**
 	 * Returns all users which are subordinates of given manager
 	 * @param manager
@@ -287,6 +300,109 @@ public class DBManager extends SQLiteOpenHelper{
 		c.close();
 		return subordinates;
 	}
-	
 
+	/**
+	 * Adds task to database
+	 * @param task
+	 * @return task id
+	 */
+	public int addTask(Task task){
+		ContentValues values = new ContentValues();
+		values.put(TSK_REPORTER, task.getReporter().getUserName());
+		values.put(TSK_ASSIGNEE, task.getAssignee().getUserName());
+		values.put(TSK_STATUS, task.getStatus().getStatusName());
+		values.put(TSK_DESCRIPTION, task.getDescription());
+		values.put(TSK_PRIORITY, task.getPriority());
+		values.put(TSK_COMPLETION, task.getCompletionPercent());
+		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd-hh.mm.ss",java.util.Locale.getDefault());
+		String date = formatter.format(task.getStartDate());
+		values.put(TSK_START_DATE, date);
+		date = formatter.format(task.getDeadLine());
+		values.put(TSK_DEADLINE, date);
+		values.put(TSK_TITLE, task.getTitle().toString());
+		db.insert(TABLE_TASKS, null, values);
+
+		String query="SELECT MAX("+TSK_ID+") FROM "+TABLE_TASKS+"";
+		Cursor c = db.rawQuery(query, null);
+		c.moveToFirst();
+		int tskID = c.getInt(c.getColumnIndex(TSK_ID));
+		c.close();
+		return tskID;
+	}
+
+	/**
+	 * Returns task with given id
+	 * @param id
+	 * @return
+	 */
+	public Task getTask(int id){
+		Task task = new Task(id);
+		String query = "SELECT * FROM "+TABLE_TASKS+" WHERE "+TSK_ID +" = "+ id;
+		Cursor c = db.rawQuery(query, null);
+		c.moveToFirst();
+		task.setAssignee(getUser(c.getString(c.getColumnIndex(TSK_ASSIGNEE))));
+		task.setReporter(getUser(c.getString(c.getColumnIndex(TSK_REPORTER))));
+		task.setStatus(new TaskStatus(c.getString(c.getColumnIndex(TSK_STATUS))));
+		task.setDescription(c.getString(c.getColumnIndex(TSK_DESCRIPTION)));
+		task.setPriority(c.getInt(c.getColumnIndex(TSK_PRIORITY)));
+		task.setCompletionPercent(c.getInt(c.getColumnIndex(TSK_COMPLETION)));
+		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd-hh.mm.ss",java.util.Locale.getDefault());
+		try {
+			task.setStartDate(DateToCalendar((Date)formatter.parse(c.getString(c.getColumnIndex(TSK_START_DATE)))));
+			task.setDeadLine(DateToCalendar((Date)formatter.parse(c.getString(c.getColumnIndex(TSK_DEADLINE)))));
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+		task.setTitle(c.getString(c.getColumnIndex(TSK_TITLE)));
+		c.close();
+		return task;
+	}
+
+	/**
+	 * Date format to Calendar
+	 * @param date
+	 * @return
+	 */
+	public static Calendar DateToCalendar(Date date){ 
+		Calendar cal = Calendar.getInstance();
+		cal.setTime(date);
+		return cal;
+	}
+
+
+	/** 
+	 * Returns all tasks for given reporter
+	 * @param reporter
+	 * @return
+	 */
+	public List<Task> getTasksForReporter(User reporter){
+		ArrayList<Task> tasks = new ArrayList<Task>();
+		String query = "SELECT * FROM "+TABLE_TASKS+" WHERE "+TSK_REPORTER +" = "+ reporter.getUserName();
+		Cursor c = db.rawQuery(query, null);
+		if(c.moveToFirst()){
+			do{
+				tasks.add(getTask(c.getInt(c.getColumnIndex(TSK_ID))));
+			}while(c.moveToNext());
+		}
+		c.close();
+		return tasks;
+	}
+
+	/**
+	 * Returns all tasks for given assignee
+	 * @param assignee
+	 * @return
+	 */
+	public List<Task> getTasksForAssignee(User assignee){
+		ArrayList<Task> tasks = new ArrayList<Task>();
+		String query = "SELECT * FROM "+TABLE_TASKS+" WHERE "+TSK_ASSIGNEE +" = "+ assignee.getUserName();
+		Cursor c = db.rawQuery(query, null);
+		if(c.moveToFirst()){
+			do{
+				tasks.add(getTask(c.getInt(c.getColumnIndex(TSK_ID))));
+			}while(c.moveToNext());
+		}
+		c.close();
+		return tasks;
+	}
 }

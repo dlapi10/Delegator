@@ -12,14 +12,19 @@ public class TaskStatus {
 	private String status;
 	private Color statusColor;
 	
-	
+	/**
+	 * Constructor with just status 
+	 * @param status
+	 */
+	public TaskStatus(String status){
+		this.status = status;
+	}
 	
 	/**
 	 * @param status
 	 * @param statusColor
 	 */
 	public TaskStatus(String status, Color statusColor) {
-		super();
 		this.status = status;
 		this.statusColor = statusColor;
 	}
