@@ -61,16 +61,22 @@ public class DBManager extends SQLiteOpenHelper{
 			"CREATE TABLE " + TABLE_USER_TO_GROUPS + " (" +
 					UTG_USER_NAME + " TEXT, "+
 					UTG_GROUP_ID + " INTEGER,"+ 
-					"PRIMARY KEY ("+ UTG_USER_NAME +","+UTG_GROUP_ID +")";
+					"PRIMARY KEY ("+ UTG_USER_NAME +","+UTG_GROUP_ID +"))";
 	
 	
 	/*
 	 * Subordinates
 	 */
+	public static final String TABLE_SUBORDINATES = "SUBORDINATES";
+	public static final String SUB_MANAGER = "MANAGER";
+	public static final String SUB_SUBORDINATE = "SUBORDINATE";
 	
-	/*
-	 * Owned Groups
-	 */
+	private static final String TABLE_SUB_CREATE = 
+			"CREATE TABLE " + TABLE_SUBORDINATES + " (" +
+					SUB_MANAGER + " TEXT REFERENCES " + TABLE_USERS +"("+USR_USER_NAME+"), "+
+					SUB_SUBORDINATE + " TEXT REFERENCES " + TABLE_USERS +"("+USR_USER_NAME+"), "+
+					"PRIMARY KEY ("+ SUB_MANAGER +","+SUB_SUBORDINATE +"))";
+	
 	
 	/*
 	 * Requests
@@ -84,9 +90,23 @@ public class DBManager extends SQLiteOpenHelper{
 	 * Tasks
 	 */
 	
+	
+	
 	/*
 	 * TaskCategory
 	 */
+	
+	public static final String TABLE_TASK_CATEGORIES = "TASK_CATEGORIES";
+	public static final String TCAT_CATEGORY = "CATEGORY";
+	public static final String TCAT_COLOR = "COLOR";
+	
+	private static final String TABLE_TCAT_CREATE = 
+			"CREATE TABLE " + TABLE_SUBORDINATES + " (" +
+					SUB_MANAGER + " TEXT REFERENCES " + TABLE_USERS +"("+USR_USER_NAME+"), "+
+					SUB_SUBORDINATE + " TEXT REFERENCES " + TABLE_USERS +"("+USR_USER_NAME+"), "+
+					"PRIMARY KEY ("+ SUB_MANAGER +","+SUB_SUBORDINATE +"))";
+	
+	// Implementation
 
 	public DBManager(Context context) {
 		super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -98,6 +118,8 @@ public class DBManager extends SQLiteOpenHelper{
 		db.execSQL(TABLE_USR_CREATE);
 		db.execSQL(TABLE_GROUPS_CREATE);
 		db.execSQL(TABLE_USER_TO_GROUPS_CREATE);
+		db.execSQL(TABLE_SUB_CREATE);
+		db.execSQL(TABLE_TCAT_CREATE);
 		Log.i(LOG_TAG, "tables created");
 	}
 
@@ -106,6 +128,8 @@ public class DBManager extends SQLiteOpenHelper{
 		db.execSQL("DROP TABLE IF EXISTS"+TABLE_USERS);
 		db.execSQL("DROP TABLE IF EXISTS"+TABLE_GROUPS);
 		db.execSQL("DROP TABLE IF EXISTS"+TABLE_USER_TO_GROUPS);
+		db.execSQL("DROP TABLE IF EXISTS"+TABLE_SUBORDINATES);
+		db.execSQL("DROP TABLE IF EXISTS"+TABLE_TASK_CATEGORIES);
 		onCreate(db);
 	}
 	
@@ -133,6 +157,7 @@ public class DBManager extends SQLiteOpenHelper{
 		byte[] image = c.getBlob(c.getColumnIndex(USR_IMAGE));
 		User user = new User(userName);
 		user.setAvatar(Processing.byteArrayToBitmap(image, App.getAvatarDimension(), App.getAvatarDimension()));
+		c.close();
 		return user;
 	}
 	
@@ -152,6 +177,7 @@ public class DBManager extends SQLiteOpenHelper{
 		Cursor c = db.rawQuery(query, null);
 		c.moveToFirst();
 		int grpID = c.getInt(c.getColumnIndex(GRP_ID));
+		c.close();
 		return grpID;
 	}
 	
@@ -167,14 +193,76 @@ public class DBManager extends SQLiteOpenHelper{
 		db.insert(TABLE_USER_TO_GROUPS, null, values);
 	}
 	
+	/**
+	 * Get groups by ID
+	 * @param id
+	 * @return
+	 */
 	public Group getGroup(int id){
-		Group group = null;
+		Group group = new Group(id);
+		String query = "SELECT * FROM "+TABLE_GROUPS+" WHERE "+GRP_ID+" = "+id;
+		Cursor c = db.rawQuery(query, null);
+		c.moveToFirst();
+		group.setGroupName(c.getString(c.getColumnIndex(GRP_NAME)));
+		query = "SELECT * FROM "+TABLE_USER_TO_GROUPS+" WHERE "+UTG_GROUP_ID+"="+id;
+		c = db.rawQuery(query, null);
+		ArrayList<User> users = new ArrayList<User>();
+		if(c.moveToFirst()){
+			do{
+				users.add(getUser(c.getString(c.getColumnIndex(UTG_USER_NAME))));
+			}while(c.moveToNext());
+		}
+		c.close();
 		return group;
 	}
 	
-	
+	/**
+	 * Get groups for user
+	 * @param user
+	 * @return
+	 */
 	public List<Group> getUsersGroups(User user){
-		ArrayList<Group> userGroups = null;
+		ArrayList<Group> userGroups = new ArrayList<Group>();
+		String query = "SELECT "+GRP_ID+" FROM "+TABLE_GROUPS+" WHERE "+GRP_OWNER +" = "+ user.getUserName();
+		Cursor c = db.rawQuery(query, null);
+		if(c.moveToFirst()){
+			do{
+				userGroups.add(getGroup(c.getInt(c.getColumnIndex(GRP_ID))));
+			}while(c.moveToNext());
+		}
+		c.close();
 		return userGroups;
 	}
+	
+	/**
+	 * Sets subordinate to user
+	 * @param manager 
+	 * @param subordinate 
+	 */
+	public void setSubortinate(User manager, User subordinate){
+		ContentValues values = new ContentValues();
+		values.put(SUB_MANAGER, manager.getUserName());
+		values.put(SUB_SUBORDINATE, subordinate.getUserName());
+		db.insert(TABLE_SUBORDINATES, null, values);
+	}
+	
+	/**
+	 * Returns all users which are subordinates of given manager
+	 * @param manager
+	 * @return
+	 */
+	public List<User> getSubordinatesForManager(User manager){
+		ArrayList<User> subordinates = new ArrayList<User>();
+		String query = "SELECT "+SUB_SUBORDINATE+" FROM "+TABLE_SUBORDINATES+" WHERE "+SUB_MANAGER +" = "+ manager.getUserName();
+		Cursor c = db.rawQuery(query, null);
+		if(c.moveToFirst()){
+			do{
+				subordinates.add(getUser((c.getString(c.getColumnIndex(SUB_SUBORDINATE)))));
+			}while(c.moveToNext());
+		}
+		c.close();
+		return subordinates;
+	}
+	
+
 }
