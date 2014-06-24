@@ -79,18 +79,25 @@ public class DBManager extends SQLiteOpenHelper{
 	
 	
 	/*
-	 * Requests
-	 */
-	
-	/*
-	 * Comments
-	 */
-	
-	/*
 	 * Tasks
 	 */
+	public static final String TABLE_TASKS = "TASKS";
+	public static final String TSK_ID = "ID";
+	public static final String TSK_REPORTER = "REPORTER";
+	public static final String TSK_ASSIGNEE = "ASSIGNEE";
+	public static final String TSK_STATUS = "REPORTER";
+	public static final String TSK_DESCRIPTION = "REPORTER";
+	public static final String TSK_PRIORITY = "REPORTER";
+	public static final String TSK_COMPLETION = "REPORTER";
+	public static final String TSK_START_DATE = "REPORTER";
+	public static final String TSK_DEADLINE = "REPORTER";
+	public static final String TSK_TITLE = "REPORTER";
 	
-	
+	private static final String TABLE_TASKS_CREATE = 
+			"CREATE TABLE " + TABLE_SUBORDINATES + " (" +
+					SUB_MANAGER + " TEXT REFERENCES " + TABLE_USERS +"("+USR_USER_NAME+"), "+
+					SUB_SUBORDINATE + " TEXT REFERENCES " + TABLE_USERS +"("+USR_USER_NAME+"), "+
+					"PRIMARY KEY ("+ SUB_MANAGER +","+SUB_SUBORDINATE +"))";
 	
 	/*
 	 * TaskCategory
@@ -101,10 +108,23 @@ public class DBManager extends SQLiteOpenHelper{
 	public static final String TCAT_COLOR = "COLOR";
 	
 	private static final String TABLE_TCAT_CREATE = 
-			"CREATE TABLE " + TABLE_SUBORDINATES + " (" +
-					SUB_MANAGER + " TEXT REFERENCES " + TABLE_USERS +"("+USR_USER_NAME+"), "+
-					SUB_SUBORDINATE + " TEXT REFERENCES " + TABLE_USERS +"("+USR_USER_NAME+"), "+
-					"PRIMARY KEY ("+ SUB_MANAGER +","+SUB_SUBORDINATE +"))";
+			"CREATE TABLE " + TABLE_TASK_CATEGORIES + " (" +
+					TCAT_CATEGORY + " TEXT PRIMARY KEY, "+
+					TCAT_COLOR + " TEXT)";
+	
+	/*
+	 * TaskCategory to task
+	 */
+	public static final String TABLE_TASK_CAT_TO_TASK = "TASK_CAT_TO_TASK";
+	public static final String TCTT_CATEGORY = "CATEGORY";
+	public static final String TCTT_TASK_ID = "TASK_ID";
+	
+	private static final String TABLE_TCTT_CREATE = 
+			"CREATE TABLE " + TABLE_TASK_CAT_TO_TASK + " (" +
+					TCTT_CATEGORY + " TEXT REFERENCES " + TABLE_TASK_CATEGORIES +"("+TCAT_CATEGORY+"), "+
+					TCTT_TASK_ID + " INTEGER REFERENCES " + TABLE_TASKS +"("+TSK_ID+"), "+
+					"PRIMARY KEY ("+ TCTT_CATEGORY +","+TCTT_TASK_ID +"))";
+	
 	
 	// Implementation
 
@@ -120,6 +140,8 @@ public class DBManager extends SQLiteOpenHelper{
 		db.execSQL(TABLE_USER_TO_GROUPS_CREATE);
 		db.execSQL(TABLE_SUB_CREATE);
 		db.execSQL(TABLE_TCAT_CREATE);
+		db.execSQL(TABLE_TASKS_CREATE);
+		db.execSQL(TABLE_TCTT_CREATE);
 		Log.i(LOG_TAG, "tables created");
 	}
 
@@ -130,6 +152,8 @@ public class DBManager extends SQLiteOpenHelper{
 		db.execSQL("DROP TABLE IF EXISTS"+TABLE_USER_TO_GROUPS);
 		db.execSQL("DROP TABLE IF EXISTS"+TABLE_SUBORDINATES);
 		db.execSQL("DROP TABLE IF EXISTS"+TABLE_TASK_CATEGORIES);
+		db.execSQL("DROP TABLE IF EXISTS"+TABLE_TASKS_CREATE);
+		db.execSQL("DROP TABLE IF EXISTS"+TABLE_TASK_CAT_TO_TASK);
 		onCreate(db);
 	}
 	

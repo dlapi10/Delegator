@@ -54,7 +54,7 @@ public class TaskListAdapter extends BaseAdapter{
 		}else{
 			taskHolder.assigneeAssigner.setImageBitmap(task.getReporter().getAvatar()); // TODO Which one, reporter or assignee?
 		}
-		taskHolder.taskName.setText(task.getSmallDescription());
+		taskHolder.taskName.setText(task.getTitle());
 		taskHolder.taskStatus.setText(task.getStatus().getStatusName());
 		taskHolder.taskPriority.setText(Integer.toString(task.getPriority()));
 		return convertView;

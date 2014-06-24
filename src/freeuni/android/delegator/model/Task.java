@@ -21,7 +21,6 @@ public class Task {
 	private int completionPercent;
 	private String title;
 	private String description;
-	private String smallDescription;
 	private List<TaskCategory> categories;
 	private List<String> tags;
 	private Calendar reminder;
@@ -41,13 +40,6 @@ public class Task {
 	}
 	
 	
-	/**
-	 * @return the smallDescription
-	 */
-	public String getSmallDescription() {
-		return smallDescription;
-	}
-
 	/**
 	 * @return the taskID
 	 */
@@ -312,13 +304,6 @@ public class Task {
 	 */
 	public void setCommments(List<Comment> commments) {
 		this.commments = commments;
-	}
-	
-	/**
-	 * @param smallDescription the smallDescription to set
-	 */
-	public void setSmallDescription(String smallDescription) {
-		this.smallDescription = smallDescription;
 	}
 	
 }
