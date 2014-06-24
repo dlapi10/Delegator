@@ -11,6 +11,8 @@ import android.widget.AdapterView;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import freeuni.android.delegator.R;
+import freeuni.android.delegator.app.App;
+import freeuni.android.delegator.db.DBManager;
 import freeuni.android.delegator.model.Task;
 import freeuni.android.delegator.ui.model.TaskListAdapter;
 
@@ -24,7 +26,6 @@ public class HomeActivity extends SuperActivity{
 	private ListView taskListView;
 	private ListAdapter taskListAdapter;
 	private ArrayList<Task> tasks;
-	
 
 	/*
 	 * Activity LifeCycle and helper Methods, dedicated to this cycle
@@ -39,41 +40,42 @@ public class HomeActivity extends SuperActivity{
 		super.onCreate(savedInstanceState);
 		Log.i(LOG_MESSAGE,"onCreate");
 		this.setTitle(getResources().getString(R.string.navigation_home));
-		
-		
-		
+
 		//Setting layout to the stub
 		ViewStub stub = (ViewStub) findViewById(R.id.layout_stub);
 		stub.setLayoutResource(R.layout.tasks_list);
 		stub.inflate();
-		
+
 		retrieveTasks();
 		setupList();
-		
+
 	}
-	
-	
+
+
 	/**
 	 * Retrieving tasks from database
 	 */
 	private void retrieveTasks(){
-		//TODO
+		DBManager db = App.getDb();
+		tasks = (ArrayList<Task>) db.getTasksForAssignee(db.getUser(userName));
 	}
-	
+
 	/**
 	 * Setup for List
 	 */
 	private void setupList(){
-		taskListView = (ListView)findViewById(R.id.task_list);
-		taskListAdapter = new TaskListAdapter(getLayoutInflater(),tasks);
-		taskListView.setAdapter(taskListAdapter);
-		taskListView.setOnItemClickListener(new OnItemClickListener() {
-			@Override
-			public void onItemClick(AdapterView<?> parent, View view,
-					int position, long id) {
-				// TODO Auto-generated method stub
-			}
-		});
+		if(tasks!=null){
+			taskListView = (ListView)findViewById(R.id.task_list);
+			taskListAdapter = new TaskListAdapter(getLayoutInflater(),tasks);
+			taskListView.setAdapter(taskListAdapter);
+			taskListView.setOnItemClickListener(new OnItemClickListener() {
+				@Override
+				public void onItemClick(AdapterView<?> parent, View view,
+						int position, long id) {
+					// TODO Auto-generated method stub
+				}
+			});
+		}
 	}
 
 
@@ -129,5 +131,5 @@ public class HomeActivity extends SuperActivity{
 		//getMenuInflater().inflate(R.menu.main, menu);
 		return super.onCreateOptionsMenu(menu);
 	}
-	
+
 }

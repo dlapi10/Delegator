@@ -24,6 +24,7 @@ public class SuperActivity extends Activity{
 	// Private variables
 	private DrawerLayout drawer;
 	private ActionBarDrawerToggle drawerToggle;
+	protected String userName;
 	
 	/**
 	 * Signing out from any activity
@@ -41,7 +42,7 @@ public class SuperActivity extends Activity{
 		App.setCurrentActivity(this); // To know which activity is this
 		setContentView(freeuni.android.delegator.R.layout.navigation_drawer);
 		SharedPreferences pref = getSharedPreferences(App.getPrefFile(), Context.MODE_PRIVATE);
-		String userName = pref.getString(getString(R.string.active_session_username),null);
+		userName = pref.getString(getString(R.string.active_session_username),null);
 		((TextView)findViewById(R.id.profile_name)).setText(userName);
 		//TODO To set real user profile
 		super.onCreate(savedInstanceState);

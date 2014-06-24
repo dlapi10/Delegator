@@ -1,5 +1,8 @@
 package freeuni.android.delegator.communicator;
 
+import freeuni.android.delegator.app.App;
+import freeuni.android.delegator.db.DBManager;
+
 
 /*
  * 
@@ -13,7 +16,11 @@ public class FakeCommunicator implements NetworkCommunicator{
 	 * @return false if there is not such user with password, true otherwise
 	 */
 	public boolean checkCredentials(String name, String pass){
-		return true;
+		DBManager db= App.getDb();
+		String truePass = db.getUser(name).getPassword();
+		if(truePass!=null && pass.equals(truePass))
+			return true;
+		return false;
 	}
 	
 }

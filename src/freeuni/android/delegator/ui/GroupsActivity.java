@@ -1,7 +1,6 @@
 package freeuni.android.delegator.ui;
 
 import java.util.ArrayList;
-
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -11,6 +10,8 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import freeuni.android.delegator.R;
+import freeuni.android.delegator.app.App;
+import freeuni.android.delegator.db.DBManager;
 import freeuni.android.delegator.model.Group;
 import freeuni.android.delegator.ui.model.GroupListAdapter;
 
@@ -48,7 +49,8 @@ public class GroupsActivity extends SuperActivity{
 	 * Retrieving groups from database
 	 */
 	private void retrieveGroups(){
-		//TODO
+		DBManager db = App.getDb();
+		groups = (ArrayList<Group>) db.getUsersGroups(db.getUser(userName));
 	}
 
 	/**

@@ -37,11 +37,13 @@ public class DBManager extends SQLiteOpenHelper{
 	 */
 	public static final String TABLE_USERS = "USERS";
 	public static final String USR_USER_NAME = "USER_NAME";
+	public static final String USR_PASS = "PASS";
 	public static final String USR_IMAGE = "IMAGE";
 
 	private static final String TABLE_USR_CREATE = 
 			"CREATE TABLE " + TABLE_USERS + " (" +
 					USR_USER_NAME + " TEXT PRIMARY KEY, "+
+					USR_PASS +"TEXT,"+
 					USR_IMAGE + " BLOB) ";
 
 
@@ -178,6 +180,7 @@ public class DBManager extends SQLiteOpenHelper{
 		ContentValues values = new ContentValues();
 		values.put(USR_USER_NAME, user.getUserName());
 		values.put(USR_IMAGE, Processing.bitmapToByteArray(user.getAvatar()));
+		values.put(USR_PASS, user.getPassword());
 		db.insert(TABLE_USERS, null, values);
 		Log.i(LOG_TAG, "User added");
 	}
@@ -194,10 +197,12 @@ public class DBManager extends SQLiteOpenHelper{
 		byte[] image = c.getBlob(c.getColumnIndex(USR_IMAGE));
 		User user = new User(userName);
 		user.setAvatar(Processing.byteArrayToBitmap(image, App.getAvatarDimension(), App.getAvatarDimension()));
+		user.setPassword(c.getString(c.getColumnIndex(USR_PASS)));
 		c.close();
 		return user;
 	}
 
+	
 
 	/**
 	 * Add group for user (manager)

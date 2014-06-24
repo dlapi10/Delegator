@@ -10,6 +10,8 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import freeuni.android.delegator.R;
+import freeuni.android.delegator.app.App;
+import freeuni.android.delegator.db.DBManager;
 import freeuni.android.delegator.model.User;
 import freeuni.android.delegator.ui.model.UserListAdapter;
 
@@ -46,7 +48,8 @@ public class SubordinatesActivity extends SuperActivity {
 	 * Retrieving tasks from database
 	 */
 	private void retrieveSubordinates(){
-		//TODO
+		DBManager db = App.getDb();
+		subordinates = (ArrayList<User>) db.getSubordinatesForManager(db.getUser(userName));
 	}
 
 	/**
