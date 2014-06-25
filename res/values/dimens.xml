@@ -28,4 +28,7 @@
 	<dimen name="group_name_margin">10dp</dimen>
 	<dimen name="priority_margin">10dp</dimen>
 	
+	<!-- Task Activity -->
+	<dimen name="seekbar_margins">10dp</dimen>
+	
 </resources>

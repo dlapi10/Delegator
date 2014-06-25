@@ -3,14 +3,65 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical" >
-    
-    <!-- TextView for Title -->
-	<!-- TextView for Assignee -->
-	<!-- TextView for Reporter -->
-	<!-- Combo for Status -->
-	<!-- TextView for Description -->
-	<!-- TextView for  Completion-->
-	<!-- Picker for Deadline -->
-	
+
+    <!-- Picker for Deadline -->
+
+    <EditText
+        android:id="@+id/task_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="@string/task_title_hint" >
+
+        <requestFocus />
+    </EditText>
+
+    <EditText
+        android:id="@+id/editText1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="@string/task_description_hint" />
+
+    <Spinner
+        android:id="@+id/task_status"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal" 
+        android:layout_marginLeft="@dimen/seekbar_margins">
+
+        <TextView
+            android:id="@+id/completion_seek_bar_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/seek_bar_name"
+            android:textColor="@color/blue" />
+        
+        <TextView
+            android:id="@+id/completion_number"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/blue"
+            android:layout_marginLeft="@dimen/seekbar_margins"
+            android:layout_marginRight="@dimen/seekbar_margins" />
+        
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/seek_bar_percent"
+            android:textColor="@color/blue" />
+        
+    </LinearLayout>
+
+    <SeekBar
+        android:id="@+id/completion_seek_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/seekbar_margins"
+        android:max="100" />
 
 </LinearLayout>

@@ -44,8 +44,11 @@
 	<!-- Task Activity -->
 	<string name="task_default_title">New task</string>
 	
-	
 	<!-- Task Layout -->
+	<string name="task_title_hint">Title</string>
+	<string name="task_description_hint">Description</string>
+	<string name="seek_bar_name">Completion:  </string>
+	<string name="seek_bar_percent"> %</string>
 	
 	
 </resources>
