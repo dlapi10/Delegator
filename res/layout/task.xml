@@ -3,6 +3,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical" >
-    <!-- > -->
+    
+    <!-- TextView for Title -->
+	<!-- TextView for Assignee -->
+	<!-- TextView for Reporter -->
+	<!-- Combo for Status -->
+	<!-- TextView for Description -->
+	<!-- TextView for  Completion-->
+	<!-- Picker for Deadline -->
+	
 
 </LinearLayout>

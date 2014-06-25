@@ -1,25 +1,37 @@
 package freeuni.android.delegator.ui;
 
-import freeuni.android.delegator.R;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.ViewStub;
+import freeuni.android.delegator.R;
+import freeuni.android.delegator.app.App;
+import freeuni.android.delegator.model.Task;
 
 public class TaskActivity extends SuperActivity{
 	
 	public static final String EXTRA_TASK_ID = "freeuni.android.delegator.ui.TaskActivity.NEW_TASK";
-
+	
+	
+	private Task thisTask;
+	
 	/**
 	* Handling Incoming Intent;
 	*/
 	private void handleIncomingIntent(){
 		Intent intent = getIntent();
 	 	if(intent!=null){
-	 		String name = intent.getStringExtra(INTENT_EXTRA_MESSAGE_KEY_USER_NAME);
-	 		if(name!=null)
-	 			//visibleUser = new User(name);
-	 		intent.removeExtra(INTENT_EXTRA_MESSAGE_KEY_USER_NAME);
+	 		int taskID = intent.getIntExtra(EXTRA_TASK_ID,-1);
+	 		if(taskID!=-1){
+	 			thisTask = App.getDb().getTask(taskID);
+	 			this.setTitle(thisTask.getTitle());
+	 		}else{ 
+	 			thisTask = new Task();
+	 			thisTask.setTaskID(App.getDb().addTask(thisTask));
+	 			this.setTitle(getResources().getString(R.string.task_default_title));
+	 		}
+	 		intent.removeExtra(EXTRA_TASK_ID);
 	 	}
 	 }
 	
@@ -27,6 +39,10 @@ public class TaskActivity extends SuperActivity{
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		handleIncomingIntent();
+		//Setting layout to the stub
+		ViewStub stub = (ViewStub) findViewById(R.id.layout_stub);
+		stub.setLayoutResource(R.layout.task);
+		stub.inflate();
 	}
 	
 	/**

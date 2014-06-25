@@ -73,7 +73,6 @@ public class SubordinatesActivity extends SuperActivity {
 						Intent homeIntent = new Intent(getBaseContext(), HomeActivity.class);
 						homeIntent.putExtra(INTENT_EXTRA_MESSAGE_KEY_USER_NAME, subordinates.get(position).getUserName());
 						startActivity(homeIntent);
-						finish();
 				}
 			});
 		}
