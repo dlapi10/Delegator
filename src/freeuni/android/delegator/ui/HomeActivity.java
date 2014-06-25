@@ -31,26 +31,26 @@ public class HomeActivity extends SuperActivity{
 	private ListAdapter taskListAdapter;
 	private ArrayList<Task> tasks;
 	private User visibleUser = null;
-	
-	
+
+
 	/*
 	 * Activity LifeCycle and helper Methods, dedicated to this cycle
 	 */
 
 	/**
-	* Handling Incoming Intent;
-	*/
+	 * Handling Incoming Intent;
+	 */
 	private void handleIncomingIntent(){
 		Intent intent = getIntent();
-	 	if(intent!=null){
-	 		String name = intent.getStringExtra(INTENT_EXTRA_MESSAGE_KEY_USER_NAME);
-	 		if(name!=null)
-	 			visibleUser = new User(name);
-	 		intent.removeExtra(INTENT_EXTRA_MESSAGE_KEY_USER_NAME);
-	 	}
-	 }
-	
-	
+		if(intent!=null){
+			String name = intent.getStringExtra(INTENT_EXTRA_MESSAGE_KEY_USER_NAME);
+			if(name!=null)
+				visibleUser = new User(name);
+			intent.removeExtra(INTENT_EXTRA_MESSAGE_KEY_USER_NAME);
+		}
+	}
+
+
 	/**
 	 * Method called after creating of activity.
 	 * Sets content up.
@@ -96,7 +96,9 @@ public class HomeActivity extends SuperActivity{
 				@Override
 				public void onItemClick(AdapterView<?> parent, View view,
 						int position, long id) {
-					// TODO Auto-generated method stub
+					Intent taskIntent = new Intent(getBaseContext(), TaskActivity.class);
+					taskIntent.putExtra(TaskActivity.EXTRA_TASK_ID, tasks.get(position).getTaskID());
+					startActivity(taskIntent);
 				}
 			});
 		}
@@ -157,19 +159,12 @@ public class HomeActivity extends SuperActivity{
 	}
 
 	/**
-	 * Editing Task after onClick
-	 * @param item
-	 */
-	public void editTask(MenuItem item){
-		
-	}
-	
-	/**
 	 * Adding task after onclick
 	 * @param item
 	 */
 	public void addNewTask(MenuItem item){
-		
+		Intent taskIntent = new Intent(this, TaskActivity.class);
+		startActivity(taskIntent);
 	}
-	
+
 }

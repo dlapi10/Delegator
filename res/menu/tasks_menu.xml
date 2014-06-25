@@ -5,9 +5,4 @@
   	   	android:icon="@drawable/ic_action_new"
   	    android:showAsAction="ifRoom"
   	    android:onClick="addNewTask"/>
-	<!-- <item android:id="@+id/edit_task"
-  	    android:title="@string/edit_task"
-  	   	android:icon="@drawable/ic_action_edit"
-  	    android:showAsAction="ifRoom"
-  	    android:onClick="editTask"/> -->
 </menu>

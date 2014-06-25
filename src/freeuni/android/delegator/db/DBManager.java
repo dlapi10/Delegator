@@ -336,6 +336,15 @@ public class DBManager extends SQLiteOpenHelper{
 		c.close();
 		return tskID;
 	}
+	
+	/**
+	 * Deleting task
+	 * @param task
+	 */
+	public void deleteTask(Task task){
+		db.execSQL("DELETE FROM "+TABLE_TASKS+" WHERE "+TSK_ID+"="+task.getTaskID());
+		Log.i(LOG_TAG, "Task "+task.getTaskID()+" deleted");
+	}
 
 	/**
 	 * Returns task with given id
