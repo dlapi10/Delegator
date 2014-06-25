@@ -54,6 +54,18 @@ public class TaskStatus {
 		this.statusColor = statusColor;
 	}
 	
+	/**
+	 * Check if status is current or not (Canceled and Closed tasks are not current);
+	 * @param status
+	 * @return
+	 */
+	public static boolean isCurrentStatus(String status){
+		if(status.equals(statuses[4]) || status.equals(statuses[3])){
+			return false;
+		}else{
+			return true;
+		}
+	}
 	
 	
 }

@@ -2,12 +2,14 @@ package freeuni.android.delegator.ui.model;
 
 import java.util.ArrayList;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
+import freeuni.android.delegator.app.App;
 import freeuni.android.delegator.model.User;
 
 public class UserListAdapter extends BaseAdapter{
@@ -36,6 +38,7 @@ public class UserListAdapter extends BaseAdapter{
 
 	@Override
 	public View getView(int position, View convertView, ViewGroup parent) {
+		Log.i("USerListAdapter", "getView started");
 		UserHolder userHolder;
 		if(convertView == null){
 			convertView = inflater.inflate(freeuni.android.delegator.R.layout.subordinate_list_item, null,false);
@@ -54,7 +57,7 @@ public class UserListAdapter extends BaseAdapter{
 			userHolder.avatar.setImageBitmap(subordinate.getAvatar());
 		}
 		userHolder.userName.setText(subordinate.getUserName());
-		userHolder.currentTaskCount.setText(null);//TODO
+		userHolder.currentTaskCount.setText( Integer.toString( App.getDb().getCurrentTaskCountForUser(subordinate) ) );
 		return convertView;
 	}
 

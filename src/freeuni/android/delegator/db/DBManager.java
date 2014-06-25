@@ -43,7 +43,7 @@ public class DBManager extends SQLiteOpenHelper{
 	private static final String TABLE_USR_CREATE = 
 			"CREATE TABLE " + TABLE_USERS + " (" +
 					USR_USER_NAME + " TEXT PRIMARY KEY, "+
-					USR_PASS +"TEXT,"+
+					USR_PASS +" TEXT,"+
 					USR_IMAGE + " BLOB) ";
 
 
@@ -59,7 +59,7 @@ public class DBManager extends SQLiteOpenHelper{
 			"CREATE TABLE " + TABLE_GROUPS + " (" +
 					GRP_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "+
 					GRP_NAME + " TEXT,"+
-					GRP_OWNER + "TEXT REFERENCES " + TABLE_USERS +"("+USR_USER_NAME+") )";
+					GRP_OWNER + " TEXT REFERENCES " + TABLE_USERS +"("+USR_USER_NAME+") )";
 
 	public static final String TABLE_USER_TO_GROUPS = "USER_TO_GROUPS";
 	public static final String UTG_USER_NAME = "USER_NAME";
@@ -103,7 +103,7 @@ public class DBManager extends SQLiteOpenHelper{
 
 	private static final String TABLE_TASKS_CREATE = 
 			"CREATE TABLE " + TABLE_TASKS + " (" +
-					TSK_ID + " TEXT INTEGER PRIMARY KEY AUTOINCREMENT,"+
+					TSK_ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"+
 					TSK_REPORTER + " TEXT REFERENCES " + TABLE_USERS +"("+USR_USER_NAME+"), "+
 					TSK_ASSIGNEE + " TEXT REFERENCES " + TABLE_USERS +"("+USR_USER_NAME+"), "+
 					TSK_STATUS + " TEXT, "+
@@ -157,6 +157,7 @@ public class DBManager extends SQLiteOpenHelper{
 		db.execSQL(TABLE_TCAT_CREATE);
 		db.execSQL(TABLE_TASKS_CREATE);
 		db.execSQL(TABLE_TCTT_CREATE);
+		Log.i(LOG_TAG, TABLE_USR_CREATE);
 		Log.i(LOG_TAG, "tables created");
 	}
 
@@ -191,7 +192,8 @@ public class DBManager extends SQLiteOpenHelper{
 	 * @return
 	 */
 	public User getUser(String userName){
-		String query="SELECT * FROM "+TABLE_USERS+"WHERE "+USR_USER_NAME+"="+userName+"";
+		String query="SELECT * FROM "+TABLE_USERS+" WHERE "+USR_USER_NAME+" = '"+userName+"'";
+		Log.i(LOG_TAG, query);
 		Cursor c = db.rawQuery(query, null);
 		c.moveToFirst();
 		byte[] image = c.getBlob(c.getColumnIndex(USR_IMAGE));
@@ -265,7 +267,7 @@ public class DBManager extends SQLiteOpenHelper{
 	 */
 	public List<Group> getUsersGroups(User user){
 		ArrayList<Group> userGroups = new ArrayList<Group>();
-		String query = "SELECT "+GRP_ID+" FROM "+TABLE_GROUPS+" WHERE "+GRP_OWNER +" = "+ user.getUserName();
+		String query = "SELECT "+GRP_ID+" FROM "+TABLE_GROUPS+" WHERE "+GRP_OWNER +" = '"+ user.getUserName()+"'";
 		Cursor c = db.rawQuery(query, null);
 		if(c.moveToFirst()){
 			do{
@@ -295,7 +297,7 @@ public class DBManager extends SQLiteOpenHelper{
 	 */
 	public List<User> getSubordinatesForManager(User manager){
 		ArrayList<User> subordinates = new ArrayList<User>();
-		String query = "SELECT "+SUB_SUBORDINATE+" FROM "+TABLE_SUBORDINATES+" WHERE "+SUB_MANAGER +" = "+ manager.getUserName();
+		String query = "SELECT "+SUB_SUBORDINATE+" FROM "+TABLE_SUBORDINATES+" WHERE "+SUB_MANAGER +" = '"+ manager.getUserName()+"'";
 		Cursor c = db.rawQuery(query, null);
 		if(c.moveToFirst()){
 			do{
@@ -382,7 +384,7 @@ public class DBManager extends SQLiteOpenHelper{
 	 */
 	public List<Task> getTasksForReporter(User reporter){
 		ArrayList<Task> tasks = new ArrayList<Task>();
-		String query = "SELECT * FROM "+TABLE_TASKS+" WHERE "+TSK_REPORTER +" = "+ reporter.getUserName();
+		String query = "SELECT * FROM "+TABLE_TASKS+" WHERE "+TSK_REPORTER +" = '"+ reporter.getUserName()+"'";
 		Cursor c = db.rawQuery(query, null);
 		if(c.moveToFirst()){
 			do{
@@ -400,7 +402,7 @@ public class DBManager extends SQLiteOpenHelper{
 	 */
 	public List<Task> getTasksForAssignee(User assignee){
 		ArrayList<Task> tasks = new ArrayList<Task>();
-		String query = "SELECT * FROM "+TABLE_TASKS+" WHERE "+TSK_ASSIGNEE +" = "+ assignee.getUserName();
+		String query = "SELECT * FROM "+TABLE_TASKS+" WHERE "+TSK_ASSIGNEE +" = '"+ assignee.getUserName()+"'";
 		Cursor c = db.rawQuery(query, null);
 		if(c.moveToFirst()){
 			do{
@@ -409,5 +411,26 @@ public class DBManager extends SQLiteOpenHelper{
 		}
 		c.close();
 		return tasks;
+	}
+	
+	
+	/**
+	 * Gets number of current tasks for user
+	 * @param user
+	 * @return
+	 */
+	public int getCurrentTaskCountForUser(User user){
+		int answer = 0;
+		String query = "SELECT * FROM "+TABLE_TASKS+" WHERE "+TSK_ASSIGNEE +" = '"+ user.getUserName()+"'";
+		Cursor c = db.rawQuery(query, null);
+		if(c.moveToFirst()){
+			do{
+				if(TaskStatus.isCurrentStatus(c.getString(c.getColumnIndex(TSK_STATUS)))){
+					answer++;
+				}
+			}while(c.moveToNext());
+		}
+		c.close();
+		return answer;
 	}
 }

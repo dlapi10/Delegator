@@ -35,6 +35,7 @@ public class App extends Application{
 	 * Everything fake should be changed here
 	 */
 	private void initApp() {
+		cntxt = getApplicationContext(); 
 		communicator = new FakeCommunicator();
 		db = new DBManager(this);
 		fillForTest();

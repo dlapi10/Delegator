@@ -76,6 +76,8 @@ public class Processing {
 	 * @param image
 	 */
 	public static Bitmap byteArrayToBitmap(byte[] image, int dimensionH, int dimensionW){
+		if(image==null)
+			return null;
 		final BitmapFactory.Options options = new BitmapFactory.Options();
 		options.inSampleSize = Processing.calculateInSampleSize(options, dimensionW, dimensionH);
 		return BitmapFactory.decodeByteArray(image, 0, image.length, options);

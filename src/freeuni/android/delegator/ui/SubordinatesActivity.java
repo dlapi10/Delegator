@@ -1,6 +1,8 @@
 package freeuni.android.delegator.ui;
 
 import java.util.ArrayList;
+
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -33,14 +35,13 @@ public class SubordinatesActivity extends SuperActivity {
 		super.onCreate(savedInstanceState);
 		Log.i(LOG_MESSAGE,"onCreate");
 		this.setTitle(getResources().getString(R.string.navigation_subordinates));
-
-		retrieveSubordinates();
-		setupList();
-
 		//Setting layout to the stub
 		ViewStub stub = (ViewStub) findViewById(R.id.layout_stub);
 		stub.setLayoutResource(R.layout.subordinates_list);
 		stub.inflate();
+		
+		retrieveSubordinates();
+		setupList();
 	}
 
 
@@ -49,23 +50,31 @@ public class SubordinatesActivity extends SuperActivity {
 	 */
 	private void retrieveSubordinates(){
 		DBManager db = App.getDb();
+		Log.i(LOG_MESSAGE, "starting sub down for manager"+userName);
 		subordinates = (ArrayList<User>) db.getSubordinatesForManager(db.getUser(userName));
+		Log.i(LOG_MESSAGE, "retrieving done, users"+subordinates.size());
 	}
 
 	/**
 	 * Setup for List
 	 */
 	private void setupList(){
-		subordinateListView = (ListView)findViewById(R.id.task_list);
-		subordinateListAdapter = new UserListAdapter(getLayoutInflater(),subordinates);
-		subordinateListView.setAdapter(subordinateListAdapter);
-		subordinateListView.setOnItemClickListener(new OnItemClickListener() {
-			@Override
-			public void onItemClick(AdapterView<?> parent, View view,
-					int position, long id) {
-				// TODO Auto-generated method stub
-			}
-		});
+		if(subordinates!=null){
+			subordinateListView = (ListView)findViewById(R.id.subordinate_list);
+			subordinateListAdapter = new UserListAdapter(getLayoutInflater(),subordinates);
+			subordinateListView.setAdapter(subordinateListAdapter);
+			subordinateListView.setOnItemClickListener(new OnItemClickListener() {
+				@Override
+				public void onItemClick(AdapterView<?> parent, View view,
+						int position, long id) {
+					
+						Intent homeIntent = new Intent(getBaseContext(), HomeActivity.class);
+						homeIntent.putExtra(INTENT_EXTRA_MESSAGE_KEY_USER_NAME, subordinates.get(position).getUserName());
+						startActivity(homeIntent);
+						finish();
+				}
+			});
+		}
 	}
 
 

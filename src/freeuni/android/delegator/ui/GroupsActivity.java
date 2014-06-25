@@ -34,14 +34,12 @@ public class GroupsActivity extends SuperActivity{
 		super.onCreate(savedInstanceState);
 		Log.i(LOG_MESSAGE,"onCreate");
 		this.setTitle(getResources().getString(R.string.navigation_groups));
-
-		retrieveGroups();
-		setupList();
-
 		//Setting layout to the stub
 		ViewStub stub = (ViewStub) findViewById(R.id.layout_stub);
 		stub.setLayoutResource(R.layout.groups_list);
 		stub.inflate();
+		retrieveGroups();
+		setupList();
 	}
 
 
@@ -57,7 +55,7 @@ public class GroupsActivity extends SuperActivity{
 	 * Setup for List
 	 */
 	private void setupList(){
-		groupListView = (ListView)findViewById(R.id.task_list);
+		groupListView = (ListView)findViewById(R.id.group_list);
 		groupListAdapter = new GroupListAdapter(getLayoutInflater(),groups);
 		groupListView.setAdapter(groupListAdapter);
 		groupListView.setOnItemClickListener(new OnItemClickListener() {

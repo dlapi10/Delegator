@@ -1,19 +1,22 @@
 package freeuni.android.delegator.ui;
 
 import java.util.ArrayList;
+
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.View;
 import android.view.ViewStub;
-import android.widget.AdapterView.OnItemClickListener;
 import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import freeuni.android.delegator.R;
 import freeuni.android.delegator.app.App;
 import freeuni.android.delegator.db.DBManager;
 import freeuni.android.delegator.model.Task;
+import freeuni.android.delegator.model.User;
 import freeuni.android.delegator.ui.model.TaskListAdapter;
 
 public class HomeActivity extends SuperActivity{
@@ -26,11 +29,27 @@ public class HomeActivity extends SuperActivity{
 	private ListView taskListView;
 	private ListAdapter taskListAdapter;
 	private ArrayList<Task> tasks;
-
+	private User visibleUser = null;
+	
+	
 	/*
 	 * Activity LifeCycle and helper Methods, dedicated to this cycle
 	 */
 
+	/**
+	* Handling Incoming Intent;
+	*/
+	private void handleIncomingIntent(){
+		Intent intent = getIntent();
+	 	if(intent!=null){
+	 		String name = intent.getStringExtra(INTENT_EXTRA_MESSAGE_KEY_USER_NAME);
+	 		if(name!=null)
+	 			visibleUser = new User(name);
+	 		intent.removeExtra(INTENT_EXTRA_MESSAGE_KEY_USER_NAME);
+	 	}
+	 }
+	
+	
 	/**
 	 * Method called after creating of activity.
 	 * Sets content up.
@@ -39,8 +58,12 @@ public class HomeActivity extends SuperActivity{
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		Log.i(LOG_MESSAGE,"onCreate");
-		this.setTitle(getResources().getString(R.string.navigation_home));
-
+		handleIncomingIntent();
+		if(visibleUser==null || visibleUser.getUserName().equals(userName)){
+			this.setTitle(getResources().getString(R.string.navigation_home));
+		}else{
+			this.setTitle(visibleUser+"'s tasks");
+		} 
 		//Setting layout to the stub
 		ViewStub stub = (ViewStub) findViewById(R.id.layout_stub);
 		stub.setLayoutResource(R.layout.tasks_list);

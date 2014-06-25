@@ -20,7 +20,7 @@ public class LoginActivity extends Activity{
 	private static final String LOG_MESSAGE = "LOGIN";
 
 	// Public constants
-	public static final String INTENT_EXTRA_MESSAGE_KEY_USER_NAME = "freeuni.android.delegator.ui.LoginActivity.usernameKey";
+	
 
 	
 	
