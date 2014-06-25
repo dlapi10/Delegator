@@ -19,6 +19,9 @@
 	
 	<!-- Menu -->
 	<string name="sign_out">Sign out</string>
+	<string name="add_task">Add task</string>
+	<string name="edit_task">Edit task</string>
+	<string name="create_group">Create group</string>
 	
 	<!-- Navigation Drawable -->
 	<string name="navigation_subordinates">Subordinates</string>

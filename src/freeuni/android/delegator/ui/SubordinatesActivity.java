@@ -5,6 +5,8 @@ import java.util.ArrayList;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewStub;
 import android.widget.AdapterView;
@@ -119,5 +121,22 @@ public class SubordinatesActivity extends SuperActivity {
 		// TODO Auto-generated method stub
 		Log.i(LOG_MESSAGE,"onStop");
 		super.onStop();
+	}
+	
+	/**
+	 * Menu for the Subordinates activity.
+	 */
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+		getMenuInflater().inflate(R.menu.subordinates_menu, menu); // Adding menu items to the super activity menu
+		return super.onCreateOptionsMenu(menu);
+	}
+	
+	/**
+	 * Create group from given subordinates
+	 * @param item
+	 */
+	public void createGroup(MenuItem item){
+		
 	}
 }

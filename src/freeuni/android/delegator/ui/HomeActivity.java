@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewStub;
 import android.widget.AdapterView;
@@ -151,8 +152,24 @@ public class HomeActivity extends SuperActivity{
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
-		//getMenuInflater().inflate(R.menu.main, menu);
+		getMenuInflater().inflate(R.menu.tasks_menu, menu); // Adding menu items to the super activity menu
 		return super.onCreateOptionsMenu(menu);
 	}
 
+	/**
+	 * Editing Task after onClick
+	 * @param item
+	 */
+	public void editTask(MenuItem item){
+		
+	}
+	
+	/**
+	 * Adding task after onclick
+	 * @param item
+	 */
+	public void addNewTask(MenuItem item){
+		
+	}
+	
 }
