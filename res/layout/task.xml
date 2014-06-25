@@ -17,7 +17,7 @@
     </EditText>
 
     <EditText
-        android:id="@+id/editText1"
+        android:id="@+id/task_decription"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
@@ -63,5 +63,16 @@
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/seekbar_margins"
         android:max="100" />
+
+    <Button
+        android:id="@+id/set_deadline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/set_deadline_button"
+        android:onClick="showDatePickerDialog" 
+        android:layout_gravity="center_horizontal"
+        android:textSize="@dimen/button_text_size"
+        android:padding="@dimen/button_padding"
+        android:background="@color/red"/>
 
 </LinearLayout>

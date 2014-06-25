@@ -47,8 +47,9 @@
 	<!-- Task Layout -->
 	<string name="task_title_hint">Title</string>
 	<string name="task_description_hint">Description</string>
-	<string name="seek_bar_name">Completion:  </string>
-	<string name="seek_bar_percent"> %</string>
+	<string name="seek_bar_name">Completion:</string>
+	<string name="seek_bar_percent">%</string>
+	<string name="set_deadline_button">Set Deadline</string>
 	
 	
 </resources>

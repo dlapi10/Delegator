@@ -41,6 +41,11 @@
             
         </activity>
         
+        <activity android:name="freeuni.android.delegator.ui.TaskActivity"
+            	>
+            
+        </activity>
+        
     </application>
 
 </manifest>

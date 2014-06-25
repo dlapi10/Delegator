@@ -30,5 +30,7 @@
 	
 	<!-- Task Activity -->
 	<dimen name="seekbar_margins">10dp</dimen>
+	<dimen name="button_text_size">10sp</dimen>
+	<dimen name="button_padding">2dp</dimen>
 	
 </resources>

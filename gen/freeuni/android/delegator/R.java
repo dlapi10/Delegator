@@ -38,6 +38,8 @@ public final class R {
         public static final int activity_vertical_margin=0x7f050001;
         public static final int avatar_margin=0x7f05000d;
         public static final int between_task_n_and_text=0x7f05000c;
+        public static final int button_padding=0x7f050014;
+        public static final int button_text_size=0x7f050013;
         public static final int group_name_margin=0x7f050010;
         public static final int group_name_size=0x7f05000f;
         public static final int list_avatar_size=0x7f050004;
@@ -91,17 +93,16 @@ public final class R {
         public static final int navigation_list_format=0x7f020019;
     }
     public static final class id {
-        public static final int add_task=0x7f090029;
-        public static final int assignee_assigner=0x7f090020;
+        public static final int add_task=0x7f09002a;
+        public static final int assignee_assigner=0x7f090021;
         public static final int completion_number=0x7f09001e;
         public static final int completion_seek_bar=0x7f09001f;
         public static final int completion_seek_bar_name=0x7f09001d;
         public static final int content=0x7f090008;
-        public static final int create_new_group=0x7f090026;
+        public static final int create_new_group=0x7f090027;
         public static final int current_tasks=0x7f090017;
-        public static final int delete_task=0x7f090028;
+        public static final int delete_task=0x7f090029;
         public static final int drawer_layout=0x7f090006;
-        public static final int editText1=0x7f09001b;
         public static final int group_list=0x7f090005;
         public static final int group_name=0x7f090003;
         public static final int groups=0x7f090004;
@@ -120,18 +121,20 @@ public final class R {
         public static final int profile_image=0x7f09000b;
         public static final int profile_name=0x7f09000c;
         public static final int profile_section=0x7f09000a;
-        public static final int save_task=0x7f090027;
-        public static final int sign_out=0x7f090025;
+        public static final int save_task=0x7f090028;
+        public static final int set_deadline=0x7f090020;
+        public static final int sign_out=0x7f090026;
         public static final int submit_credentials=0x7f090002;
         public static final int subordinate_avatar=0x7f090016;
         public static final int subordinate_list=0x7f090019;
         public static final int subordinates=0x7f090018;
-        public static final int task_list=0x7f090024;
-        public static final int task_name=0x7f090021;
-        public static final int task_priority=0x7f090022;
+        public static final int task_decription=0x7f09001b;
+        public static final int task_list=0x7f090025;
+        public static final int task_name=0x7f090022;
+        public static final int task_priority=0x7f090023;
         public static final int task_status=0x7f09001c;
         public static final int task_title=0x7f09001a;
-        public static final int tasks=0x7f090023;
+        public static final int tasks=0x7f090024;
         public static final int user_name=0x7f090000;
     }
     public static final class layout {
@@ -183,6 +186,7 @@ public final class R {
         public static final int save_task=0x7f06000c;
         public static final int seek_bar_name=0x7f06001d;
         public static final int seek_bar_percent=0x7f06001e;
+        public static final int set_deadline_button=0x7f06001f;
         /**  Home activity 
  Menu 
          */
