@@ -64,6 +64,7 @@
         android:layout_margin="@dimen/seekbar_margins"
         android:max="100" />
 
+    
     <Button
         android:id="@+id/set_deadline"
         android:layout_width="wrap_content"
@@ -75,4 +76,11 @@
         android:padding="@dimen/button_padding"
         android:background="@color/red"/>
 
+    
+    <TextView android:id="@+id/deadline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:textSize="@dimen/button_text_size"
+        android:textColor="@color/blue"/>
 </LinearLayout>

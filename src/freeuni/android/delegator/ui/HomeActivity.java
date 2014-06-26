@@ -45,7 +45,7 @@ public class HomeActivity extends SuperActivity{
 		if(intent!=null){
 			String name = intent.getStringExtra(INTENT_EXTRA_MESSAGE_KEY_USER_NAME);
 			if(name!=null)
-				visibleUser = new User(name);
+				visibleUser = App.getDb().getUser(name);
 			intent.removeExtra(INTENT_EXTRA_MESSAGE_KEY_USER_NAME);
 		}
 	}
@@ -63,7 +63,7 @@ public class HomeActivity extends SuperActivity{
 		if(visibleUser==null || visibleUser.getUserName().equals(userName)){
 			this.setTitle(getResources().getString(R.string.navigation_home));
 		}else{
-			this.setTitle(visibleUser+"'s tasks");
+			this.setTitle(visibleUser.getUserName()+"'s tasks");
 		} 
 		//Setting layout to the stub
 		ViewStub stub = (ViewStub) findViewById(R.id.layout_stub);
@@ -164,6 +164,7 @@ public class HomeActivity extends SuperActivity{
 	 */
 	public void addNewTask(MenuItem item){
 		Intent taskIntent = new Intent(this, TaskActivity.class);
+		taskIntent.putExtra(TaskActivity.EXTRA_ASSIGNEE, visibleUser.getUserName());
 		startActivity(taskIntent);
 	}
 

@@ -195,16 +195,18 @@ public class DBManager extends SQLiteOpenHelper{
 		String query="SELECT * FROM "+TABLE_USERS+" WHERE "+USR_USER_NAME+" = '"+userName+"'";
 		Log.i(LOG_TAG, query);
 		Cursor c = db.rawQuery(query, null);
-		c.moveToFirst();
-		byte[] image = c.getBlob(c.getColumnIndex(USR_IMAGE));
-		User user = new User(userName);
-		user.setAvatar(Processing.byteArrayToBitmap(image, App.getAvatarDimension(), App.getAvatarDimension()));
-		user.setPassword(c.getString(c.getColumnIndex(USR_PASS)));
-		c.close();
+		User user = null;
+		if(c.moveToFirst()){
+			byte[] image = c.getBlob(c.getColumnIndex(USR_IMAGE));
+			user = new User(userName);
+			user.setAvatar(Processing.byteArrayToBitmap(image, App.getAvatarDimension(), App.getAvatarDimension()));
+			user.setPassword(c.getString(c.getColumnIndex(USR_PASS)));
+			c.close();
+		}
 		return user;
 	}
 
-	
+
 
 	/**
 	 * Add group for user (manager)
@@ -309,34 +311,63 @@ public class DBManager extends SQLiteOpenHelper{
 	}
 
 	/**
+	 * Preparing contentvalues for task
+	 * @param task
+	 * @return
+	 */
+	private ContentValues prepareValues(Task task){
+		ContentValues values = new ContentValues();
+		if(task.getReporter()!=null && task.getReporter().getUserName()!=null) 
+			values.put(TSK_REPORTER, task.getReporter().getUserName());
+		if(task.getAssignee()!=null && task.getAssignee().getUserName()!=null) 
+			values.put(TSK_ASSIGNEE, task.getAssignee().getUserName());
+		if(task.getStatus()!=null && task.getStatus().getStatusName()!=null) 
+			values.put(TSK_STATUS, task.getStatus().getStatusName());
+		if(task.getDescription()!=null) 
+			values.put(TSK_DESCRIPTION, task.getDescription());
+		values.put(TSK_PRIORITY, task.getPriority());
+		values.put(TSK_COMPLETION, task.getCompletionPercent());
+		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd-hh.mm.ss",java.util.Locale.getDefault());
+		String date;
+		if(task.getStartDate()!=null){
+			date = formatter.format(task.getStartDate());
+			values.put(TSK_START_DATE, date);
+		}
+		if(task.getDeadLine()!=null) {
+			date = formatter.format(task.getDeadLine());
+			values.put(TSK_DEADLINE, date);
+		}
+		if(task.getTitle()!=null && task.getTitle().toString()!=null) values.put(TSK_TITLE, task.getTitle().toString());
+		return values;
+	}
+	
+	/**
 	 * Adds task to database
 	 * @param task
 	 * @return task id
 	 */
 	public int addTask(Task task){
-		ContentValues values = new ContentValues();
-		values.put(TSK_REPORTER, task.getReporter().getUserName());
-		values.put(TSK_ASSIGNEE, task.getAssignee().getUserName());
-		values.put(TSK_STATUS, task.getStatus().getStatusName());
-		values.put(TSK_DESCRIPTION, task.getDescription());
-		values.put(TSK_PRIORITY, task.getPriority());
-		values.put(TSK_COMPLETION, task.getCompletionPercent());
-		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd-hh.mm.ss",java.util.Locale.getDefault());
-		String date = formatter.format(task.getStartDate());
-		values.put(TSK_START_DATE, date);
-		date = formatter.format(task.getDeadLine());
-		values.put(TSK_DEADLINE, date);
-		values.put(TSK_TITLE, task.getTitle().toString());
-		db.insert(TABLE_TASKS, null, values);
+		db.insert(TABLE_TASKS, null, prepareValues(task));
 
 		String query="SELECT MAX("+TSK_ID+") FROM "+TABLE_TASKS+"";
 		Cursor c = db.rawQuery(query, null);
-		c.moveToFirst();
-		int tskID = c.getInt(c.getColumnIndex(TSK_ID));
+		int tskID=-1;
+		if(c.moveToFirst())
+			tskID = c.getInt(c.getColumnIndex(TSK_ID));
 		c.close();
 		return tskID;
 	}
-	
+
+	/**
+	 * Updates task
+	 * @param task
+	 * @return task id
+	 */
+	public void updateTask(Task task){
+		String where = TSK_ID+"=" + task.getTaskID();
+		db.update(TABLE_TASKS, prepareValues(task), where, null);
+	}
+
 	/**
 	 * Deleting task
 	 * @param task
@@ -355,21 +386,24 @@ public class DBManager extends SQLiteOpenHelper{
 		Task task = new Task(id);
 		String query = "SELECT * FROM "+TABLE_TASKS+" WHERE "+TSK_ID +" = "+ id;
 		Cursor c = db.rawQuery(query, null);
-		c.moveToFirst();
-		task.setAssignee(getUser(c.getString(c.getColumnIndex(TSK_ASSIGNEE))));
-		task.setReporter(getUser(c.getString(c.getColumnIndex(TSK_REPORTER))));
-		task.setStatus(new TaskStatus(c.getString(c.getColumnIndex(TSK_STATUS))));
-		task.setDescription(c.getString(c.getColumnIndex(TSK_DESCRIPTION)));
-		task.setPriority(c.getInt(c.getColumnIndex(TSK_PRIORITY)));
-		task.setCompletionPercent(c.getInt(c.getColumnIndex(TSK_COMPLETION)));
-		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd-hh.mm.ss",java.util.Locale.getDefault());
-		try {
-			task.setStartDate(DateToCalendar((Date)formatter.parse(c.getString(c.getColumnIndex(TSK_START_DATE)))));
-			task.setDeadLine(DateToCalendar((Date)formatter.parse(c.getString(c.getColumnIndex(TSK_DEADLINE)))));
-		} catch (ParseException e) {
-			e.printStackTrace();
+		if(c.moveToFirst()){
+			task.setAssignee(getUser(c.getString(c.getColumnIndex(TSK_ASSIGNEE))));
+			task.setReporter(getUser(c.getString(c.getColumnIndex(TSK_REPORTER))));
+			task.setStatus(new TaskStatus(c.getString(c.getColumnIndex(TSK_STATUS))));
+			task.setDescription(c.getString(c.getColumnIndex(TSK_DESCRIPTION)));
+			task.setPriority(c.getInt(c.getColumnIndex(TSK_PRIORITY)));
+			task.setCompletionPercent(c.getInt(c.getColumnIndex(TSK_COMPLETION)));
+			SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd-hh.mm.ss",java.util.Locale.getDefault());
+			try {
+				task.setStartDate(DateToCalendar((Date)formatter.parse(c.getString(c.getColumnIndex(TSK_START_DATE)))));
+				task.setDeadLine(DateToCalendar((Date)formatter.parse(c.getString(c.getColumnIndex(TSK_DEADLINE)))));
+			} catch (ParseException e) {
+				e.printStackTrace();
+			}
+			task.setTitle(c.getString(c.getColumnIndex(TSK_TITLE)));
+		}else{
+			return null;
 		}
-		task.setTitle(c.getString(c.getColumnIndex(TSK_TITLE)));
 		c.close();
 		return task;
 	}
@@ -421,8 +455,8 @@ public class DBManager extends SQLiteOpenHelper{
 		c.close();
 		return tasks;
 	}
-	
-	
+
+
 	/**
 	 * Gets number of current tasks for user
 	 * @param user

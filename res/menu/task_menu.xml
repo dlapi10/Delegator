@@ -4,7 +4,7 @@
   	    android:title="@string/save_task"
   	   	android:icon="@drawable/ic_action_save"
   	    android:showAsAction="ifRoom"
-  	    android:onClick="save"/> 
+  	    android:onClick="saveTask"/> 
   	 <item android:id="@+id/delete_task"
   	    android:title="@string/delete_task"
   	    android:showAsAction="never"

@@ -16,10 +16,10 @@ public class Task {
 	private User assignee;
 	private Group assigneeGroup;
 	private TaskStatus status;
-	private int priority;
+	private int priority=0;
 	private Calendar startDate; //Use Date;Calendar;GregorianCalendar
 	private Calendar deadLine;
-	private int completionPercent;
+	private int completionPercent=0;
 	private String title;
 	private String description;
 	private List<TaskCategory> categories;
