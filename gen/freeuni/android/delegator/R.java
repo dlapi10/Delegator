@@ -40,6 +40,9 @@ public final class R {
         public static final int between_task_n_and_text=0x7f05000c;
         public static final int button_padding=0x7f050014;
         public static final int button_text_size=0x7f050013;
+        public static final int button_top_margin=0x7f050017;
+        public static final int button_width=0x7f050016;
+        public static final int description_height=0x7f050015;
         public static final int group_name_margin=0x7f050010;
         public static final int group_name_size=0x7f05000f;
         public static final int list_avatar_size=0x7f050004;
@@ -55,6 +58,7 @@ public final class R {
         /**  Task Activity 
          */
         public static final int seekbar_margins=0x7f050012;
+        public static final int spinner_top_margin=0x7f050018;
         public static final int user_current_tasks_size=0x7f05000b;
         /**  Image sizes 
          */
@@ -91,13 +95,14 @@ public final class R {
         public static final int ic_launcher=0x7f020017;
         public static final int me=0x7f020018;
         public static final int navigation_list_format=0x7f020019;
+        public static final int task_completion_format=0x7f02001a;
     }
     public static final class id {
         public static final int add_task=0x7f09002b;
         public static final int assignee_assigner=0x7f090022;
-        public static final int completion_number=0x7f09001e;
-        public static final int completion_seek_bar=0x7f09001f;
-        public static final int completion_seek_bar_name=0x7f09001d;
+        public static final int completion_number=0x7f09001d;
+        public static final int completion_seek_bar=0x7f09001e;
+        public static final int completion_seek_bar_name=0x7f09001c;
         public static final int content=0x7f090008;
         public static final int create_new_group=0x7f090028;
         public static final int current_tasks=0x7f090017;
@@ -133,7 +138,7 @@ public final class R {
         public static final int task_list=0x7f090026;
         public static final int task_name=0x7f090023;
         public static final int task_priority=0x7f090024;
-        public static final int task_status=0x7f09001c;
+        public static final int task_status=0x7f09001f;
         public static final int task_title=0x7f09001a;
         public static final int tasks=0x7f090025;
         public static final int user_name=0x7f090000;

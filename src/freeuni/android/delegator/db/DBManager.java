@@ -219,10 +219,10 @@ public class DBManager extends SQLiteOpenHelper{
 		values.put(GRP_NAME, group.getGroupName());
 		values.put(GRP_OWNER, user.getUserName());
 		db.insert(TABLE_GROUPS, null, values);
-		String query="SELECT MAX("+GRP_ID+") FROM "+TABLE_GROUPS+"";
+		String query="SELECT MAX("+GRP_ID+") AS Maximum FROM "+TABLE_GROUPS+"";
 		Cursor c = db.rawQuery(query, null);
 		c.moveToFirst();
-		int grpID = c.getInt(c.getColumnIndex(GRP_ID));
+		int grpID = c.getInt(c.getColumnIndex("Maximum"));
 		c.close();
 		return grpID;
 	}
@@ -349,11 +349,11 @@ public class DBManager extends SQLiteOpenHelper{
 	public int addTask(Task task){
 		db.insert(TABLE_TASKS, null, prepareValues(task));
 
-		String query="SELECT MAX("+TSK_ID+") FROM "+TABLE_TASKS+"";
+		String query="SELECT MAX("+TSK_ID+") AS Maximum FROM "+TABLE_TASKS+"";
 		Cursor c = db.rawQuery(query, null);
 		int tskID=-1;
 		if(c.moveToFirst())
-			tskID = c.getInt(c.getColumnIndex(TSK_ID));
+			tskID = c.getInt(c.getColumnIndex("Maximum"));
 		c.close();
 		return tskID;
 	}

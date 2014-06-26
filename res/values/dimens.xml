@@ -29,8 +29,12 @@
 	<dimen name="priority_margin">10dp</dimen>
 	
 	<!-- Task Activity -->
-	<dimen name="seekbar_margins">10dp</dimen>
+	<dimen name="seekbar_margins">20dp</dimen>
 	<dimen name="button_text_size">10sp</dimen>
 	<dimen name="button_padding">2dp</dimen>
+	<dimen name="description_height">130dp</dimen>
+	<dimen name="button_width">100dp</dimen>
+	<dimen name="button_top_margin">20dp</dimen>
+	<dimen name="spinner_top_margin">30dp</dimen>
 	
 </resources>
