@@ -395,8 +395,10 @@ public class DBManager extends SQLiteOpenHelper{
 			task.setCompletionPercent(c.getInt(c.getColumnIndex(TSK_COMPLETION)));
 			SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd-hh.mm.ss",java.util.Locale.getDefault());
 			try {
-				task.setStartDate(DateToCalendar((Date)formatter.parse(c.getString(c.getColumnIndex(TSK_START_DATE)))));
-				task.setDeadLine(DateToCalendar((Date)formatter.parse(c.getString(c.getColumnIndex(TSK_DEADLINE)))));
+				if(c.getString(c.getColumnIndex(TSK_START_DATE))!=null)
+					task.setStartDate(DateToCalendar((Date)formatter.parse(c.getString(c.getColumnIndex(TSK_START_DATE)))));
+				if(c.getString(c.getColumnIndex(TSK_DEADLINE))!=null)
+					task.setDeadLine(DateToCalendar((Date)formatter.parse(c.getString(c.getColumnIndex(TSK_DEADLINE)))));
 			} catch (ParseException e) {
 				e.printStackTrace();
 			}
@@ -414,6 +416,8 @@ public class DBManager extends SQLiteOpenHelper{
 	 * @return
 	 */
 	public static Calendar DateToCalendar(Date date){ 
+		if(date==null)
+			return null;
 		Calendar cal = Calendar.getInstance();
 		cal.setTime(date);
 		return cal;

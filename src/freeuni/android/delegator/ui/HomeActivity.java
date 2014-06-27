@@ -100,7 +100,9 @@ public class HomeActivity extends SuperActivity{
 				public void onItemClick(AdapterView<?> parent, View view,
 						int position, long id) {
 					Intent taskIntent = new Intent(getBaseContext(), TaskActivity.class);
+					Log.i(LOG_MESSAGE,"task # "+tasks.get(position).getTaskID());
 					taskIntent.putExtra(TaskActivity.EXTRA_TASK_ID, tasks.get(position).getTaskID());
+					taskIntent.putExtra(TaskActivity.EXTRA_ASSIGNEE, visibleUser.getUserName());
 					startActivity(taskIntent);
 				}
 			});
@@ -172,4 +174,14 @@ public class HomeActivity extends SuperActivity{
 		startActivity(taskIntent);
 	}
 
+	@Override
+	public void goHome(View v) {
+		if(visibleUser.getUserName().equals(userName))
+			super.goHome(v);
+		else{
+			Intent intent = new Intent(this, HomeActivity.class);
+			startActivity(intent);
+		}
+	}
+	
 }

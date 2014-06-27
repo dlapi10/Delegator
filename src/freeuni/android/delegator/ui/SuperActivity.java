@@ -105,7 +105,7 @@ public class SuperActivity extends Activity{
      * Handles where to go or stay. If we are on the same activity we stay, elsewhere we go to another
      * @param activity
      */
-    private void handleReference(Class<?> activity){
+    protected void handleReference(Class<?> activity){
     	if(activity.isInstance(App.getCurrentActivity())){
 			drawer.closeDrawer(Gravity.LEFT);
 		}else{
