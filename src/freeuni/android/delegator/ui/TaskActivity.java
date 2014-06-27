@@ -81,6 +81,16 @@ public class TaskActivity extends SuperActivity{
 
 	private void setContent(){
 		completion = (SeekBar)findViewById(R.id.completion_seek_bar);
+		TextView reporter = (TextView)findViewById(R.id.reporter_info_reporter);
+		TextView startDate = (TextView)findViewById(R.id.reporter_info_create_date);
+		if(thisTask==null){
+			reporter.setText(userName);
+			startDate.setText(Calendar.getInstance().get(Calendar.DAY_OF_MONTH)+"/"+Calendar.getInstance().get(Calendar.MONTH)+"/"+Calendar.getInstance().get(Calendar.YEAR));
+		}else{
+			reporter.setText(thisTask.getReporter().getUserName());
+			Calendar c = thisTask.getStartDate();
+			startDate.setText(c.get(Calendar.DAY_OF_MONTH)+"/"+c.get(Calendar.MONTH)+"/"+c.get(Calendar.YEAR));
+		}
 		completion.setOnSeekBarChangeListener(new OnSeekBarChangeListener() {
 
 			@Override
@@ -121,11 +131,14 @@ public class TaskActivity extends SuperActivity{
 				}
 			}
 
-			thisTask.setCompletionPercent(completion.getProgress());
+			completion.setProgress(thisTask.getCompletionPercent());
 			Calendar deadline = thisTask.getDeadLine();
-			year = deadline.get(Calendar.YEAR);
-			month = deadline.get(Calendar.MONTH);
-			day = deadline.get(Calendar.DAY_OF_MONTH);
+			if(deadline!=null){
+				year = deadline.get(Calendar.YEAR);
+				month = deadline.get(Calendar.MONTH);
+				day = deadline.get(Calendar.DAY_OF_MONTH);
+				showDeadline();
+			}
 		}
 	}
 
