@@ -81,7 +81,10 @@ public class HomeActivity extends SuperActivity{
 	 */
 	private void retrieveTasks(){
 		DBManager db = App.getDb();
-		tasks = (ArrayList<Task>) db.getTasksForAssignee(db.getUser(userName));
+		if(visibleUser==null){
+			visibleUser = App.getDb().getUser(userName);
+		}
+		tasks = (ArrayList<Task>) db.getTasksForAssignee(visibleUser);
 	}
 
 	/**
