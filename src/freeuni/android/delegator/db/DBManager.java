@@ -311,7 +311,7 @@ public class DBManager extends SQLiteOpenHelper{
 	}
 
 	/**
-	 * Preparing contentvalues for task
+	 * Preparing content values for task
 	 * @param task
 	 * @return
 	 */
@@ -330,11 +330,11 @@ public class DBManager extends SQLiteOpenHelper{
 		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd-hh.mm.ss",java.util.Locale.getDefault());
 		String date;
 		if(task.getStartDate()!=null){
-			date = formatter.format(task.getStartDate());
+			date = formatter.format(task.getStartDate().getTime());
 			values.put(TSK_START_DATE, date);
 		}
 		if(task.getDeadLine()!=null) {
-			date = formatter.format(task.getDeadLine());
+			date = formatter.format(task.getDeadLine().getTime());
 			values.put(TSK_DEADLINE, date);
 		}
 		if(task.getTitle()!=null && task.getTitle().toString()!=null) values.put(TSK_TITLE, task.getTitle().toString());

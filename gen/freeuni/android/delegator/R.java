@@ -53,7 +53,9 @@ public final class R {
          */
         public static final int navigation_line_margins=0x7f050005;
         public static final int navigation_margin_to_image=0x7f050006;
+        public static final int priority_left_margin=0x7f05001a;
         public static final int priority_margin=0x7f050011;
+        public static final int priority_top_margin=0x7f050019;
         public static final int profile_image_size=0x7f050007;
         /**  Task Activity 
          */
@@ -98,16 +100,16 @@ public final class R {
         public static final int task_completion_format=0x7f02001a;
     }
     public static final class id {
-        public static final int add_task=0x7f09002b;
-        public static final int assignee_assigner=0x7f090022;
+        public static final int add_task=0x7f09002d;
+        public static final int assignee_assigner=0x7f090024;
         public static final int completion_number=0x7f09001d;
         public static final int completion_seek_bar=0x7f09001e;
         public static final int completion_seek_bar_name=0x7f09001c;
         public static final int content=0x7f090008;
-        public static final int create_new_group=0x7f090028;
+        public static final int create_new_group=0x7f09002a;
         public static final int current_tasks=0x7f090017;
         public static final int deadline=0x7f090021;
-        public static final int delete_task=0x7f09002a;
+        public static final int delete_task=0x7f09002c;
         public static final int drawer_layout=0x7f090006;
         public static final int group_list=0x7f090005;
         public static final int group_name=0x7f090003;
@@ -124,23 +126,25 @@ public final class R {
         public static final int nav_subordinates=0x7f090010;
         public static final int nav_subordinates_image=0x7f090011;
         public static final int password=0x7f090001;
+        public static final int priority=0x7f090023;
+        public static final int priority_name=0x7f090022;
         public static final int profile_image=0x7f09000b;
         public static final int profile_name=0x7f09000c;
         public static final int profile_section=0x7f09000a;
-        public static final int save_task=0x7f090029;
+        public static final int save_task=0x7f09002b;
         public static final int set_deadline=0x7f090020;
-        public static final int sign_out=0x7f090027;
+        public static final int sign_out=0x7f090029;
         public static final int submit_credentials=0x7f090002;
         public static final int subordinate_avatar=0x7f090016;
         public static final int subordinate_list=0x7f090019;
         public static final int subordinates=0x7f090018;
         public static final int task_decription=0x7f09001b;
-        public static final int task_list=0x7f090026;
-        public static final int task_name=0x7f090023;
-        public static final int task_priority=0x7f090024;
+        public static final int task_list=0x7f090028;
+        public static final int task_name=0x7f090025;
+        public static final int task_priority=0x7f090026;
         public static final int task_status=0x7f09001f;
         public static final int task_title=0x7f09001a;
-        public static final int tasks=0x7f090025;
+        public static final int tasks=0x7f090027;
         public static final int user_name=0x7f090000;
     }
     public static final class layout {
@@ -189,10 +193,11 @@ public final class R {
         public static final int navigation_subordinates=0x7f06000e;
         public static final int navigation_subordinates_img_content_description=0x7f060012;
         public static final int preference_file_key=0x7f060002;
+        public static final int priority_bar_name=0x7f06001f;
         public static final int save_task=0x7f06000c;
-        public static final int seek_bar_name=0x7f06001d;
-        public static final int seek_bar_percent=0x7f06001e;
-        public static final int set_deadline_button=0x7f06001f;
+        public static final int seek_bar_name=0x7f06001e;
+        public static final int seek_bar_percent=0x7f060020;
+        public static final int set_deadline_button=0x7f060021;
         /**  Home activity 
  Menu 
          */
@@ -204,10 +209,11 @@ public final class R {
         /**  Task Activity 
          */
         public static final int task_default_title=0x7f06001a;
-        public static final int task_description_hint=0x7f06001c;
+        public static final int task_description_hint=0x7f06001d;
+        public static final int task_saved=0x7f06001b;
         /**  Task Layout 
          */
-        public static final int task_title_hint=0x7f06001b;
+        public static final int task_title_hint=0x7f06001c;
     }
     public static final class style {
         /** 

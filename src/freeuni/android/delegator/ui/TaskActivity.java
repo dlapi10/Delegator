@@ -12,7 +12,9 @@ import android.view.ViewStub;
 import android.widget.ArrayAdapter;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.RatingBar;
 import android.widget.SeekBar;
+import android.widget.Toast;
 import android.widget.SeekBar.OnSeekBarChangeListener;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -26,7 +28,7 @@ public class TaskActivity extends SuperActivity{
 	public static final String EXTRA_TASK_ID = "freeuni.android.delegator.ui.TaskActivity.NEW_TASK";
 	public static final String EXTRA_ASSIGNEE = "freeuni.android.delegator.ui.TaskActivity.ASSIGNEE";
 	// Variable for storing current date and time
-	private int year, month, day;
+	private int year=0, month=0, day=0;
 	private Spinner spinnerTaskStatus;
 	private Task thisTask;
 	private String assignee_name;
@@ -70,7 +72,7 @@ public class TaskActivity extends SuperActivity{
 		spinnerTaskStatus.setAdapter(adapter);
 
 		setContent();
-		
+
 
 
 	}
@@ -116,9 +118,12 @@ public class TaskActivity extends SuperActivity{
 					}
 				}
 			}
-			
+
 			thisTask.setCompletionPercent(completion.getProgress());
-			
+			Calendar deadline = thisTask.getDeadLine();
+			year = deadline.get(Calendar.YEAR);
+			month = deadline.get(Calendar.MONTH);
+			day = deadline.get(Calendar.DAY_OF_MONTH);
 		}
 	}
 
@@ -141,6 +146,8 @@ public class TaskActivity extends SuperActivity{
 		if(thisTask==null){
 			thisTask = new Task();
 			thisTask.setTaskID(App.getDb().addTask(thisTask));
+			thisTask.setStartDate(Calendar.getInstance());
+			thisTask.setAssignee(App.getDb().getUser(assignee_name));
 		}
 		if(thisTask.getReporter()==null){
 			thisTask.setReporter(App.getDb().getUser(userName));
@@ -149,16 +156,21 @@ public class TaskActivity extends SuperActivity{
 		EditText title = (EditText)findViewById(R.id.task_title);
 		thisTask.setTitle(title.getText().toString());
 		EditText description = (EditText)findViewById(R.id.task_decription);
-		thisTask.setTitle(description.getText().toString());
+		thisTask.setDescription(description.getText().toString());
 		Spinner status = (Spinner)findViewById(R.id.task_status);
 		thisTask.setStatus(new TaskStatus(status.getSelectedItem().toString()));
-		Calendar date = Calendar.getInstance();
-		date.set(Calendar.YEAR, year);
-		date.set(Calendar.MONTH, month);
-		date.set(Calendar.DAY_OF_MONTH, day);
-		thisTask.setDeadLine(date);
-		App.getDb().updateTask(thisTask);
+		if(year!=0 && month!=0 && day!=0){
+			Calendar date = Calendar.getInstance();
+			date.set(Calendar.YEAR, year);
+			date.set(Calendar.MONTH, month);
+			date.set(Calendar.DAY_OF_MONTH, day);
+			thisTask.setDeadLine(date);
+		}
+		RatingBar priority = (RatingBar)findViewById(R.id.priority);
+		thisTask.setPriority(priority.getProgress());
 		thisTask.setCompletionPercent(completion.getProgress());
+		App.getDb().updateTask(thisTask);
+		Toast.makeText(getApplicationContext(), freeuni.android.delegator.R.string.la_wrong_pass_or_name, Toast.LENGTH_SHORT).show();
 	}
 
 	/**

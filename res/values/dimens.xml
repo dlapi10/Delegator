@@ -36,5 +36,7 @@
 	<dimen name="button_width">100dp</dimen>
 	<dimen name="button_top_margin">20dp</dimen>
 	<dimen name="spinner_top_margin">30dp</dimen>
+	<dimen name="priority_top_margin">20dp</dimen>
+	<dimen name="priority_left_margin">20dp</dimen>
 	
 </resources>
