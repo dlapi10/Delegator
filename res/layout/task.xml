@@ -17,7 +17,7 @@
             android:ems="10"
             android:hint="@string/task_title_hint" >
 
-            <requestFocus />
+            <requestFocus android:layout_height="match_parent" />
         </EditText>
 
         <EditText
@@ -113,19 +113,49 @@
             android:id="@+id/priority_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/priority_left_margin"
             android:text="@string/priority_bar_name"
-            android:textColor="@color/blue" 
-            android:layout_marginLeft="@dimen/priority_left_margin"/>
+            android:textColor="@color/blue" />
 
         <RatingBar
             android:id="@+id/priority"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/priority_left_margin"
             android:numStars="5"
             android:rating="2.0"
-            android:stepSize="1.0"
-            android:layout_marginLeft="@dimen/priority_left_margin" />
-        
+            android:stepSize="1.0" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/reporting_info_margin_top"
+            android:layout_marginLeft="@dimen/priority_left_margin"
+            android:orientation="horizontal" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="@dimen/reporting_info_spaces"
+                android:text="@string/reporter"
+                android:textColor="@color/dark_grey"
+                android:textSize="@dimen/reporting_info_text_size" />
+
+            <TextView
+                android:id="@+id/reporter_info_reporter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="@dimen/reporting_info_spaces"
+                android:textColor="@color/dark_grey"
+                android:textSize="@dimen/reporting_info_text_size" />
+
+            <TextView
+                android:id="@+id/reporter_info_create_date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/dark_grey"
+                android:textSize="@dimen/reporting_info_text_size" />
+        </LinearLayout>
     </LinearLayout>
 
 </ScrollView>

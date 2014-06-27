@@ -24,6 +24,9 @@
 	<string name="create_group">Create group</string>
 	<string name="save_task">Save</string>
 	<string name="delete_task">Delete</string>
+	<string name="hide_closed">Hide Closed</string>
+	<string name="show_all">Show all</string>
+	
 	
 	<!-- Navigation Drawable -->
 	<string name="navigation_subordinates">Subordinates</string>
@@ -52,6 +55,15 @@
 	<string name="priority_bar_name">Priority:</string>
 	<string name="seek_bar_percent">%</string>
 	<string name="set_deadline_button">Set Deadline</string>
+	<string name="reporter">Reporter: </string>
 	
-	
+	<!-- 
+	<string-array name="statuses">
+        <item>Not Started</item>
+        <item>In Progress</item>
+        <item>Waiting for someone Else</item>
+        <item>Completed</item>
+        <item>Canceled</item>
+    </string-array>
+	 -->
 </resources>

@@ -38,5 +38,7 @@
 	<dimen name="spinner_top_margin">30dp</dimen>
 	<dimen name="priority_top_margin">20dp</dimen>
 	<dimen name="priority_left_margin">20dp</dimen>
-	
+	<dimen name="reporting_info_text_size">10sp</dimen>
+	<dimen name="reporting_info_margin_top">10dp</dimen>
+	<dimen name="reporting_info_spaces">5dp</dimen>
 </resources>

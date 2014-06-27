@@ -5,4 +5,13 @@
   	   	android:icon="@drawable/ic_action_new"
   	    android:showAsAction="ifRoom"
   	    android:onClick="addNewTask"/>
+    <item android:id="@+id/hide_closed_tasks"
+        android:title="@string/hide_closed"
+        android:onClick="hideClosedTasks"
+        android:enabled="false"
+        />
+    <item android:id="@+id/show_all_tasks"
+        android:title="@string/show_all"
+        android:onClick="showAllTasks"
+        />
 </menu>

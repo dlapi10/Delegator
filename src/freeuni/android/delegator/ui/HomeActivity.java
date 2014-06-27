@@ -17,6 +17,7 @@ import freeuni.android.delegator.R;
 import freeuni.android.delegator.app.App;
 import freeuni.android.delegator.db.DBManager;
 import freeuni.android.delegator.model.Task;
+import freeuni.android.delegator.model.TaskStatus;
 import freeuni.android.delegator.model.User;
 import freeuni.android.delegator.ui.model.TaskListAdapter;
 
@@ -29,8 +30,9 @@ public class HomeActivity extends SuperActivity{
 	//Private variables
 	private ListView taskListView;
 	private ListAdapter taskListAdapter;
-	private ArrayList<Task> tasks;
+	private ArrayList<Task> tasks = new ArrayList<Task>();
 	private User visibleUser = null;
+	private Menu menu;
 
 
 	/*
@@ -72,7 +74,7 @@ public class HomeActivity extends SuperActivity{
 
 		retrieveTasks();
 		setupList();
-
+		Log.i(LOG_MESSAGE, "Creation Done");
 	}
 
 
@@ -84,7 +86,9 @@ public class HomeActivity extends SuperActivity{
 		if(visibleUser==null){
 			visibleUser = App.getDb().getUser(userName);
 		}
-		tasks = (ArrayList<Task>) db.getTasksForAssignee(visibleUser);
+		tasks.clear(); //It should be same object to notify data set changed
+		tasks.addAll((ArrayList<Task>) db.getTasksForAssignee(visibleUser));
+		Log.i(LOG_MESSAGE, "Retrieving done");
 	}
 
 	/**
@@ -160,6 +164,9 @@ public class HomeActivity extends SuperActivity{
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
 		getMenuInflater().inflate(R.menu.tasks_menu, menu); // Adding menu items to the super activity menu
+		this.menu = menu;
+		Log.i(LOG_MESSAGE,"Options menu done");
+		hideClosedTasks(null);
 		return super.onCreateOptionsMenu(menu);
 	}
 
@@ -174,6 +181,46 @@ public class HomeActivity extends SuperActivity{
 		startActivity(taskIntent);
 	}
 
+	/**
+	 * Shows all tasks, hidden or not
+	 * @param item
+	 */
+	public void showAllTasks(MenuItem item){
+		retrieveTasks();
+		((TaskListAdapter) taskListAdapter).notifyDataSetChanged();
+		item.setEnabled(false);
+		MenuItem it = menu.findItem(R.id.hide_closed_tasks);
+		it.setEnabled(true);
+	}
+	
+	/**
+	 * Hides Closed and 
+	 * @param item
+	 */
+	public void hideClosedTasks(MenuItem item){
+		removeClosedTasks();
+		((TaskListAdapter) taskListAdapter).notifyDataSetChanged();
+		if(item!=null)
+			item.setEnabled(false);
+		MenuItem it = menu.findItem(R.id.show_all_tasks);
+		it.setEnabled(true);
+	}
+	
+	/**
+	 * Removes closed tasks from List
+	 */
+	private void removeClosedTasks(){
+		for(int i=0;i<tasks.size();i++){
+			if(TaskStatus.isCurrentStatus(tasks.get(i).getStatus().getStatusName())){
+				tasks.remove(i);
+				i--;
+			}
+		}
+	}
+	
+	/**
+	 * Shows my tasks if don't see them
+	 */
 	@Override
 	public void goHome(View v) {
 		if(visibleUser.getUserName().equals(userName))
