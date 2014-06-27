@@ -165,6 +165,7 @@ public class HomeActivity extends SuperActivity{
 	public void addNewTask(MenuItem item){
 		Intent taskIntent = new Intent(this, TaskActivity.class);
 		taskIntent.putExtra(TaskActivity.EXTRA_ASSIGNEE, visibleUser.getUserName());
+		Log.i(LOG_MESSAGE, visibleUser.getUserName());
 		startActivity(taskIntent);
 	}
 

@@ -5,6 +5,7 @@ import java.util.Calendar;
 import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -41,6 +42,7 @@ public class TaskActivity extends SuperActivity{
 		Intent intent = getIntent();
 		if(intent!=null){
 			assignee_name = intent.getStringExtra(EXTRA_ASSIGNEE);
+			Log.i("TaskActivity: assignee", assignee_name);
 			int taskID = intent.getIntExtra(EXTRA_TASK_ID,-1);
 			if(taskID!=-1){
 				thisTask = App.getDb().getTask(taskID);
@@ -152,7 +154,7 @@ public class TaskActivity extends SuperActivity{
 		if(thisTask.getReporter()==null){
 			thisTask.setReporter(App.getDb().getUser(userName));
 		}
-		thisTask.setAssignee(App.getDb().getUser(EXTRA_ASSIGNEE));
+		thisTask.setAssignee(App.getDb().getUser(assignee_name));
 		EditText title = (EditText)findViewById(R.id.task_title);
 		thisTask.setTitle(title.getText().toString());
 		EditText description = (EditText)findViewById(R.id.task_decription);
@@ -170,7 +172,7 @@ public class TaskActivity extends SuperActivity{
 		thisTask.setPriority(priority.getProgress());
 		thisTask.setCompletionPercent(completion.getProgress());
 		App.getDb().updateTask(thisTask);
-		Toast.makeText(getApplicationContext(), freeuni.android.delegator.R.string.la_wrong_pass_or_name, Toast.LENGTH_SHORT).show();
+		Toast.makeText(getApplicationContext(), freeuni.android.delegator.R.string.task_saved, Toast.LENGTH_SHORT).show();
 	}
 
 	/**
