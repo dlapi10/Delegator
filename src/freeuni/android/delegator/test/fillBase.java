@@ -11,17 +11,19 @@ public class FillBase {
 		DBManager db= App.getDb();
 		User user = new User("data");
 		user.setPassword("1234");
+		user.setPhoneNumber("+995598171615");
 		db.addUser(user);
 		
-		User user2 = new User("sub1");
+		User user2 = new User("giorgi");
 		user2.setPassword("1234");
+		user2.setPhoneNumber("+995598171615");
 		db.addUser(user2);
 		
-		User user3 = new User("sub2");
+		User user3 = new User("nino");
 		user3.setPassword("1234");
 		db.addUser(user3);
 		
-		User user4 = new User("sub3");
+		User user4 = new User("saba");
 		user4.setPassword("1234");
 		db.addUser(user4);
 		

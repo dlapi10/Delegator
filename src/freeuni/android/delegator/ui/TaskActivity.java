@@ -188,6 +188,9 @@ public class TaskActivity extends SuperActivity{
 		thisTask.setCompletionPercent(completion.getProgress());
 		App.getDb().updateTask(thisTask);
 		Toast.makeText(getApplicationContext(), freeuni.android.delegator.R.string.task_saved, Toast.LENGTH_SHORT).show();
+		//Go Home after task saving finished
+		Intent homeIntent = new Intent(this, HomeActivity.class);
+		startActivity(homeIntent);
 	}
 
 	/**

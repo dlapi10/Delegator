@@ -3,6 +3,7 @@ package freeuni.android.delegator.ui;
 import java.util.ArrayList;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -13,6 +14,7 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListAdapter;
 import android.widget.ListView;
+import android.widget.Toast;
 import freeuni.android.delegator.R;
 import freeuni.android.delegator.app.App;
 import freeuni.android.delegator.db.DBManager;
@@ -138,4 +140,21 @@ public class SubordinatesActivity extends SuperActivity {
 	public void createGroup(MenuItem item){
 		
 	}
+	
+	/**
+	 * Call to subordinate
+	 * @param v
+	 */
+	public void call(View v){
+		int position = subordinateListView.getPositionForView(v);
+		User callUser = subordinates.get(position);
+		String phoneNumber = callUser.getPhoneNumber();
+		if(phoneNumber!=null){
+			Intent dial = new Intent (Intent.ACTION_DIAL,Uri.parse("tel:"+phoneNumber)); 
+			startActivity(dial);
+		}else{
+			Toast.makeText(this, getResources().getString(R.string.invalid_number), Toast.LENGTH_SHORT).show();
+		}
+	}
+	
 }

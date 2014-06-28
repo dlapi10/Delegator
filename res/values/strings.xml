@@ -16,6 +16,8 @@
 	
 	<!-- Home activity -->
 	
+	<!-- Subordinate activity -->
+	<string name="invalid_number">Invalid phone number</string>
 	
 	<!-- Menu -->
 	<string name="sign_out">Sign out</string>
@@ -44,6 +46,7 @@
 	<string name="subortinate_avatar_descrip">Subordinate avatar</string>
 	<string name="subordinate_current_task_desc">current tasks</string>
 	<string name="assignee_assigner_desc">Who I gave, or gave me</string>
+	<string name="subordinate_call_desc">Call</string>
 	
 	<!-- Task Activity -->
 	<string name="task_default_title">New task</string>
