@@ -13,7 +13,6 @@ import android.view.ViewStub;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.AdapterView.OnItemLongClickListener;
-import android.widget.BaseAdapter;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
@@ -82,8 +81,6 @@ public class SubordinatesActivity extends SuperActivity {
 				View v = subordinateListAdapter.getView(potentialGroup.get(i), null, subordinateListView);
 				if(v!=null)
 					v.setBackgroundColor(getResources().getColor(R.color.blue));
-				subordinateListView.invalidateViews();
-				((BaseAdapter)subordinateListAdapter).notifyDataSetChanged();
 			}
 		}
 	}
@@ -133,7 +130,6 @@ public class SubordinatesActivity extends SuperActivity {
 						view.setBackgroundColor(getResources().getColor(R.color.light_grey));
 						potentialGroup.remove(new Integer(position));
 					}
-					subordinateListView.invalidateViews();
 					return true;
 				}
 			});
@@ -231,4 +227,18 @@ public class SubordinatesActivity extends SuperActivity {
 		}
 	}
 
+	
+	/**
+	 * Shows subordinates
+	 * @param v
+	 */
+	@Override
+	public void showSubordinates(View v){
+		if(group==null)
+			super.showSubordinates(v);
+		else{
+			Intent intent = new Intent(this, SubordinatesActivity.class);
+			startActivity(intent);
+		}
+	}
 }
