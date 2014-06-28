@@ -5,7 +5,7 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:orientation="vertical" >
 
         <!-- Picker for Deadline -->
@@ -93,7 +93,7 @@
                     android:layout_width="@dimen/button_width"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal|bottom"
-                    android:background="@color/red"
+                    android:background="@color/dark_blue"
                     android:onClick="showDatePickerDialog"
                     android:padding="@dimen/button_padding"
                     android:text="@string/set_deadline_button"

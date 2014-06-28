@@ -1,6 +1,8 @@
 package freeuni.android.delegator.ui;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -207,11 +209,28 @@ public class HomeActivity extends SuperActivity{
 	}
 	
 	/**
+	 * Sorting 
+	 * @param item
+	 */
+	public void sort(MenuItem item){
+		Log.i(LOG_MESSAGE, item.getTitle().toString());
+		Log.i(LOG_MESSAGE, ""+getResources().getString(R.id.sort_by_priority));
+		Log.i(LOG_MESSAGE, ""+item.getTitle().toString().equals(getResources().getString(R.id.sort_by_priority)));
+		if(item.getTitle().toString().equals(getResources().getString(R.id.sort_by_priority))){
+			Collections.sort(tasks,new TaskComparatorByPriority());
+		}else{
+			Collections.sort(tasks, new TaskComparatorByDue());
+		}
+		 ((TaskListAdapter) taskListAdapter).notifyDataSetChanged();
+	}
+	
+	
+	/**
 	 * Removes closed tasks from List
 	 */
 	private void removeClosedTasks(){
 		for(int i=0;i<tasks.size();i++){
-			if(TaskStatus.isCurrentStatus(tasks.get(i).getStatus().getStatusName())){
+			if(!TaskStatus.isCurrentStatus(tasks.get(i).getStatus().getStatusName())){
 				tasks.remove(i);
 				i--;
 			}
@@ -229,6 +248,40 @@ public class HomeActivity extends SuperActivity{
 			Intent intent = new Intent(this, HomeActivity.class);
 			startActivity(intent);
 		}
+	}
+	
+	/**
+	 * Comparator for sorting Tasks by priority
+	 * @author Admin
+	 */
+	class TaskComparatorByPriority implements Comparator<Task>{
+		 
+	    @Override
+	    public int compare(Task t1, Task t2) {
+	        if(t2.getPriority() < t1.getPriority()){
+	            return 1;
+	        } else {
+	            return -1;
+	        }
+	    }
+	}
+	
+	/**
+	 * Comparator for sorting Tasks by due dates
+	 * @author Admin
+	 */
+	class TaskComparatorByDue implements Comparator<Task>{
+		 
+	    @Override
+	    public int compare(Task t1, Task t2) {
+	    	if(t1.getDeadLine()==null)
+	    		return -1;
+	        if(t2.getDeadLine()==null || t2.getDeadLine().before(t1.getDeadLine())){
+	            return 1;
+	        } else {
+	            return -1;
+	        }
+	    }
 	}
 	
 }

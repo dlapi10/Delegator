@@ -24,9 +24,10 @@
 	<string name="create_group">Create group</string>
 	<string name="save_task">Save</string>
 	<string name="delete_task">Delete</string>
-	<string name="hide_closed">Hide Closed</string>
+	<string name="hide_closed">Hide closed</string>
 	<string name="show_all">Show all</string>
-	
+	<string name="sort_by_priority">Sort by priority</string>
+	<string name="sort_by_Date">Sort by due date</string>
 	
 	<!-- Navigation Drawable -->
 	<string name="navigation_subordinates">Subordinates</string>

@@ -139,6 +139,8 @@ public class TaskActivity extends SuperActivity{
 				day = deadline.get(Calendar.DAY_OF_MONTH);
 				showDeadline();
 			}
+			RatingBar priority = (RatingBar)findViewById(R.id.priority);
+			priority.setProgress(thisTask.getPriority());
 		}
 	}
 
@@ -217,12 +219,12 @@ public class TaskActivity extends SuperActivity{
 			public void onDateSet(DatePicker view, int yearPicked,
 					int monthOfYear, int dayOfMonth) {
 				year = yearPicked;
-				month = monthOfYear;
+				month = monthOfYear+1; // Mistake of Calendar, Bug O.o
 				day = dayOfMonth;
+				showDeadline();
 			}
 		}, year, month, day);
 		dpd.show();
-		showDeadline();
 	}
 
 	/**
