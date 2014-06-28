@@ -74,9 +74,6 @@ public class TaskActivity extends SuperActivity{
 		spinnerTaskStatus.setAdapter(adapter);
 
 		setContent();
-
-
-
 	}
 
 	private void setContent(){
@@ -190,6 +187,7 @@ public class TaskActivity extends SuperActivity{
 		Toast.makeText(getApplicationContext(), freeuni.android.delegator.R.string.task_saved, Toast.LENGTH_SHORT).show();
 		//Go Home after task saving finished
 		Intent homeIntent = new Intent(this, HomeActivity.class);
+		homeIntent.putExtra(INTENT_EXTRA_MESSAGE_KEY_USER_NAME, assignee_name);
 		startActivity(homeIntent);
 	}
 

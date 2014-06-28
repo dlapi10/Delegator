@@ -21,6 +21,7 @@ public class SuperActivity extends Activity{
 	// Public constants
 	public static final String INTENT_SIGN_OUT_MESSAGE  = "freeuni.android.delegator.ui.LoginActivity.log.out";
 	public static final String INTENT_EXTRA_MESSAGE_KEY_USER_NAME = "freeuni.android.delegator.ui.SuperActivity.usernameKey";
+	public static final String INTENT_EXTRA_MESSAGE_KEY_GROUP_ID = "freeuni.android.delegator.ui.SuperActivity.groupID";
 	
 	// Private variables
 	private DrawerLayout drawer;

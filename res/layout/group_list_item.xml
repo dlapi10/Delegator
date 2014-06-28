@@ -3,7 +3,8 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical" 
-    android:background="@color/light_grey">
+    android:background="@color/light_grey"
+    >
 
     <TextView
         android:id="@+id/group_name"

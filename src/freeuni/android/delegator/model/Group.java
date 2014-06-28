@@ -26,7 +26,9 @@ public class Group {
 		this.groupImage = groupImage;
 	}
 	
-	
+	public Group(){
+		
+	}
 	
 	/**
 	 * @param groupID

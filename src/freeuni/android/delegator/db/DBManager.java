@@ -232,6 +232,18 @@ public class DBManager extends SQLiteOpenHelper{
 	}
 
 	/**
+	 * Updates task
+	 * @param task
+	 * @return task id
+	 */
+	public void updateGroupName(Group group){
+		String where = GRP_ID+"=" + group.getGroupID();
+		ContentValues values = new ContentValues();
+		values.put(GRP_NAME, group.getGroupName());
+		db.update(TABLE_GROUPS, values, where, null);
+	}
+	
+	/**
 	 * Adding user to group
 	 * @param group
 	 * @param user
@@ -262,6 +274,7 @@ public class DBManager extends SQLiteOpenHelper{
 				users.add(getUser(c.getString(c.getColumnIndex(UTG_USER_NAME))));
 			}while(c.moveToNext());
 		}
+		group.setGroup(users);
 		c.close();
 		return group;
 	}

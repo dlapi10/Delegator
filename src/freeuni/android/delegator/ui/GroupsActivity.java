@@ -1,6 +1,8 @@
 package freeuni.android.delegator.ui;
 
 import java.util.ArrayList;
+
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -62,7 +64,9 @@ public class GroupsActivity extends SuperActivity{
 			@Override
 			public void onItemClick(AdapterView<?> parent, View view,
 					int position, long id) {
-				// TODO Auto-generated method stub
+				Intent subordinatesIntent = new Intent(getBaseContext(), SubordinatesActivity.class);
+				subordinatesIntent.putExtra(INTENT_EXTRA_MESSAGE_KEY_GROUP_ID, groups.get(position).getGroupID());
+				startActivity(subordinatesIntent);
 			}
 		});
 	}

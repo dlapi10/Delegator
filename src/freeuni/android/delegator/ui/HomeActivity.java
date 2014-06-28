@@ -27,6 +27,7 @@ public class HomeActivity extends SuperActivity{
 
 	//Private constants
 	private static final String LOG_MESSAGE = "HOME";
+	private static final String VISIBLE_USER_KEY = "VISIBLE_USER";
 
 
 	//Private variables
@@ -54,6 +55,13 @@ public class HomeActivity extends SuperActivity{
 		}
 	}
 
+	//Saving information
+	@Override
+	public void onSaveInstanceState(Bundle savedInstanceState){
+		savedInstanceState.putString(VISIBLE_USER_KEY, visibleUser.getUserName());
+		super.onSaveInstanceState(savedInstanceState);
+	}
+
 
 	/**
 	 * Method called after creating of activity.
@@ -62,6 +70,9 @@ public class HomeActivity extends SuperActivity{
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		if(savedInstanceState!=null){
+			visibleUser = App.getDb().getUser(savedInstanceState.getString(VISIBLE_USER_KEY));
+		}
 		Log.i(LOG_MESSAGE,"onCreate");
 		handleIncomingIntent();
 		if(visibleUser==null || visibleUser.getUserName().equals(userName)){
@@ -194,7 +205,7 @@ public class HomeActivity extends SuperActivity{
 		MenuItem it = menu.findItem(R.id.hide_closed_tasks);
 		it.setEnabled(true);
 	}
-	
+
 	/**
 	 * Hides Closed and 
 	 * @param item
@@ -207,7 +218,7 @@ public class HomeActivity extends SuperActivity{
 		MenuItem it = menu.findItem(R.id.show_all_tasks);
 		it.setEnabled(true);
 	}
-	
+
 	/**
 	 * Sorting 
 	 * @param item
@@ -221,10 +232,10 @@ public class HomeActivity extends SuperActivity{
 		}else{
 			Collections.sort(tasks, new TaskComparatorByDue());
 		}
-		 ((TaskListAdapter) taskListAdapter).notifyDataSetChanged();
+		((TaskListAdapter) taskListAdapter).notifyDataSetChanged();
 	}
-	
-	
+
+
 	/**
 	 * Removes closed tasks from List
 	 */
@@ -236,7 +247,7 @@ public class HomeActivity extends SuperActivity{
 			}
 		}
 	}
-	
+
 	/**
 	 * Shows my tasks if don't see them
 	 */
@@ -249,39 +260,39 @@ public class HomeActivity extends SuperActivity{
 			startActivity(intent);
 		}
 	}
-	
+
 	/**
 	 * Comparator for sorting Tasks by priority
 	 * @author Admin
 	 */
 	class TaskComparatorByPriority implements Comparator<Task>{
-		 
-	    @Override
-	    public int compare(Task t1, Task t2) {
-	        if(t2.getPriority() < t1.getPriority()){
-	            return 1;
-	        } else {
-	            return -1;
-	        }
-	    }
+
+		@Override
+		public int compare(Task t1, Task t2) {
+			if(t2.getPriority() < t1.getPriority()){
+				return 1;
+			} else {
+				return -1;
+			}
+		}
 	}
-	
+
 	/**
 	 * Comparator for sorting Tasks by due dates
 	 * @author Admin
 	 */
 	class TaskComparatorByDue implements Comparator<Task>{
-		 
-	    @Override
-	    public int compare(Task t1, Task t2) {
-	    	if(t1.getDeadLine()==null)
-	    		return -1;
-	        if(t2.getDeadLine()==null || t2.getDeadLine().before(t1.getDeadLine())){
-	            return 1;
-	        } else {
-	            return -1;
-	        }
-	    }
+
+		@Override
+		public int compare(Task t1, Task t2) {
+			if(t1.getDeadLine()==null)
+				return -1;
+			if(t2.getDeadLine()==null || t2.getDeadLine().before(t1.getDeadLine())){
+				return 1;
+			} else {
+				return -1;
+			}
+		}
 	}
-	
+
 }

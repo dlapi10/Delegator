@@ -12,23 +12,51 @@ import android.view.View;
 import android.view.ViewStub;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
+import android.widget.AdapterView.OnItemLongClickListener;
+import android.widget.BaseAdapter;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 import freeuni.android.delegator.R;
 import freeuni.android.delegator.app.App;
 import freeuni.android.delegator.db.DBManager;
+import freeuni.android.delegator.model.Group;
 import freeuni.android.delegator.model.User;
 import freeuni.android.delegator.ui.model.UserListAdapter;
 
 public class SubordinatesActivity extends SuperActivity {
 	//Private constants
 	private static final String LOG_MESSAGE = "Subordinates";
+	private static final String POTENTIAL_GROUP_LIST = "POTENTIAL_GROUP_LIST";
 
 	//Private variables
 	private ListView subordinateListView;
 	private ListAdapter subordinateListAdapter;
 	private ArrayList<User> subordinates;
+	private ArrayList<Integer> potentialGroup;
+
+	private Group group;
+
+	/**
+	 * Retrieving group ID
+	 */
+	private void handleIncomingIntent(){
+		Intent intent = getIntent();
+		if(intent!=null){
+			int groupID = intent.getIntExtra(INTENT_EXTRA_MESSAGE_KEY_GROUP_ID,0);
+			if(groupID!=0){
+				group = App.getDb().getGroup(groupID);
+			}
+			intent.removeExtra(INTENT_EXTRA_MESSAGE_KEY_GROUP_ID);
+		}
+	}
+
+	//Saving information
+	@Override
+	public void onSaveInstanceState(Bundle savedInstanceState){
+		savedInstanceState.putIntegerArrayList(POTENTIAL_GROUP_LIST, potentialGroup);
+		super.onSaveInstanceState(savedInstanceState);
+	}
 
 	/**
 	 * Method called after creating of activity.
@@ -37,15 +65,27 @@ public class SubordinatesActivity extends SuperActivity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		handleIncomingIntent();
+		potentialGroup = new ArrayList<Integer>();
 		Log.i(LOG_MESSAGE,"onCreate");
 		this.setTitle(getResources().getString(R.string.navigation_subordinates));
 		//Setting layout to the stub
 		ViewStub stub = (ViewStub) findViewById(R.id.layout_stub);
 		stub.setLayoutResource(R.layout.subordinates_list);
 		stub.inflate();
-		
+
 		retrieveSubordinates();
 		setupList();
+		if(savedInstanceState!=null){
+			potentialGroup = savedInstanceState.getIntegerArrayList(POTENTIAL_GROUP_LIST);
+			for(int i=0;i<potentialGroup.size();i++){
+				View v = subordinateListAdapter.getView(potentialGroup.get(i), null, subordinateListView);
+				if(v!=null)
+					v.setBackgroundColor(getResources().getColor(R.color.blue));
+				subordinateListView.invalidateViews();
+				((BaseAdapter)subordinateListAdapter).notifyDataSetChanged();
+			}
+		}
 	}
 
 
@@ -55,7 +95,11 @@ public class SubordinatesActivity extends SuperActivity {
 	private void retrieveSubordinates(){
 		DBManager db = App.getDb();
 		Log.i(LOG_MESSAGE, "starting sub down for manager"+userName);
-		subordinates = (ArrayList<User>) db.getSubordinatesForManager(db.getUser(userName));
+		if(group!=null){
+			subordinates = (ArrayList<User>) group.getGroup();
+		}else{
+			subordinates = (ArrayList<User>) db.getSubordinatesForManager(db.getUser(userName));
+		}
 		Log.i(LOG_MESSAGE, "retrieving done, users"+subordinates.size());
 	}
 
@@ -71,10 +115,26 @@ public class SubordinatesActivity extends SuperActivity {
 				@Override
 				public void onItemClick(AdapterView<?> parent, View view,
 						int position, long id) {
-					
-						Intent homeIntent = new Intent(getBaseContext(), HomeActivity.class);
-						homeIntent.putExtra(INTENT_EXTRA_MESSAGE_KEY_USER_NAME, subordinates.get(position).getUserName());
-						startActivity(homeIntent);
+
+					Intent homeIntent = new Intent(getBaseContext(), HomeActivity.class);
+					homeIntent.putExtra(INTENT_EXTRA_MESSAGE_KEY_USER_NAME, subordinates.get(position).getUserName());
+					startActivity(homeIntent);
+				}
+			});
+			subordinateListView.setOnItemLongClickListener(new OnItemLongClickListener() {
+
+				@Override
+				public boolean onItemLongClick(AdapterView<?> parent,
+						View view, int position, long id) {
+					if(!potentialGroup.contains(position)){
+						view.setBackgroundColor(getResources().getColor(R.color.blue));
+						potentialGroup.add(position);
+					}else{
+						view.setBackgroundColor(getResources().getColor(R.color.light_grey));
+						potentialGroup.remove(new Integer(position));
+					}
+					subordinateListView.invalidateViews();
+					return true;
 				}
 			});
 		}
@@ -123,7 +183,7 @@ public class SubordinatesActivity extends SuperActivity {
 		Log.i(LOG_MESSAGE,"onStop");
 		super.onStop();
 	}
-	
+
 	/**
 	 * Menu for the Subordinates activity.
 	 */
@@ -132,15 +192,29 @@ public class SubordinatesActivity extends SuperActivity {
 		getMenuInflater().inflate(R.menu.subordinates_menu, menu); // Adding menu items to the super activity menu
 		return super.onCreateOptionsMenu(menu);
 	}
-	
+
 	/**
 	 * Create group from given subordinates
 	 * @param item
 	 */
 	public void createGroup(MenuItem item){
-		
+		if(potentialGroup.size()<=0)
+			return;
+		Group newGroup = new Group();
+		newGroup.setGroupID(App.getDb().addGroup(newGroup, App.getDb().getUser(userName)));
+		ArrayList<User> usersToAdd = new ArrayList<>();
+		for(int i=0;i<potentialGroup.size();i++){
+			User usr = subordinates.get(potentialGroup.get(i));
+			usersToAdd.add(usr);
+			App.getDb().addUserToGroup(newGroup, usr);
+		}
+		newGroup.setGroup(usersToAdd);
+		Intent groupNaming = new Intent(getBaseContext(), GroupNaming.class);
+		groupNaming.putExtra(INTENT_EXTRA_MESSAGE_KEY_GROUP_ID, newGroup.getGroupID());
+		startActivity(groupNaming);
+		Log.i(LOG_MESSAGE, "start group naming activity");
 	}
-	
+
 	/**
 	 * Call to subordinate
 	 * @param v
@@ -156,5 +230,5 @@ public class SubordinatesActivity extends SuperActivity {
 			Toast.makeText(this, getResources().getString(R.string.invalid_number), Toast.LENGTH_SHORT).show();
 		}
 	}
-	
+
 }

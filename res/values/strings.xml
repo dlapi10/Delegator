@@ -61,6 +61,11 @@
 	<string name="set_deadline_button">Set Deadline</string>
 	<string name="reporter">Reporter: </string>
 	
+	<!-- Group naming -->
+	<string name="group_name_hint">Group name</string>
+	<string name="group_naming_button_name">Submit</string>
+	<string name="group_naming_desc">Naming created group</string>
+	
 	<!-- 
 	<string-array name="statuses">
         <item>Not Started</item>
