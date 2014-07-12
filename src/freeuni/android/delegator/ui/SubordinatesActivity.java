@@ -118,24 +118,27 @@ public class SubordinatesActivity extends SuperActivity {
 					startActivity(homeIntent);
 				}
 			});
+			System.out.println("On item Click "+subordinateListView.isClickable());
 			subordinateListView.setOnItemLongClickListener(new OnItemLongClickListener() {
 
 				@Override
 				public boolean onItemLongClick(AdapterView<?> parent,
 						View view, int position, long id) {
-					if(!potentialGroup.contains(position)){
-						view.setBackgroundColor(getResources().getColor(R.color.blue));
+					if(!potentialGroup.contains(position)){ 
+						view.findViewById(R.id.colored_layout).setBackgroundColor(getResources().getColor(R.color.blue));
 						potentialGroup.add(position);
 					}else{
-						view.setBackgroundColor(getResources().getColor(R.color.light_grey));
-						potentialGroup.remove(new Integer(position));
+						view.findViewById(R.id.colored_layout).setBackgroundColor(getResources().getColor(R.color.light_grey));
+						potentialGroup.remove(Integer.valueOf(position));
 					}
 					return true;
 				}
 			});
+			System.out.println("ON Item Long Clickable "+subordinateListView.isLongClickable());
+			
 		}
 	}
-
+	
 
 	/**
 	 * On resume

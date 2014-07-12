@@ -4,15 +4,14 @@
     android:layout_height="wrap_content"
     android:orientation="vertical" 
     >
-
     <LinearLayout
+        android:id="@+id/colored_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/light_grey"
-        android:orientation="horizontal" 
-        android:longClickable="true"
+        android:orientation="horizontal"
         >
-<!-- android:longClickable="true" -->
+
         <ImageView
             android:id="@+id/subordinate_avatar"
             android:layout_width="@dimen/list_avatar_size"
@@ -69,7 +68,6 @@
             android:contentDescription="@string/subordinate_call_desc"
             android:onClick="call"
             android:src="@drawable/ic_action_call" />
-        
     </LinearLayout>
 
     <View
