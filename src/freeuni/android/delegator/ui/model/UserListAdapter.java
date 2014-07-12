@@ -58,12 +58,6 @@ public class UserListAdapter extends BaseAdapter{
 		}
 		userHolder.userName.setText(subordinate.getUserName());
 		userHolder.currentTaskCount.setText( Integer.toString( App.getDb().getCurrentTaskCountForUser(subordinate) ) );
-		System.out.println("Before Set Long Clickable:"+convertView.isLongClickable());
-		System.out.println("Before is it Clickable?"+convertView.isClickable());
-//		convertView.setLongClickable(true);
-//		convertView.setClickable(true);
-//		System.out.println("After Set Long Clickable: "+convertView.isLongClickable());
-//		System.out.println("Afer Set: is Clickable: "+convertView.isClickable());
 		return convertView;
 	}
 
