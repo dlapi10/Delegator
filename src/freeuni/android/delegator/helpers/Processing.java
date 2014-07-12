@@ -1,4 +1,4 @@
-package freeuni.android.delegator.model;
+package freeuni.android.delegator.helpers;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
