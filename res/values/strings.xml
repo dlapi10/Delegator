@@ -21,6 +21,7 @@
 	
 	<!-- Menu -->
 	<string name="sign_out">Sign out</string>
+	<string name="search">Search</string>
 	<string name="add_task">Add</string>
 	<string name="edit_task">Edit</string>
 	<string name="create_group">Create group</string>

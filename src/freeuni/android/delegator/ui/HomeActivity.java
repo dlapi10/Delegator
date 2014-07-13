@@ -185,10 +185,9 @@ public class HomeActivity extends SuperActivity{
 		this.menu = menu;
 		
 		 MenuItem searchItem = menu.findItem(R.id.action_search);
-		 SearchView   filter = (SearchView) MenuItemCompat.getActionView(searchItem);
+		SearchView mSearchView = (SearchView) MenuItemCompat.getActionView(searchItem);
 		
-	//	filter.setIconifiedByDefault(false);
-		filter.setOnQueryTextListener(new OnQueryTextListener() {
+		mSearchView.setOnQueryTextListener(new OnQueryTextListener() {
 
 			@Override
 			public boolean onQueryTextSubmit(String query) {

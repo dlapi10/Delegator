@@ -184,20 +184,20 @@ public final class R {
         /**  Shared Preference keys 
          */
         public static final int active_session_username=0x7f060003;
-        public static final int add_task=0x7f06000a;
+        public static final int add_task=0x7f06000b;
         public static final int app_name=0x7f060000;
-        public static final int assignee_assigner_desc=0x7f06001e;
-        public static final int create_group=0x7f06000c;
-        public static final int delete_task=0x7f06000e;
-        public static final int drawer_close=0x7f06001b;
-        public static final int drawer_open=0x7f06001a;
-        public static final int edit_task=0x7f06000b;
+        public static final int assignee_assigner_desc=0x7f06001f;
+        public static final int create_group=0x7f06000d;
+        public static final int delete_task=0x7f06000f;
+        public static final int drawer_close=0x7f06001c;
+        public static final int drawer_open=0x7f06001b;
+        public static final int edit_task=0x7f06000c;
         /**  Group naming 
          */
-        public static final int group_name_hint=0x7f060029;
-        public static final int group_naming_button_name=0x7f06002a;
-        public static final int group_naming_desc=0x7f06002b;
-        public static final int hide_closed=0x7f06000f;
+        public static final int group_name_hint=0x7f06002a;
+        public static final int group_naming_button_name=0x7f06002b;
+        public static final int group_naming_desc=0x7f06002c;
+        public static final int hide_closed=0x7f060010;
         /**  Home activity 
  Subordinate activity 
          */
@@ -208,41 +208,42 @@ public final class R {
         public static final int la_password_hint=0x7f060006;
         public static final int la_user_name_hint=0x7f060005;
         public static final int la_wrong_pass_or_name=0x7f060007;
-        public static final int navigation_groups=0x7f060015;
-        public static final int navigation_groups_img_content_description=0x7f060018;
-        public static final int navigation_home=0x7f060014;
-        public static final int navigation_home_img_content_description=0x7f060016;
-        public static final int navigation_profile_image_content_description=0x7f060019;
+        public static final int navigation_groups=0x7f060016;
+        public static final int navigation_groups_img_content_description=0x7f060019;
+        public static final int navigation_home=0x7f060015;
+        public static final int navigation_home_img_content_description=0x7f060017;
+        public static final int navigation_profile_image_content_description=0x7f06001a;
         /**  Navigation Drawable 
          */
-        public static final int navigation_subordinates=0x7f060013;
-        public static final int navigation_subordinates_img_content_description=0x7f060017;
+        public static final int navigation_subordinates=0x7f060014;
+        public static final int navigation_subordinates_img_content_description=0x7f060018;
         public static final int preference_file_key=0x7f060002;
-        public static final int priority_bar_name=0x7f060025;
-        public static final int reporter=0x7f060028;
-        public static final int save_task=0x7f06000d;
-        public static final int seek_bar_name=0x7f060024;
-        public static final int seek_bar_percent=0x7f060026;
-        public static final int set_deadline_button=0x7f060027;
-        public static final int show_all=0x7f060010;
+        public static final int priority_bar_name=0x7f060026;
+        public static final int reporter=0x7f060029;
+        public static final int save_task=0x7f06000e;
+        public static final int search=0x7f06000a;
+        public static final int seek_bar_name=0x7f060025;
+        public static final int seek_bar_percent=0x7f060027;
+        public static final int set_deadline_button=0x7f060028;
+        public static final int show_all=0x7f060011;
         /**  Menu 
          */
         public static final int sign_out=0x7f060009;
-        public static final int sort_by_Date=0x7f060012;
-        public static final int sort_by_priority=0x7f060011;
-        public static final int subordinate_call_desc=0x7f06001f;
-        public static final int subordinate_current_task_desc=0x7f06001d;
+        public static final int sort_by_Date=0x7f060013;
+        public static final int sort_by_priority=0x7f060012;
+        public static final int subordinate_call_desc=0x7f060020;
+        public static final int subordinate_current_task_desc=0x7f06001e;
         /**  List strings 
          */
-        public static final int subortinate_avatar_descrip=0x7f06001c;
+        public static final int subortinate_avatar_descrip=0x7f06001d;
         /**  Task Activity 
          */
-        public static final int task_default_title=0x7f060020;
-        public static final int task_description_hint=0x7f060023;
-        public static final int task_saved=0x7f060021;
+        public static final int task_default_title=0x7f060021;
+        public static final int task_description_hint=0x7f060024;
+        public static final int task_saved=0x7f060022;
         /**  Task Layout 
          */
-        public static final int task_title_hint=0x7f060022;
+        public static final int task_title_hint=0x7f060023;
     }
     public static final class style {
         /** 
