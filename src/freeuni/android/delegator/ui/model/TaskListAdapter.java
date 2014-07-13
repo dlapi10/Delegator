@@ -2,21 +2,28 @@ package freeuni.android.delegator.ui.model;
 
 import java.util.ArrayList;
 
+
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.Filter;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Filterable;
 import freeuni.android.delegator.model.Task;
 
-public class TaskListAdapter extends BaseAdapter{
+public class TaskListAdapter extends BaseAdapter implements Filterable{
 	private ArrayList<Task> tasks;
+	private ArrayList<Task> originalTasks;
 	private LayoutInflater inflater;
+	private TaskListFilter filter;
 
 	public TaskListAdapter(LayoutInflater inflater, ArrayList<Task> items) {
 		this.tasks = items;
 		this.inflater = inflater;
+		originalTasks = new ArrayList<>();
+		this.originalTasks.addAll(tasks);
 	}
 
 	@Override
@@ -66,5 +73,46 @@ public class TaskListAdapter extends BaseAdapter{
 		TextView taskName;
 		TextView taskStatus;
 		TextView taskPriority;
+	}
+	
+	
+	private class TaskListFilter extends Filter {
+
+		@Override
+		protected FilterResults performFiltering(CharSequence constraint) {
+			constraint = constraint.toString().toLowerCase();
+			FilterResults result = new FilterResults();
+			if (constraint != null && constraint.toString().length() > 0) {
+				ArrayList<Task> filteredItems = new ArrayList<Task>();
+				for (Task item : originalTasks) {
+					if (item.getDescription().toLowerCase()
+							.contains(constraint) || item.getTitle().toLowerCase().contains(constraint)) {
+						filteredItems.add(item);
+					}
+				}
+				result.values = filteredItems;
+				result.count = filteredItems.size();
+			} else {
+				synchronized (this) {
+					result.values = originalTasks;
+					result.count = originalTasks.size();
+				}
+			}
+			return result;
+		}
+
+		@Override
+		protected void publishResults(CharSequence constraint, FilterResults results) {
+			tasks = (ArrayList<Task>) results.values;
+			notifyDataSetChanged();
+		}
+	}
+
+	@Override
+	public Filter getFilter() {
+		if (filter == null) {
+			filter = new TaskListFilter();
+		}
+		return filter;
 	}
 }

@@ -6,6 +6,8 @@ import java.util.Comparator;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.view.MenuItemCompat;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -13,8 +15,10 @@ import android.view.View;
 import android.view.ViewStub;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
+import android.widget.SearchView.OnQueryTextListener;
 import android.widget.ListAdapter;
 import android.widget.ListView;
+import android.widget.SearchView;
 import freeuni.android.delegator.R;
 import freeuni.android.delegator.app.App;
 import freeuni.android.delegator.db.DBManager;
@@ -123,6 +127,7 @@ public class HomeActivity extends SuperActivity{
 					startActivity(taskIntent);
 				}
 			});
+			taskListView.setTextFilterEnabled(true);
 		}
 	}
 
@@ -178,6 +183,31 @@ public class HomeActivity extends SuperActivity{
 		// Inflate the menu; this adds items to the action bar if it is present.
 		getMenuInflater().inflate(R.menu.tasks_menu, menu); // Adding menu items to the super activity menu
 		this.menu = menu;
+		
+		 MenuItem searchItem = menu.findItem(R.id.action_search);
+		 SearchView   filter = (SearchView) MenuItemCompat.getActionView(searchItem);
+		
+	//	filter.setIconifiedByDefault(false);
+		filter.setOnQueryTextListener(new OnQueryTextListener() {
+
+			@Override
+			public boolean onQueryTextSubmit(String query) {
+				onQueryTextChange(query);
+				return false;
+			}
+
+			@Override
+			public boolean onQueryTextChange(String newText) {
+				if (TextUtils.isEmpty(newText)) {
+					taskListView.clearTextFilter();
+				} else {
+					taskListView.setFilterText(newText.toString());
+					((TaskListAdapter) taskListAdapter).getFilter().filter(newText.toString());
+				}
+				return true;
+			}
+		});
+		
 		Log.i(LOG_MESSAGE,"Options menu done");
 		hideClosedTasks(null);
 		return super.onCreateOptionsMenu(menu);

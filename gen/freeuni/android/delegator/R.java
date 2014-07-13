@@ -105,7 +105,8 @@ public final class R {
         public static final int task_completion_format=0x7f02001b;
     }
     public static final class id {
-        public static final int add_task=0x7f090031;
+        public static final int action_search=0x7f090031;
+        public static final int add_task=0x7f090032;
         public static final int assignee_assigner=0x7f090028;
         public static final int colored_layout=0x7f090017;
         public static final int completion_number=0x7f09001f;
@@ -120,7 +121,7 @@ public final class R {
         public static final int group_list=0x7f090006;
         public static final int group_name=0x7f090003;
         public static final int groups=0x7f090005;
-        public static final int hide_closed_tasks=0x7f090032;
+        public static final int hide_closed_tasks=0x7f090033;
         public static final int layout_stub=0x7f090008;
         public static final int left_drawer=0x7f09000a;
         public static final int nav_groups=0x7f090014;
@@ -142,10 +143,10 @@ public final class R {
         public static final int reporter_info_reporter=0x7f090026;
         public static final int save_task=0x7f09002f;
         public static final int set_deadline=0x7f090022;
-        public static final int show_all_tasks=0x7f090033;
+        public static final int show_all_tasks=0x7f090034;
         public static final int sign_out=0x7f09002d;
-        public static final int sort_by_date=0x7f090035;
-        public static final int sort_by_priority=0x7f090034;
+        public static final int sort_by_date=0x7f090036;
+        public static final int sort_by_priority=0x7f090035;
         public static final int submit_credentials=0x7f090002;
         public static final int submit_name=0x7f090004;
         public static final int subordinate_avatar=0x7f090018;
