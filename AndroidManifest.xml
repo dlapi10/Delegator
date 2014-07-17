@@ -37,7 +37,7 @@
         android:theme="@style/AppTheme" >
         <meta-data
             android:name="com.google.android.maps.v2.API_KEY"
-            android:value="AIzaSyDlBJCbTpvceFZUY-mNLm3u6JAGaM9LDLQ" />
+            android:value="AIzaSyBc3rvh75jv1kFjKJ0hsLVcSkCmSIH6z_Q" />
         <meta-data
             android:name="com.google.android.gms.version"
             android:value="@integer/google_play_services_version" />
@@ -60,6 +60,8 @@
         <activity android:name="freeuni.android.delegator.ui.TaskActivity" >
         </activity>
         <activity android:name="freeuni.android.delegator.ui.GroupNaming" >
+        </activity>
+         <activity android:name="freeuni.android.delegator.map.MapActivity" >
         </activity>
     </application>
 
