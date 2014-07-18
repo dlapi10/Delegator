@@ -15,6 +15,7 @@ import android.view.View;
 import android.widget.TextView;
 import freeuni.android.delegator.R;
 import freeuni.android.delegator.app.App;
+import freeuni.android.delegator.model.ProfileSettings;
 
 public class SuperActivity extends Activity{
 	
@@ -144,5 +145,10 @@ public class SuperActivity extends Activity{
 	public boolean onCreateOptionsMenu(Menu menu) {
 		getMenuInflater().inflate(R.menu.main, menu);
 		return super.onCreateOptionsMenu(menu);
+	}
+	
+	/**aqedan wasashlelia*/
+	public void goToSettings(View v){
+		handleReference(ProfileSettings.class);
 	}
 }
