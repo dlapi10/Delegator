@@ -43,7 +43,7 @@ public class App extends Application{
 		db = new DBManager(this);
 		fillForTest();
 		avatarDimension = getResources().getDimensionPixelSize(freeuni.android.delegator.R.dimen.user_image_size);
-	
+		
 		comm = new DatabaseCommunicatorDB();
 	
 	}
