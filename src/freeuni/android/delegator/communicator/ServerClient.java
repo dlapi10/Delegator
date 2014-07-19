@@ -15,8 +15,7 @@ public class ServerClient {
 	private static final String LOG_TAG = "Server-Client";
 
 	// Client external IP address
-	private String clientExternalIP="10.0.3.2"; //Genymotion emulator IP, need to change
-	private static String serverIP; // computer's IP Adress; It shouldn't be variable;
+	private String serverIP="10.0.3.2"; //Genymotion emulator IP, Needs To change dynamiclly TODO
 	// Socket port number to use
 	private static int serverPort = 2728;
 
@@ -35,7 +34,6 @@ public class ServerClient {
 	 * 
 	 */
 	public void runClient(){
-		//clientExternalIP = Processing.getLocalIpAddress(); //TODO
 		//Socket to connect to the server
 		Socket socket = null; 
 		try {
@@ -55,6 +53,8 @@ public class ServerClient {
 		} finally{
 			try {
 				socket.close();
+				outputStream.close();
+				inputStream.close();
 			} catch (IOException e) {
 				e.printStackTrace();
 				Log.i(LOG_TAG,"Error, სოკეტის დახურვისას");
