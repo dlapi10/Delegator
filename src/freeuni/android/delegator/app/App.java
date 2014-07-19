@@ -16,7 +16,6 @@ public class App extends Application{
 	private static String preferenceFile;
 	private static NetworkCommunicator communicator;
 	private static Activity currentActivity = null;
-//	private static DBManager db = null;
 	private static Context cntxt;
 	private static DatabaseCommunicator db;
 
@@ -40,12 +39,9 @@ public class App extends Application{
 	private void initApp() {
 		cntxt = getApplicationContext(); 
 		communicator = new FakeCommunicator();
-	//	db = new DBManager(this);
+		db = new DatabaseCommunicatorDB();
 		fillForTest();
 		avatarDimension = getResources().getDimensionPixelSize(freeuni.android.delegator.R.dimen.user_image_size);
-	
-		db = new DatabaseCommunicatorDB();
-	
 	}
 	
 	public static Context getAppContext(){
