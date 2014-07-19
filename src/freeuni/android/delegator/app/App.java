@@ -4,6 +4,8 @@ import android.app.Activity;
 import android.app.Application;
 import android.content.Context;
 import android.content.SharedPreferences;
+import freeuni.android.delegator.communicator.DatabaseCommunicator;
+import freeuni.android.delegator.communicator.DatabaseCommunicatorDB;
 import freeuni.android.delegator.communicator.FakeCommunicator;
 import freeuni.android.delegator.communicator.NetworkCommunicator;
 import freeuni.android.delegator.db.DBManager;
@@ -16,6 +18,7 @@ public class App extends Application{
 	private static Activity currentActivity = null;
 	private static DBManager db = null;
 	private static Context cntxt;
+	private static DatabaseCommunicator comm;
 
 	// Shared preference keys
 	private static final String IS_FIRST_INIT="isFirstInit";
@@ -40,6 +43,9 @@ public class App extends Application{
 		db = new DBManager(this);
 		fillForTest();
 		avatarDimension = getResources().getDimensionPixelSize(freeuni.android.delegator.R.dimen.user_image_size);
+	
+		comm = new DatabaseCommunicatorDB();
+	
 	}
 
 	private void fillForTest(){
@@ -89,4 +95,5 @@ public class App extends Application{
 	public static void setCurrentActivity(Activity cA){
 		currentActivity = cA;
 	}
+
 }
