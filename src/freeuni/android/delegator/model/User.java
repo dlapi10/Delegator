@@ -19,8 +19,6 @@ public class User {
 	private List<Request> requests;
 	
 	
-	
-	
 	/**
 	 * @param userID
 	 * @param userName
