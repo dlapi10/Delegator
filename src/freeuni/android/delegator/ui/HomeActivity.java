@@ -21,6 +21,7 @@ import android.widget.ListView;
 import android.widget.SearchView;
 import freeuni.android.delegator.R;
 import freeuni.android.delegator.app.App;
+import freeuni.android.delegator.communicator.DatabaseCommunicator;
 import freeuni.android.delegator.db.DBManager;
 import freeuni.android.delegator.model.Task;
 import freeuni.android.delegator.model.TaskStatus;
@@ -99,7 +100,7 @@ public class HomeActivity extends SuperActivity{
 	 * Retrieving tasks from database
 	 */
 	private void retrieveTasks(){
-		DBManager db = App.getDb();
+		DatabaseCommunicator db = App.getDb();
 		if(visibleUser==null){
 			visibleUser = App.getDb().getUser(userName);
 		}

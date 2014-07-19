@@ -17,7 +17,7 @@ public class FakeCommunicator implements NetworkCommunicator{
 	 * @return false if there is not such user with password, true otherwise
 	 */
 	public boolean checkCredentials(String name, String pass){
-		DBManager db= App.getDb();
+		DatabaseCommunicator db= App.getDb();
 		User user = db.getUser(name);
 		if(user!=null){
 			String truePass = user.getPassword();

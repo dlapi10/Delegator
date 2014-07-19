@@ -13,6 +13,7 @@ import android.widget.ListAdapter;
 import android.widget.ListView;
 import freeuni.android.delegator.R;
 import freeuni.android.delegator.app.App;
+import freeuni.android.delegator.communicator.DatabaseCommunicator;
 import freeuni.android.delegator.db.DBManager;
 import freeuni.android.delegator.model.Group;
 import freeuni.android.delegator.ui.model.GroupListAdapter;
@@ -49,7 +50,7 @@ public class GroupsActivity extends SuperActivity{
 	 * Retrieving groups from database
 	 */
 	private void retrieveGroups(){
-		DBManager db = App.getDb();
+		DatabaseCommunicator db = App.getDb();
 		groups = (ArrayList<Group>) db.getUsersGroups(db.getUser(userName));
 	}
 

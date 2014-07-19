@@ -18,6 +18,7 @@ import android.widget.ListView;
 import android.widget.Toast;
 import freeuni.android.delegator.R;
 import freeuni.android.delegator.app.App;
+import freeuni.android.delegator.communicator.DatabaseCommunicator;
 import freeuni.android.delegator.db.DBManager;
 import freeuni.android.delegator.model.Group;
 import freeuni.android.delegator.model.User;
@@ -90,7 +91,7 @@ public class SubordinatesActivity extends SuperActivity {
 	 * Retrieving tasks from database
 	 */
 	private void retrieveSubordinates(){
-		DBManager db = App.getDb();
+		DatabaseCommunicator db = App.getDb();
 		Log.i(LOG_MESSAGE, "starting sub down for manager"+userName);
 		if(group!=null){
 			subordinates = (ArrayList<User>) group.getGroup();
