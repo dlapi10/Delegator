@@ -2,6 +2,8 @@ package freeuni.android.delegator.model;
 
 import java.util.List;
 
+import freeuni.android.delegator.ui.UserSettings;
+
 import android.graphics.Bitmap;
 
 public class User {

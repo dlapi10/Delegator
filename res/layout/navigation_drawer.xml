@@ -33,7 +33,7 @@
                 android:layout_width="@dimen/profile_image_size"
                 android:layout_height="@dimen/profile_image_size"
                 android:contentDescription="@string/navigation_profile_image_content_description"
-                android:src="@drawable/me" />
+                android:src="@drawable/default_user_image" />
 
             <TextView
                 android:id="@+id/profile_name"
