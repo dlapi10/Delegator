@@ -13,6 +13,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
+import android.widget.Toast;
 import freeuni.android.delegator.app.App;
 import freeuni.android.delegator.helpers.Processing;
 import freeuni.android.delegator.model.Group;
@@ -187,6 +188,34 @@ public class DBManager extends SQLiteOpenHelper{
 		values.put(USR_PASS, user.getPassword());
 		db.insert(TABLE_USERS, null, values);
 		Log.i(LOG_TAG, "User added");
+	}
+	
+	/**
+	 * Update user
+	 * @param user
+	 */
+	
+	public String updateUser(User user){
+		String result="";
+		ContentValues values = new ContentValues();
+		values.put(USR_PASS, user.getPassword());
+		values.put(USR_PHONE, user.getPhoneNumber());
+		values.put(USR_IMAGE, Processing.bitmapToByteArray(user.getAvatar()));
+		
+		long id;
+
+		db.beginTransaction();
+		id = db.update(TABLE_USERS, values, USR_USER_NAME + " = '"+ user.getUserName()+"'", null);
+		db.setTransactionSuccessful();
+		db.endTransaction();
+		if (id != -1) {
+			result = "Profile has been successfully updated.";
+			Log.i(LOG_TAG, result);
+		} else{
+			result = "Error while updating profile";
+			Log.e(LOG_TAG, result);
+		}
+		return result;
 	}
 
 	/**

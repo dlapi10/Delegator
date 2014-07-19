@@ -2,70 +2,76 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical" 
-    android:weightSum="6">
+    android:orientation="vertical"
+    android:weightSum="1" >
 
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="horizontal" 
-        android:layout_weight="2">
-        
+        android:orientation="horizontal" >
+
         <ImageView
-            android:id="@+id/imgView"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content" 
-            android:layout_weight="1"
-            android:src="@drawable/default_user_image">
+            android:id="@+id/avatarSettings"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:adjustViewBounds="true"
+            android:maxHeight="100dp"
+            android:maxWidth="100dp"
+            android:scaleType="fitCenter"
+            android:src="@drawable/default_user_image" >
         </ImageView>
 
-        <TextView
-            android:id="@+id/userName"
-            android:layout_width="0dp"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="2" />
+            android:orientation="vertical" 
+            android:layout_gravity="center_horizontal">
+
+            <TextView
+                android:id="@+id/userNameSettings"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="dataaaa"
+                android:textSize="20dp"
+                android:textStyle="bold" >
+            </TextView>
+
+            <Button
+                android:id="@+id/browsePictureBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="5dp"
+                android:onClick="onBrowseButtonClick"
+                android:text="Update Avatar" >
+            </Button>
+        </LinearLayout>
     </LinearLayout>
-    
-    <LinearLayout 
-        android:layout_weight="1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-        
-         <TextView 
+
+    <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Telephone Number"
-        android:textStyle="bold"/>
-    
-    <EditText 
+        android:textStyle="bold" />
+
+    <EditText
         android:id="@+id/newTel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:hint="Enter new password here..."/>
-        
-    </LinearLayout>
-    
-    <TextView 
+        android:hint="Enter new telephone number here..." />
+
+    <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Update Password"
-        android:textStyle="bold"/>
-    
-    <EditText 
+        android:textStyle="bold" />
+
+    <EditText
         android:id="@+id/newPassword"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:inputType="textPassword"
-        android:hint="Enter new password here..."/>
-
-    <Button
-        android:id="@+id/browsePictureBtn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:onClick="onBrowseButtonClick"
-        android:text="Browse image" >
-    </Button>
+        android:hint="Enter new password here..."
+        android:inputType="textPassword" />
 
 </LinearLayout>

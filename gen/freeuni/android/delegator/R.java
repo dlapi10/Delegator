@@ -485,11 +485,12 @@ containing a value of this type.
         public static final int task_completion_format=0x7f020039;
     }
     public static final class id {
-        public static final int action_search=0x7f06004e;
-        public static final int add_task=0x7f06004f;
+        public static final int action_search=0x7f06004f;
+        public static final int add_task=0x7f060050;
         public static final int assignee_assigner=0x7f060045;
+        public static final int avatarSettings=0x7f06002f;
         public static final int book_now=0x7f060010;
-        public static final int browsePictureBtn=0x7f060033;
+        public static final int browsePictureBtn=0x7f060031;
         public static final int buyButton=0x7f06000a;
         public static final int buy_now=0x7f06000f;
         public static final int buy_with_google=0x7f06000e;
@@ -499,20 +500,19 @@ containing a value of this type.
         public static final int completion_seek_bar=0x7f06003d;
         public static final int completion_seek_bar_name=0x7f06003b;
         public static final int content=0x7f06001e;
-        public static final int create_new_group=0x7f06004b;
+        public static final int create_new_group=0x7f06004c;
         public static final int current_tasks=0x7f060036;
         public static final int deadline=0x7f060040;
-        public static final int delete_task=0x7f06004d;
+        public static final int delete_task=0x7f06004e;
         public static final int drawer_layout=0x7f06001c;
         public static final int grayscale=0x7f060012;
         public static final int group_list=0x7f06001a;
         public static final int group_name=0x7f060017;
         public static final int groups=0x7f060019;
-        public static final int hide_closed_tasks=0x7f060050;
+        public static final int hide_closed_tasks=0x7f060051;
         public static final int holo_dark=0x7f060005;
         public static final int holo_light=0x7f060006;
         public static final int hybrid=0x7f060004;
-        public static final int imgView=0x7f06002f;
         public static final int layout_stub=0x7f06001d;
         public static final int left_drawer=0x7f06001f;
         public static final int map=0x7f06001b;
@@ -530,8 +530,8 @@ containing a value of this type.
         public static final int nav_subordiantes_text=0x7f060028;
         public static final int nav_subordinates=0x7f060026;
         public static final int nav_subordinates_image=0x7f060027;
-        public static final int newPassword=0x7f060032;
-        public static final int newTel=0x7f060031;
+        public static final int newPassword=0x7f060033;
+        public static final int newTel=0x7f060032;
         public static final int none=0x7f060000;
         public static final int normal=0x7f060001;
         public static final int password=0x7f060015;
@@ -545,13 +545,14 @@ containing a value of this type.
         public static final int reporter_info_reporter=0x7f060043;
         public static final int sandbox=0x7f060008;
         public static final int satellite=0x7f060002;
-        public static final int save_task=0x7f06004c;
+        public static final int save_settings=0x7f06004b;
+        public static final int save_task=0x7f06004d;
         public static final int selectionDetails=0x7f06000b;
         public static final int set_deadline=0x7f06003f;
-        public static final int show_all_tasks=0x7f060051;
+        public static final int show_all_tasks=0x7f060052;
         public static final int sign_out=0x7f06004a;
-        public static final int sort_by_date=0x7f060053;
-        public static final int sort_by_priority=0x7f060052;
+        public static final int sort_by_date=0x7f060054;
+        public static final int sort_by_priority=0x7f060053;
         public static final int strict_sandbox=0x7f060009;
         public static final int submit_credentials=0x7f060016;
         public static final int submit_name=0x7f060018;
@@ -566,7 +567,7 @@ containing a value of this type.
         public static final int task_title=0x7f060039;
         public static final int tasks=0x7f060048;
         public static final int terrain=0x7f060003;
-        public static final int userName=0x7f060030;
+        public static final int userNameSettings=0x7f060030;
         public static final int user_name=0x7f060014;
         public static final int wrap_content=0x7f06000d;
     }
@@ -589,9 +590,10 @@ containing a value of this type.
     }
     public static final class menu {
         public static final int main=0x7f0a0000;
-        public static final int subordinates_menu=0x7f0a0001;
-        public static final int task_menu=0x7f0a0002;
-        public static final int tasks_menu=0x7f0a0003;
+        public static final int settings_menu=0x7f0a0001;
+        public static final int subordinates_menu=0x7f0a0002;
+        public static final int task_menu=0x7f0a0003;
+        public static final int tasks_menu=0x7f0a0004;
     }
     public static final class string {
         public static final int action_settings=0x7f040021;
@@ -600,7 +602,7 @@ containing a value of this type.
         public static final int active_session_username=0x7f040023;
         public static final int add_task=0x7f04002b;
         public static final int app_name=0x7f040020;
-        public static final int assignee_assigner_desc=0x7f040041;
+        public static final int assignee_assigner_desc=0x7f040042;
         public static final int auth_client_needs_enabling_title=0x7f040001;
         public static final int auth_client_needs_installation_title=0x7f040002;
         public static final int auth_client_needs_update_title=0x7f040003;
@@ -698,15 +700,15 @@ containing a value of this type.
         public static final int common_signin_button_text_long=0x7f04001e;
         public static final int create_group=0x7f04002d;
         public static final int delete_task=0x7f04002f;
-        public static final int drawer_close=0x7f04003e;
-        public static final int drawer_open=0x7f04003d;
+        public static final int drawer_close=0x7f04003f;
+        public static final int drawer_open=0x7f04003e;
         public static final int edit_task=0x7f04002c;
         /**  Group naming 
          */
-        public static final int group_name_hint=0x7f04004c;
-        public static final int group_naming_button_name=0x7f04004d;
-        public static final int group_naming_desc=0x7f04004e;
-        public static final int hide_closed=0x7f040030;
+        public static final int group_name_hint=0x7f04004d;
+        public static final int group_naming_button_name=0x7f04004e;
+        public static final int group_naming_desc=0x7f04004f;
+        public static final int hide_closed=0x7f040031;
         /**  Home activity 
  Subordinate activity 
          */
@@ -717,44 +719,45 @@ containing a value of this type.
         public static final int la_password_hint=0x7f040026;
         public static final int la_user_name_hint=0x7f040025;
         public static final int la_wrong_pass_or_name=0x7f040027;
-        public static final int navigation_groups=0x7f040036;
-        public static final int navigation_groups_img_content_description=0x7f04003a;
-        public static final int navigation_home=0x7f040035;
-        public static final int navigation_home_img_content_description=0x7f040038;
-        public static final int navigation_profile_image_content_description=0x7f04003c;
-        public static final int navigation_settings=0x7f040037;
-        public static final int navigation_settings_img_content_description=0x7f04003b;
+        public static final int navigation_groups=0x7f040037;
+        public static final int navigation_groups_img_content_description=0x7f04003b;
+        public static final int navigation_home=0x7f040036;
+        public static final int navigation_home_img_content_description=0x7f040039;
+        public static final int navigation_profile_image_content_description=0x7f04003d;
+        public static final int navigation_settings=0x7f040038;
+        public static final int navigation_settings_img_content_description=0x7f04003c;
         /**  Navigation Drawable 
          */
-        public static final int navigation_subordinates=0x7f040034;
-        public static final int navigation_subordinates_img_content_description=0x7f040039;
+        public static final int navigation_subordinates=0x7f040035;
+        public static final int navigation_subordinates_img_content_description=0x7f04003a;
         public static final int preference_file_key=0x7f040022;
-        public static final int priority_bar_name=0x7f040048;
-        public static final int reporter=0x7f04004b;
+        public static final int priority_bar_name=0x7f040049;
+        public static final int reporter=0x7f04004c;
+        public static final int save_settings=0x7f040030;
         public static final int save_task=0x7f04002e;
         public static final int search=0x7f04002a;
-        public static final int seek_bar_name=0x7f040047;
-        public static final int seek_bar_percent=0x7f040049;
-        public static final int set_deadline_button=0x7f04004a;
-        public static final int show_all=0x7f040031;
+        public static final int seek_bar_name=0x7f040048;
+        public static final int seek_bar_percent=0x7f04004a;
+        public static final int set_deadline_button=0x7f04004b;
+        public static final int show_all=0x7f040032;
         /**  Menu 
          */
         public static final int sign_out=0x7f040029;
-        public static final int sort_by_Date=0x7f040033;
-        public static final int sort_by_priority=0x7f040032;
-        public static final int subordinate_call_desc=0x7f040042;
-        public static final int subordinate_current_task_desc=0x7f040040;
+        public static final int sort_by_Date=0x7f040034;
+        public static final int sort_by_priority=0x7f040033;
+        public static final int subordinate_call_desc=0x7f040043;
+        public static final int subordinate_current_task_desc=0x7f040041;
         /**  List strings 
          */
-        public static final int subortinate_avatar_descrip=0x7f04003f;
+        public static final int subortinate_avatar_descrip=0x7f040040;
         /**  Task Activity 
          */
-        public static final int task_default_title=0x7f040043;
-        public static final int task_description_hint=0x7f040046;
-        public static final int task_saved=0x7f040044;
+        public static final int task_default_title=0x7f040044;
+        public static final int task_description_hint=0x7f040047;
+        public static final int task_saved=0x7f040045;
         /**  Task Layout 
          */
-        public static final int task_title_hint=0x7f040045;
+        public static final int task_title_hint=0x7f040046;
         /**  Text on a placeholder buy button when Google Play services is not
          available or up-to-date 
          */

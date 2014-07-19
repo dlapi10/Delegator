@@ -63,7 +63,7 @@
         </activity>
          <activity android:name="freeuni.android.delegator.map.MapActivity" >
         </activity>
-         <activity android:name="freeuni.android.delegator.model.ProfileSettings" >
+         <activity android:name="freeuni.android.delegator.ui.ProfileSettings" >
         </activity>
     </application>
 </manifest>

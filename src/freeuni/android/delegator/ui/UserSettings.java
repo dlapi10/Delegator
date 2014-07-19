@@ -1,4 +1,4 @@
-package freeuni.android.delegator.model;
+package freeuni.android.delegator.ui;
 
 public class UserSettings {
 
