@@ -3,7 +3,6 @@ package freeuni.android.delegator.db;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -13,7 +12,6 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
-import android.widget.Toast;
 import freeuni.android.delegator.app.App;
 import freeuni.android.delegator.helpers.Processing;
 import freeuni.android.delegator.model.Group;
