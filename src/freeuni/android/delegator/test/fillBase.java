@@ -1,13 +1,14 @@
 package freeuni.android.delegator.test;
 
 import freeuni.android.delegator.app.App;
+import freeuni.android.delegator.communicator.DatabaseCommunicator;
 import freeuni.android.delegator.db.DBManager;
 import freeuni.android.delegator.model.User;
 
 public class FillBase {
 
 	public static void fillBase(){
-		DBManager db= App.getDb();
+		DatabaseCommunicator db = App.getDb();
 		User user = new User("data");
 		user.setPassword("1234");
 		user.setPhoneNumber("+995598171615");

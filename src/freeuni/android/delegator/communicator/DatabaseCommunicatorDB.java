@@ -1,119 +1,112 @@
 package freeuni.android.delegator.communicator;
 
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
+import freeuni.android.delegator.app.App;
+import freeuni.android.delegator.db.DBManager;
 import freeuni.android.delegator.model.Group;
 import freeuni.android.delegator.model.Task;
 import freeuni.android.delegator.model.User;
 
 public class DatabaseCommunicatorDB implements DatabaseCommunicator{
+	private static DBManager db;
 
 	@Override
 	public void initialize() {
-		// TODO Auto-generated method stub
+		db = new DBManager(App.getAppContext());
 		
 	}
 
 	@Override
 	public void addUser(User user) {
-		// TODO Auto-generated method stub
-		
+		db.addUser(user);
 	}
 
 	@Override
 	public String updateUser(User user) {
-		// TODO Auto-generated method stub
-		return null;
+		return db.updateUser(user);
 	}
 
 	@Override
 	public User getUser(String userName) {
-		// TODO Auto-generated method stub
-		return null;
+		return db.getUser(userName);
 	}
 
 	@Override
 	public int addGroup(Group group, User user) {
-		// TODO Auto-generated method stub
-		return 0;
+		return db.addGroup(group, user);
 	}
 
 	@Override
 	public void updateGroupName(Group group) {
-		// TODO Auto-generated method stub
-		
+		db.updateGroupName(group);
 	}
 
 	@Override
 	public void addUserToGroup(Group group, User user) {
-		// TODO Auto-generated method stub
-		
+		db.addUserToGroup(group, user);
 	}
 
 	@Override
 	public Group getGroup(int id) {
-		// TODO Auto-generated method stub
-		return null;
+		return getGroup(id);
 	}
 
 	@Override
 	public List<Group> getUsersGroups(User user) {
-		// TODO Auto-generated method stub
-		return null;
+		return getUsersGroups(user);
 	}
 
 	@Override
 	public void setSubortinate(User manager, User subordinate) {
-		// TODO Auto-generated method stub
-		
+		db.setSubortinate(manager, subordinate);
 	}
 
 	@Override
 	public List<User> getSubordinatesForManager(User manager) {
-		// TODO Auto-generated method stub
-		return null;
+		return db.getSubordinatesForManager(manager);
 	}
 
 	@Override
 	public int addTask(Task task) {
-		// TODO Auto-generated method stub
-		return 0;
+		return db.addTask(task);
 	}
 
 	@Override
 	public void updateTask(Task task) {
-		// TODO Auto-generated method stub
-		
+		db.updateTask(task);
 	}
 
 	@Override
 	public void deleteTask(Task task) {
-		// TODO Auto-generated method stub
-		
+		db.deleteTask(task);
 	}
 
 	@Override
 	public Task getTask(int id) {
-		// TODO Auto-generated method stub
-		return null;
+		return db.getTask(id);
 	}
 
 	@Override
 	public List<Task> getTasksForReporter(User reporter) {
-		// TODO Auto-generated method stub
-		return null;
+		return db.getTasksForReporter(reporter);
 	}
 
 	@Override
 	public List<Task> getTasksForAssignee(User assignee) {
-		// TODO Auto-generated method stub
-		return null;
+		return db.getTasksForAssignee(assignee);
 	}
 
 	@Override
 	public int getCurrentTaskCountForUser(User user) {
-		// TODO Auto-generated method stub
-		return 0;
+		return db.getCurrentTaskCountForUser(user);
+	}
+
+	@Override
+	public Calendar DateToCalendar(Date date) {
+		return db.DateToCalendar(date);
 	}
 
 }

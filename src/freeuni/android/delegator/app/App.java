@@ -16,9 +16,9 @@ public class App extends Application{
 	private static String preferenceFile;
 	private static NetworkCommunicator communicator;
 	private static Activity currentActivity = null;
-	private static DBManager db = null;
+//	private static DBManager db = null;
 	private static Context cntxt;
-	private static DatabaseCommunicator comm;
+	private static DatabaseCommunicator db;
 
 	// Shared preference keys
 	private static final String IS_FIRST_INIT="isFirstInit";
@@ -40,12 +40,16 @@ public class App extends Application{
 	private void initApp() {
 		cntxt = getApplicationContext(); 
 		communicator = new FakeCommunicator();
-		db = new DBManager(this);
+	//	db = new DBManager(this);
 		fillForTest();
 		avatarDimension = getResources().getDimensionPixelSize(freeuni.android.delegator.R.dimen.user_image_size);
-		
-		comm = new DatabaseCommunicatorDB();
-	
+
+		db = new DatabaseCommunicatorDB();
+
+	}
+
+	public static Context getAppContext(){
+		return cntxt;
 	}
 
 	private void fillForTest(){
@@ -58,13 +62,13 @@ public class App extends Application{
 		}else{
 			//TODO
 		}
-		
+
 	}
 
 	/**
 	 * @return the db
 	 */
-	public static DBManager getDb() {
+	public static DatabaseCommunicator getDb() {
 		return db;
 	}
 
