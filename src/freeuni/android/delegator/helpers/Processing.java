@@ -5,6 +5,8 @@ import java.io.IOException;
 import java.net.InetAddress;
 import java.net.NetworkInterface;
 import java.net.SocketException;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.Enumeration;
 
 import android.graphics.Bitmap;
@@ -23,6 +25,19 @@ public class Processing {
 	
 	private static final String LOG_TAG="Processing";
 
+	/**
+	 * Date format to Calendar
+	 * @param date
+	 * @return
+	 */
+	public static Calendar DateToCalendar(Date date){ 
+		if(date==null)
+			return null;
+		Calendar cal = Calendar.getInstance();
+		cal.setTime(date);
+		return cal;
+	}
+	
 	/**
 	 * Get the local IP address
 	 * @return

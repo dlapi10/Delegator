@@ -120,10 +120,4 @@ public class ServerCommunicator implements DatabaseCommunicator{
 		return 0;
 	}
 
-	@Override
-	public Calendar DateToCalendar(Date date) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
 }
