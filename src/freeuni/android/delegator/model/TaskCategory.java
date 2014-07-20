@@ -1,11 +1,16 @@
 package freeuni.android.delegator.model;
 
+import com.google.gson.annotations.SerializedName;
+
 import android.graphics.Color;
 
 public class TaskCategory {
 	
 	//Private variables
+	@SerializedName ("categoryName")
 	private String categoryName;
+	
+	@SerializedName ("categoryColor")
 	private Color categoryColor;
 	
 	

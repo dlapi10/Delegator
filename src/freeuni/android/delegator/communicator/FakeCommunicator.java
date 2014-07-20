@@ -1,7 +1,6 @@
 package freeuni.android.delegator.communicator;
 
 import freeuni.android.delegator.app.App;
-import freeuni.android.delegator.db.DBManager;
 import freeuni.android.delegator.model.User;
 
 

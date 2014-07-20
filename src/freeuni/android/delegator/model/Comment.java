@@ -2,12 +2,21 @@ package freeuni.android.delegator.model;
 
 import java.util.Calendar;
 
+import com.google.gson.annotations.SerializedName;
+
 public class Comment {
 
 	//Private Variables
+	@SerializedName ("commentID")
 	private int commentID;
+	
+	@SerializedName ("CommentAuthor")
 	private User CommentAuthor;
+	
+	@SerializedName ("postDate")
 	private Calendar postDate; 
+	
+	@SerializedName ("comment")
 	private String comment;
 	
 	

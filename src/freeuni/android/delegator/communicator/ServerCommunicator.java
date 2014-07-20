@@ -2,21 +2,38 @@ package freeuni.android.delegator.communicator;
 
 import java.util.List;
 
-import freeuni.android.delegator.helpers.Processing;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+
 import freeuni.android.delegator.model.Group;
 import freeuni.android.delegator.model.Task;
 import freeuni.android.delegator.model.User;
 
 public class ServerCommunicator implements DatabaseCommunicator{
-
-	// Client external IP address
-	private String clientExternalIP="10.0.3.2"; //Genymotion emulator IP, need to change
 	
+	//Private variables
+	private ServerClient client;
+	
+	public Task task; // delete
 	
 	@Override
 	public void initialize() {
 		//clientExternalIP = Processing.getLocalIpAddress();
-		// TODO
+
+		//Clientis gashveba
+		//		client = new ServerClient();
+//		new Thread(new Runnable() {
+//			
+//			@Override
+//			public void run() {
+//				client.runClient();
+//			}
+//		}).start();
+		
+		//Gson-is buildi
+//		Gson gson = new GsonBuilder().create();
+//		String sendMessage = gson.toJson(task);
+//		System.out.println(sendMessage);
 	}
 
 	@Override
@@ -81,7 +98,7 @@ public class ServerCommunicator implements DatabaseCommunicator{
 
 	@Override
 	public int addTask(Task task) {
-		// TODO Auto-generated method stub
+		client.sendMessage("Adding task");
 		return 0;
 	}
 

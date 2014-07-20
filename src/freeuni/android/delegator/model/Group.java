@@ -2,14 +2,22 @@ package freeuni.android.delegator.model;
 
 import java.util.List;
 
+import com.google.gson.annotations.SerializedName;
+
 import android.graphics.Bitmap;
 
 public class Group {
 
 	//Private variables
+	@SerializedName ("groupID")
 	private int groupID;
+	
+	@SerializedName ("group")
 	private List<User> group;
+	
 	private Bitmap groupImage;
+	
+	@SerializedName ("groupName")
 	private String groupName;
 	
 	

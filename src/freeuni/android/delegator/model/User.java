@@ -2,22 +2,41 @@ package freeuni.android.delegator.model;
 
 import java.util.List;
 
-import freeuni.android.delegator.ui.UserSettings;
+import com.google.gson.annotations.SerializedName;
+
 
 import android.graphics.Bitmap;
 
 public class User {
 	
 	// Private variables
+	@SerializedName ("userName")
 	private String userName;
+	
+	@SerializedName ("firstName")
 	private String firstName;
+	
+	@SerializedName ("lastName")
 	private String lastName;
+	
 	private Bitmap avatar;
+	
+	@SerializedName ("password")
 	private String password;
+	
+	@SerializedName ("phoneNumber")
 	private String phoneNumber;
+	
+	@SerializedName ("subordinates")
 	private List<User> subordinates;
+	
+	@SerializedName ("ownedGroups")
 	private List<Group> ownedGroups;
+	
+	@SerializedName ("settings")
 	private UserSettings settings;
+	
+	@SerializedName ("requests")
 	private List<Request> requests;
 	
 	

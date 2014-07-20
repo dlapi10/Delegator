@@ -1,5 +1,7 @@
 package freeuni.android.delegator.model;
 
+import com.google.gson.annotations.SerializedName;
+
 
 /**
  * Work is the work component on which team is currently working. maybe it can be a project.
@@ -9,7 +11,10 @@ package freeuni.android.delegator.model;
 public class Work {
 
 	//Private variables
+	@SerializedName ("workID")
 	private int workID;
+	
+	@SerializedName ("name")
 	private String name;
 	
 	

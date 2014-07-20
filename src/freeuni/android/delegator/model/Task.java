@@ -3,31 +3,72 @@ package freeuni.android.delegator.model;
 import java.util.Calendar;
 import java.util.List;
 
+import com.google.gson.annotations.SerializedName;
+
 public class Task {
 
 	// Public constants
 
 
 	//Private Variables
+	@SerializedName ("id")
 	private int taskID;
+	
+	@SerializedName ("reporter")
 	private User reporter;
+	
+	@SerializedName ("assigneeType")
 	private boolean assigneeType;
+	
+	@SerializedName ("assignees")
 	private List<User> assignees; // Not Used
+	
+	@SerializedName ("assignee")
 	private User assignee;
+	
+	@SerializedName ("assigneeGroup")
 	private Group assigneeGroup;
+	
+	@SerializedName ("status")
 	private TaskStatus status;
+	
+	@SerializedName ("priority")
 	private int priority=0;
+	
+	@SerializedName ("startDate")
 	private Calendar startDate; //Use Date;Calendar;GregorianCalendar
+	
+	@SerializedName ("deadLine")
 	private Calendar deadLine;
+	
+	@SerializedName ("completionPercent")
 	private int completionPercent=0;
+	
+	@SerializedName ("title")
 	private String title;
+	
+	@SerializedName ("description")
 	private String description;
+	
+	@SerializedName ("categories")
 	private List<TaskCategory> categories;
+	
+	@SerializedName ("tags")
 	private List<String> tags;
+	
+	@SerializedName ("reminder")
 	private Calendar reminder;
+	
+	@SerializedName ("voiceMessagePath")
 	private String voiceMessagePath; // TODO
+	
+	@SerializedName ("work")
 	private Work work; 
+	
+	@SerializedName ("subtaskIDs")
 	private List<Integer> subtaskIDs;
+	
+	@SerializedName ("commments")
 	private List<Comment> commments;
 
 

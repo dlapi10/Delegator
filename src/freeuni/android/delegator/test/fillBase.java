@@ -33,7 +33,7 @@ public class FillBase {
 		db.setSubortinate(user, user2);
 		db.setSubortinate(user, user3);
 		db.setSubortinate(user, user4);
-		db.setSubortinate(user, user4);
+		db.setSubortinate(user, user5);
 	}
 
 }

@@ -1,5 +1,7 @@
 package freeuni.android.delegator.model;
 
+import com.google.gson.annotations.SerializedName;
+
 import android.graphics.Color;
 
 public class TaskStatus {
@@ -9,7 +11,10 @@ public class TaskStatus {
 	
 	
 	//Private Variables
+	@SerializedName ("status")
 	private String status;
+	
+	@SerializedName ("statusColor")
 	private Color statusColor;
 	
 	/**

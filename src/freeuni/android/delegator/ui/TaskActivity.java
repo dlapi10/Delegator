@@ -138,6 +138,7 @@ public class TaskActivity extends SuperActivity{
 			}
 			RatingBar priority = (RatingBar)findViewById(R.id.priority);
 			priority.setProgress(thisTask.getPriority());
+			
 		}
 	}
 
