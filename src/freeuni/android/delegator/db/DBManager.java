@@ -187,19 +187,19 @@ public class DBManager extends SQLiteOpenHelper{
 		db.insert(TABLE_USERS, null, values);
 		Log.i(LOG_TAG, "User added");
 	}
-	
+
 	/**
 	 * Update user
 	 * @param user
 	 */
-	
+
 	public String updateUser(User user){
 		String result="";
 		ContentValues values = new ContentValues();
 		values.put(USR_PASS, user.getPassword());
 		values.put(USR_PHONE, user.getPhoneNumber());
 		values.put(USR_IMAGE, Processing.bitmapToByteArray(user.getAvatar()));
-		
+
 		long id;
 
 		db.beginTransaction();
@@ -269,7 +269,7 @@ public class DBManager extends SQLiteOpenHelper{
 		values.put(GRP_NAME, group.getGroupName());
 		db.update(TABLE_GROUPS, values, where, null);
 	}
-	
+
 	/**
 	 * Adding user to group
 	 * @param group
@@ -384,21 +384,23 @@ public class DBManager extends SQLiteOpenHelper{
 		if(task.getTitle()!=null && task.getTitle().toString()!=null) values.put(TSK_TITLE, task.getTitle().toString());
 		return values;
 	}
-	
+
 	/**
 	 * Adds task to database
 	 * @param task
 	 * @return task id
 	 */
-	public int addTask(Task task){
+	public int addTask(Task task, boolean isSync){
 		final Task forRunnable = task;
 		//Adding to the Server base
-		new Thread(new Runnable() {
-			@Override
-			public void run() {
-				App.getServerCommunicator().addTask(forRunnable);
-			}
-		}).start();
+		if(!isSync){
+			new Thread(new Runnable() {
+				@Override
+				public void run() {
+					App.getServerCommunicator().addTask(forRunnable);
+				}
+			}).start();
+		}
 		db.insert(TABLE_TASKS, null, prepareValues(task));
 		Log.i(LOG_TAG, "new task inserted");
 		String query="SELECT MAX("+TSK_ID+") AS Maximum FROM "+TABLE_TASKS+"";
@@ -462,7 +464,7 @@ public class DBManager extends SQLiteOpenHelper{
 		return task;
 	}
 
-	
+
 
 
 	/** 
