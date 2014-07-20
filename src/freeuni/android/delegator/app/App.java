@@ -29,6 +29,7 @@ public class App extends Application implements TaskEventListener{
 	private static Context cntxt;
 	private static DatabaseCommunicator db;
 	private static ServerCommunicator serverCommunicator;
+	private static TaskEvent taskEvent;
 	
 	// Shared preference keys
 	private static final String IS_FIRST_INIT="isFirstInit";
@@ -56,8 +57,8 @@ public class App extends Application implements TaskEventListener{
 		db.initialize();
 		fillForTest();
 		avatarDimension = getResources().getDimensionPixelSize(freeuni.android.delegator.R.dimen.user_image_size);
-		TaskEvent t = new TaskEvent();
-		t.addTaskEventListener(this);
+		taskEvent = new TaskEvent();
+		taskEvent.addTaskEventListener(this);
 	}
 
 	public static Context getAppContext(){
@@ -141,6 +142,14 @@ public class App extends Application implements TaskEventListener{
 	 * @return
 	 */
 	public static ServerCommunicator getServerCommunicator(){
+		return serverCommunicator;
+	}
+	
+	/**
+	 * returning taskeven
+	 * @return
+	 */
+	public static ServerCommunicator getTaskEvent(){
 		return serverCommunicator;
 	}
 	

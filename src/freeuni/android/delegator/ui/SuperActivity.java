@@ -41,7 +41,7 @@ public class SuperActivity extends Activity {
 		startActivity(logInIntent);
 		finish();
 	}
-
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		App.setCurrentActivity(this); // To know which activity is this

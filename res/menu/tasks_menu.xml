@@ -29,4 +29,9 @@
         android:title="@string/sort_by_Date"
         android:onClick="sort"
         />
+    <item
+	    android:id="@+id/refresh"
+  	    android:title="@string/refresh"
+  	    android:showAsAction="never"
+  	    android:onClick="onRefresh"/>
 </menu>

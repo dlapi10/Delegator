@@ -15,16 +15,14 @@ import android.view.View;
 import android.view.ViewStub;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
-import android.widget.SearchView.OnQueryTextListener;
-import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.SearchView;
+import android.widget.SearchView.OnQueryTextListener;
 import freeuni.android.delegator.R;
 import freeuni.android.delegator.app.App;
 import freeuni.android.delegator.communicator.DatabaseCommunicator;
 import freeuni.android.delegator.communicator.SyncWithServerListeners;
 import freeuni.android.delegator.communicator.TaskEventListener;
-import freeuni.android.delegator.db.DBManager;
 import freeuni.android.delegator.model.Task;
 import freeuni.android.delegator.model.TaskStatus;
 import freeuni.android.delegator.model.User;
@@ -94,6 +92,11 @@ public class HomeActivity extends SuperActivity implements TaskEventListener, Sy
 
 		retrieveTasks();
 		setupList();
+		
+		//Listeners
+		App.getServerCommunicator().addSyncListener(this);
+		App.getTaskEvent().addSyncListener(this);
+		
 		Log.i(LOG_MESSAGE, "Creation Done");
 	}
 
@@ -335,6 +338,14 @@ public class HomeActivity extends SuperActivity implements TaskEventListener, Sy
 	@Override
 	public void synced() {
 		taskListAdapter.notifyDataSetChanged();
+	}
+	
+	/**
+	 * REFRESH	
+	 */
+	public void onRefresh(MenuItem item) {
+		App.getServerCommunicator().synchronizeWithServer();
+		
 	}
 
 }
