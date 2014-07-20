@@ -1,9 +1,13 @@
-package freeuni.android.delegator.ui;
+package freeuni.android.delegator.model;
+
+import com.google.gson.annotations.SerializedName;
 
 public class UserSettings {
 
 	//Private Variables;
+	@SerializedName ("alarmSoundPath")
 	private String alarmSoundPath;
+	@SerializedName ("notificationsOn")
 	private boolean notificationsOn;
 	
 	
