@@ -338,10 +338,19 @@ public class HomeActivity extends SuperActivity implements TaskEventListener, Sy
 		taskListAdapter.notifyDataSetChanged();
 	}
 
+	/**
+	 * Changes after syncing
+	 */
 	@Override
 	public void synced() {
-		retrieveTasks();
-		taskListAdapter.notifyDataSetChanged();
+		runOnUiThread(new Runnable() {
+			@Override
+			public void run() {
+				retrieveTasks();
+				taskListAdapter.notifyDataSetChanged();
+			}
+		});
+		
 	}
 	
 	/**

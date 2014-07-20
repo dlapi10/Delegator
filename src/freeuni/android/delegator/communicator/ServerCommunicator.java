@@ -3,6 +3,7 @@ package freeuni.android.delegator.communicator;
 import java.util.ArrayList;
 import java.util.List;
 
+import android.app.Activity;
 import android.util.Log;
 
 import com.google.gson.Gson;
@@ -194,6 +195,7 @@ public class ServerCommunicator implements DatabaseCommunicator, OnServerMessage
 
 	@Override
 	public void messageReceived(String header, String message) {
+		DatabaseCommunicatorDB db = (DatabaseCommunicatorDB) App.getDb();
 		// TODO Auto-generated method stub
 		if(header.equals(MSG_ADD_TASK)){
 		//	returnedTaskID = Integer.parseInt(message);
@@ -203,7 +205,7 @@ public class ServerCommunicator implements DatabaseCommunicator, OnServerMessage
 			messages.add(message); //ემატება ტასკები, მანამ სანამ არ ამოიწურება ეს დინება
 		}else if(header.equals(MSG_SYNC_OVER)){
 			//ლოკალურ ბაზაში უნდა გადავიდეს ტასკები
-			DatabaseCommunicatorDB db = (DatabaseCommunicatorDB) App.getDb();
+			
 			// Delete all tasks
 			ArrayList<Task> allTasks = (ArrayList<Task>) db.getAllTasks();
 			for(int i=0;i<allTasks.size();i++){
@@ -222,8 +224,13 @@ public class ServerCommunicator implements DatabaseCommunicator, OnServerMessage
 			for(int i=0;i<listeners.size();i++){
 				listeners.get(i).synced();
 			}
-		}else if(header.equals(MSG_ADD_GROUP)){
-			
+		}else if(header.equals(MSG_ADD_TASK)){
+			Gson gson = new Gson();
+			Task task = gson.fromJson(message, Task.class);
+			db.addTask(task, true);
+			for(int i=0;i<TaskEvent.listeners.size();i++){
+				TaskEvent.listeners.get(i).onNewTaskAssigned(task);
+			}
 		}
 	}
 
