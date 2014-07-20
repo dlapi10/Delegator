@@ -51,7 +51,7 @@ public class DatabaseCommunicatorDB implements DatabaseCommunicator{
 
 	@Override
 	public Group getGroup(int id) {
-		return getGroup(id);
+		return db.getGroup(id);
 	}
 
 	@Override

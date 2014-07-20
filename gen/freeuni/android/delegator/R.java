@@ -386,43 +386,44 @@ containing a value of this type.
          */
         public static final int activity_horizontal_margin=0x7f090000;
         public static final int activity_vertical_margin=0x7f090001;
-        public static final int avatar_margin=0x7f09000e;
-        public static final int between_task_n_and_text=0x7f09000d;
-        public static final int button_padding=0x7f090015;
-        public static final int button_text_size=0x7f090014;
-        public static final int button_top_margin=0x7f090018;
-        public static final int button_width=0x7f090017;
-        public static final int description_height=0x7f090016;
-        public static final int group_name_margin=0x7f090011;
-        public static final int group_name_size=0x7f090010;
+        public static final int avatar_margin=0x7f09000f;
+        public static final int between_task_n_and_text=0x7f09000e;
+        public static final int button_padding=0x7f090016;
+        public static final int button_text_size=0x7f090015;
+        public static final int button_top_margin=0x7f090019;
+        public static final int button_width=0x7f090018;
+        public static final int description_height=0x7f090017;
+        public static final int group_name_margin=0x7f090012;
+        public static final int group_name_size=0x7f090011;
         public static final int list_avatar_size=0x7f090004;
         public static final int list_call=0x7f090005;
-        public static final int list_item_padding=0x7f09000f;
+        public static final int list_item_padding=0x7f090010;
         public static final int list_separator=0x7f090002;
-        public static final int navigation_drawable_width=0x7f09000a;
+        public static final int navigation_drawable_width=0x7f09000b;
         /**  Navigation drawable 
          */
-        public static final int navigation_line_margins=0x7f090006;
-        public static final int navigation_margin_to_image=0x7f090007;
-        public static final int priority_left_margin=0x7f09001b;
-        public static final int priority_margin=0x7f090012;
-        public static final int priority_top_margin=0x7f09001a;
-        public static final int profile_image_size=0x7f090008;
-        public static final int reporting_info_margin_top=0x7f09001d;
-        public static final int reporting_info_spaces=0x7f09001e;
-        public static final int reporting_info_text_size=0x7f09001c;
+        public static final int navigation_line_margins=0x7f090007;
+        public static final int navigation_margin_to_image=0x7f090008;
+        public static final int priority_left_margin=0x7f09001c;
+        public static final int priority_margin=0x7f090013;
+        public static final int priority_top_margin=0x7f09001b;
+        public static final int profile_image_size=0x7f090009;
+        public static final int reporting_info_margin_top=0x7f09001e;
+        public static final int reporting_info_spaces=0x7f09001f;
+        public static final int reporting_info_text_size=0x7f09001d;
         /**  Task Activity 
          */
-        public static final int seekbar_margins=0x7f090013;
-        public static final int spinner_top_margin=0x7f090019;
-        public static final int user_current_tasks_size=0x7f09000c;
+        public static final int seekbar_margins=0x7f090014;
+        public static final int settings_avatar=0x7f090006;
+        public static final int spinner_top_margin=0x7f09001a;
+        public static final int user_current_tasks_size=0x7f09000d;
         /**  Image sizes 
          */
         public static final int user_image_size=0x7f090003;
-        public static final int username_name_size=0x7f090009;
+        public static final int username_name_size=0x7f09000a;
         /**  List text sizes 
          */
-        public static final int username_text_size=0x7f09000b;
+        public static final int username_text_size=0x7f09000c;
     }
     public static final class drawable {
         public static final int app_logo=0x7f020000;
@@ -732,6 +733,8 @@ containing a value of this type.
          */
         public static final int navigation_subordinates=0x7f040036;
         public static final int navigation_subordinates_img_content_description=0x7f04003b;
+        public static final int new_pass_hint=0x7f040055;
+        public static final int new_tel_num_hint=0x7f040053;
         public static final int preference_file_key=0x7f040022;
         public static final int priority_bar_name=0x7f04004a;
         public static final int refresh=0x7f04002a;
@@ -761,6 +764,11 @@ containing a value of this type.
         /**  Task Layout 
          */
         public static final int task_title_hint=0x7f040047;
+        public static final int tel_num=0x7f040052;
+        /**  Profile Settings 
+         */
+        public static final int update_avatar_txt=0x7f040051;
+        public static final int update_pass=0x7f040054;
         /**  Text on a placeholder buy button when Google Play services is not
          available or up-to-date 
          */

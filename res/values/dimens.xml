@@ -9,6 +9,7 @@
 	<dimen name="user_image_size">50dp</dimen>
 	<dimen name="list_avatar_size">40dp</dimen>
     <dimen name="list_call">40dp</dimen>
+    <dimen name="settings_avatar">20dp</dimen>
 	
 	<!-- Navigation drawable -->
 	<dimen name="navigation_line_margins">10dp</dimen>
