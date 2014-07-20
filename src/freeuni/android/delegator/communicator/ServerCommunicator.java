@@ -12,23 +12,30 @@ import freeuni.android.delegator.model.User;
 public class ServerCommunicator implements DatabaseCommunicator{
 	
 	//Private variables
-	private ServerClient client;
+	private ServerClient client;	
+	private Thread clientThread;
 	
-	public Task task; // delete
+	
+	/**
+	 * Synchronizes local database to the server
+	 */
+	public void synchronizeWithSevrver(){
+		
+	}
 	
 	@Override
 	public void initialize() {
 		//clientExternalIP = Processing.getLocalIpAddress();
 
 		//Clientis gashveba
-		//		client = new ServerClient();
-//		new Thread(new Runnable() {
-//			
-//			@Override
-//			public void run() {
-//				client.runClient();
-//			}
-//		}).start();
+		client = new ServerClient();
+		new Thread(new Runnable() {
+			
+			@Override
+			public void run() {
+				client.runClient();
+			}
+		}).start();
 		
 		//Gson-is buildi
 //		Gson gson = new GsonBuilder().create();
