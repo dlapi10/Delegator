@@ -3,16 +3,11 @@ package freeuni.android.delegator.communicator;
 import java.util.ArrayList;
 import java.util.List;
 
-import android.app.Activity;
-import android.app.Application;
-import android.content.Context;
-import android.content.SharedPreferences;
 import android.util.Log;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
-import freeuni.android.delegator.R;
 import freeuni.android.delegator.app.App;
 import freeuni.android.delegator.model.Group;
 import freeuni.android.delegator.model.Task;
