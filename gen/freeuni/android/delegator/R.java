@@ -474,15 +474,16 @@ containing a value of this type.
         public static final int ic_action_view_as_list=0x7f02002e;
         public static final int ic_drawer=0x7f02002f;
         public static final int ic_launcher=0x7f020030;
-        public static final int ic_plusone_medium_off_client=0x7f020031;
-        public static final int ic_plusone_small_off_client=0x7f020032;
-        public static final int ic_plusone_standard_off_client=0x7f020033;
-        public static final int ic_plusone_tall_off_client=0x7f020034;
-        public static final int me=0x7f020035;
-        public static final int navigation_list_format=0x7f020036;
-        public static final int powered_by_google_dark=0x7f020037;
-        public static final int powered_by_google_light=0x7f020038;
-        public static final int task_completion_format=0x7f020039;
+        public static final int ic_new_task_notification=0x7f020031;
+        public static final int ic_plusone_medium_off_client=0x7f020032;
+        public static final int ic_plusone_small_off_client=0x7f020033;
+        public static final int ic_plusone_standard_off_client=0x7f020034;
+        public static final int ic_plusone_tall_off_client=0x7f020035;
+        public static final int me=0x7f020036;
+        public static final int navigation_list_format=0x7f020037;
+        public static final int powered_by_google_dark=0x7f020038;
+        public static final int powered_by_google_light=0x7f020039;
+        public static final int task_completion_format=0x7f02003a;
     }
     public static final class id {
         public static final int action_search=0x7f06004f;

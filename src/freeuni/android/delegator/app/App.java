@@ -8,6 +8,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.support.v4.app.NotificationCompat;
+import android.util.Log;
 import freeuni.android.delegator.R;
 import freeuni.android.delegator.communicator.DatabaseCommunicator;
 import freeuni.android.delegator.communicator.DatabaseCommunicatorDB;
@@ -19,6 +20,7 @@ import freeuni.android.delegator.communicator.TaskEventListener;
 import freeuni.android.delegator.map.MapActivity;
 import freeuni.android.delegator.model.Task;
 import freeuni.android.delegator.test.FillBase;
+import freeuni.android.delegator.ui.HomeActivity;
 
 public class App extends Application implements TaskEventListener{
 	private static int avatarDimension;
@@ -114,17 +116,18 @@ public class App extends Application implements TaskEventListener{
 	public void onNewTaskAssigned(Task task) {
 		int notificationId = 001;
 		// Build intent for notification content
-		Intent viewIntent = new Intent(this, MapActivity.class);
-		viewIntent.putExtra("EXTRA_EVENT_ID", "eventId");
+		Intent viewIntent = new Intent(this, HomeActivity.class);
+		viewIntent.putExtra("NEW_TASK", task.getTaskID());
 		PendingIntent viewPendingIntent =
 		        PendingIntent.getActivity(this, 0, viewIntent, 0);
 
 		NotificationCompat.Builder notificationBuilder =
 		        new NotificationCompat.Builder(this)
-		        .setSmallIcon(R.drawable.ic_action_time)
-		        .setContentTitle("Title")
-		        .setContentText("loc")
-		        .setContentIntent(viewPendingIntent);
+		        .setSmallIcon(R.drawable.ic_new_task_notification)
+		        .setContentTitle("New Task")
+		        .setContentText("You've been assigned to "+task.getTitle() + " by " + task.getReporter())
+		        .setContentIntent(viewPendingIntent)
+		        .setPriority(1);
 
 		// Get an instance of the NotificationManager service
 		NotificationManager notificationManager =
@@ -132,7 +135,7 @@ public class App extends Application implements TaskEventListener{
 
 		// Build the notification and issues it with notification manager.
 		notificationManager.notify(notificationId, notificationBuilder.build());
-		System.out.println("App aq shemovida");
+		Log.i("APP", "Displayed new task notification");
 	}
 
 	/**
