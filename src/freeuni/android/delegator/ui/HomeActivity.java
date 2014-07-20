@@ -22,7 +22,6 @@ import freeuni.android.delegator.R;
 import freeuni.android.delegator.app.App;
 import freeuni.android.delegator.communicator.DatabaseCommunicator;
 import freeuni.android.delegator.communicator.SyncWithServerListeners;
-import freeuni.android.delegator.communicator.TaskEvent;
 import freeuni.android.delegator.communicator.TaskEventListener;
 import freeuni.android.delegator.model.Task;
 import freeuni.android.delegator.model.TaskStatus;
@@ -335,14 +334,14 @@ public class HomeActivity extends SuperActivity implements TaskEventListener, Sy
 
 	@Override
 	public void onNewTaskAssigned(Task task) {
-		taskListAdapter.notifyDataSetChanged();
+		updateListInUI();
 	}
 
+	
 	/**
-	 * Changes after syncing
+	 * Updating list in ui thread
 	 */
-	@Override
-	public void synced() {
+	private void updateListInUI(){
 		runOnUiThread(new Runnable() {
 			@Override
 			public void run() {
@@ -350,7 +349,14 @@ public class HomeActivity extends SuperActivity implements TaskEventListener, Sy
 				taskListAdapter.notifyDataSetChanged();
 			}
 		});
-		
+	}
+	
+	/**
+	 * Changes after syncing
+	 */
+	@Override
+	public void synced() {
+		updateListInUI();
 	}
 	
 	/**
