@@ -103,5 +103,9 @@ public class DatabaseCommunicatorDB implements DatabaseCommunicator{
 	public int getCurrentTaskCountForUser(User user) {
 		return db.getCurrentTaskCountForUser(user);
 	}
+	
+	public List<Task> getAllTasks(){
+		return db.getAllTasks();
+	}
 
 }

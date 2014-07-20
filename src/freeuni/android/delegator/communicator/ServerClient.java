@@ -14,6 +14,7 @@ import android.util.Log;
 public class ServerClient {
 	//Constants
 	private static final String LOG_TAG = "Server-Client";
+	public static final String FINISHING_MESSAGE = "FINISH";
 	// Socket port number to use
 	public static final int SERVER_PORT = 2728;
 
@@ -73,6 +74,7 @@ public class ServerClient {
 	 * Stop running client
 	 */
 	public void stopClient(){
+		sendMessage(FINISHING_MESSAGE, null);
 		isRunning = false;
 	}
 

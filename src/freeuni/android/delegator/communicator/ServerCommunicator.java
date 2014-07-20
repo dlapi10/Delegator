@@ -3,9 +3,12 @@ package freeuni.android.delegator.communicator;
 import java.util.ArrayList;
 import java.util.List;
 
+import android.util.Log;
+
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
+import freeuni.android.delegator.app.App;
 import freeuni.android.delegator.model.Group;
 import freeuni.android.delegator.model.Task;
 import freeuni.android.delegator.model.User;
@@ -15,11 +18,13 @@ public class ServerCommunicator implements DatabaseCommunicator, OnServerMessage
 	public static final String MSG_SYNC_ALL="SYNC_ALL";
 	public static final String MSG_ADD_TASK="ADD_TASK";
 	public static final String MSG_ADD_GROUP="ADD_GROUP";
+	public static final String MSG_SYNC_OVER="SYNC_OVER";
 	
 	//Private variables
 	private ServerClient client;	
 	private Thread clientThread;
 	private ArrayList<SyncWithServerListeners> listeners;
+	private ArrayList<String> messages = new ArrayList<String>();
 //	private int returnedTaskID = 0;
 //	private int returnedGroupID = 0;
 //	
@@ -194,6 +199,26 @@ public class ServerCommunicator implements DatabaseCommunicator, OnServerMessage
 		//	returnedTaskID = Integer.parseInt(message);
 		}else if(header.equals(MSG_SYNC_ALL)){
 			//TODO DB changes
+			Log.i("Json", message);
+			messages.add(message); //ემატება ტასკები, მანამ სანამ არ ამოიწურება ეს დინება
+		}else if(header.equals(MSG_SYNC_OVER)){
+			//ლოკალურ ბაზაში უნდა გადავიდეს ტასკები
+			DatabaseCommunicatorDB db = (DatabaseCommunicatorDB) App.getDb();
+			// Delete all tasks
+			ArrayList<Task> allTasks = (ArrayList<Task>) db.getAllTasks();
+			for(int i=0;i<allTasks.size();i++){
+				db.deleteTask(allTasks.get(i));
+			}
+			// Add downloaded tasks
+			for(int i=0;i<messages.size();i++){
+				Gson gson = new Gson();
+				Task task = gson.fromJson(messages.get(i), Task.class);
+				db.addTask(task);
+			}
+			
+			messages.clear();
+			
+			//Notify listeners
 			for(int i=0;i<listeners.size();i++){
 				listeners.get(i).synced();
 			}

@@ -523,4 +523,22 @@ public class DBManager extends SQLiteOpenHelper{
 		c.close();
 		return answer;
 	}
+	
+	/**
+	 * Returns all tasks
+	 * @param assignee
+	 * @return
+	 */
+	public List<Task> getAllTasks(){
+		ArrayList<Task> tasks = new ArrayList<Task>();
+		String query = "SELECT * FROM "+TABLE_TASKS;
+		Cursor c = db.rawQuery(query, null);
+		if(c.moveToFirst()){
+			do{
+				tasks.add(getTask(c.getInt(c.getColumnIndex(TSK_ID))));
+			}while(c.moveToNext());
+		}
+		c.close();
+		return tasks;
+	} 
 }
