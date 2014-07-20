@@ -153,6 +153,8 @@ public class HomeActivity extends SuperActivity implements TaskEventListener, Sy
 	@Override
 	protected void onPause() {
 		// TODO Auto-generated method stub
+		App.getTaskEvent().deleteSyncListener(this);
+		App.getServerCommunicator().deleteSyncListener(this);
 		Log.i(LOG_MESSAGE,"onPause");
 		super.onPause();
 	}
