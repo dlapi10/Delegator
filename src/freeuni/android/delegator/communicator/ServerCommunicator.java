@@ -14,7 +14,6 @@ public class ServerCommunicator implements DatabaseCommunicator{
 	@Override
 	public void initialize() {
 		//clientExternalIP = Processing.getLocalIpAddress();
-		// TODO
 		client = new ServerClient();
 		new Thread(new Runnable() {
 			
@@ -87,7 +86,7 @@ public class ServerCommunicator implements DatabaseCommunicator{
 
 	@Override
 	public int addTask(Task task) {
-		// TODO Auto-generated method stub
+		client.sendMessage("Adding task");
 		return 0;
 	}
 
