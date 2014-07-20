@@ -71,9 +71,8 @@ public class App extends Application implements TaskEventListener{
 			editor.putBoolean(IS_FIRST_INIT, false);
 			editor.commit();
 		}else{
-			//TODO
+			serverCommunicator.synchronizeWithServer();
 		}
-
 	}
 
 	/**
