@@ -17,6 +17,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 import freeuni.android.delegator.R;
 import freeuni.android.delegator.app.App;
+import freeuni.android.delegator.communicator.TaskEvent;
 import freeuni.android.delegator.model.User;
 
 public class ProfileSettings extends SuperActivity {
@@ -128,6 +129,8 @@ public class ProfileSettings extends SuperActivity {
 	}
 	
 	public void onNotifBtn(View v){
-	//	App.notif("something");
+		for(int i=0;i<TaskEvent.listeners.size();i++){
+			TaskEvent.listeners.get(i).onNewTaskAssigned(null);
+		}
 	}
 }

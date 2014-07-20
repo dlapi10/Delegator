@@ -2,24 +2,30 @@ package freeuni.android.delegator.app;
 
 import android.app.Activity;
 import android.app.Application;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
+import android.support.v4.app.NotificationCompat;
+import freeuni.android.delegator.R;
 import freeuni.android.delegator.communicator.DatabaseCommunicator;
 import freeuni.android.delegator.communicator.DatabaseCommunicatorDB;
 import freeuni.android.delegator.communicator.FakeCommunicator;
 import freeuni.android.delegator.communicator.NetworkCommunicator;
-import freeuni.android.delegator.communicator.ServerCommunicator;
+import freeuni.android.delegator.communicator.TaskEvent;
+import freeuni.android.delegator.communicator.TaskEventListener;
+import freeuni.android.delegator.map.MapActivity;
 import freeuni.android.delegator.model.Task;
 import freeuni.android.delegator.test.FillBase;
 
-public class App extends Application{
+public class App extends Application implements TaskEventListener{
 	private static int avatarDimension;
 	private static String preferenceFile;
 	private static NetworkCommunicator communicator;
 	private static Activity currentActivity = null;
 	private static Context cntxt;
 	private static DatabaseCommunicator db;
-	
 
 	// Shared preference keys
 	private static final String IS_FIRST_INIT="isFirstInit";
@@ -31,7 +37,7 @@ public class App extends Application{
 		super.onCreate();
 		preferenceFile = getString(freeuni.android.delegator.R.string.preference_file_key);
 		initApp();
-		
+
 	}
 
 	/**
@@ -45,8 +51,10 @@ public class App extends Application{
 		db.initialize();
 		fillForTest();
 		avatarDimension = getResources().getDimensionPixelSize(freeuni.android.delegator.R.dimen.user_image_size);
+		TaskEvent t = new TaskEvent();
+		t.addTaskEventListener(this);
 	}
-	
+
 	public static Context getAppContext(){
 		return cntxt;
 	}
@@ -61,7 +69,7 @@ public class App extends Application{
 		}else{
 			//TODO
 		}
-		
+
 	}
 
 	/**
@@ -97,6 +105,31 @@ public class App extends Application{
 
 	public static void setCurrentActivity(Activity cA){
 		currentActivity = cA;
+	}
+
+	@Override
+	public void onNewTaskAssigned(Task task) {
+		int notificationId = 001;
+		// Build intent for notification content
+		Intent viewIntent = new Intent(this, MapActivity.class);
+		viewIntent.putExtra("EXTRA_EVENT_ID", "eventId");
+		PendingIntent viewPendingIntent =
+		        PendingIntent.getActivity(this, 0, viewIntent, 0);
+
+		NotificationCompat.Builder notificationBuilder =
+		        new NotificationCompat.Builder(this)
+		        .setSmallIcon(R.drawable.ic_action_time)
+		        .setContentTitle("Title")
+		        .setContentText("loc")
+		        .setContentIntent(viewPendingIntent);
+
+		// Get an instance of the NotificationManager service
+		NotificationManager notificationManager =
+				(NotificationManager)this.getSystemService(Context.NOTIFICATION_SERVICE);
+
+		// Build the notification and issues it with notification manager.
+		notificationManager.notify(notificationId, notificationBuilder.build());
+		System.out.println("App aq shemovida");
 	}
 
 }
