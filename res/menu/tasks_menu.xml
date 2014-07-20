@@ -23,11 +23,11 @@
         />
     <item android:id="@+id/sort_by_priority"
         android:title="@string/sort_by_priority"
-        android:onClick="sort"
+        android:onClick="sortByPriority"
         />
     <item android:id="@+id/sort_by_date"
         android:title="@string/sort_by_Date"
-        android:onClick="sort"
+        android:onClick="sortByDueDate"
         />
     <item
 	    android:id="@+id/refresh"
