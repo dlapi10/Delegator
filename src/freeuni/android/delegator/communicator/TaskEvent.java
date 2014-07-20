@@ -11,6 +11,6 @@ public class TaskEvent {
 	
 	public void removeTaskEventListener(TaskEventListener listener){
 		if(listeners.contains(listener))
-			listeners.remove(listener);
+			listeners.remove(listener); 
 	}
 }
