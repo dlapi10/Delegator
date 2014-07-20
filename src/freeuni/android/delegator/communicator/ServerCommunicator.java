@@ -1,9 +1,7 @@
 package freeuni.android.delegator.communicator;
 
+import java.util.ArrayList;
 import java.util.List;
-
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 
 import freeuni.android.delegator.model.Group;
 import freeuni.android.delegator.model.Task;
@@ -14,19 +12,24 @@ public class ServerCommunicator implements DatabaseCommunicator{
 	//Private variables
 	private ServerClient client;	
 	private Thread clientThread;
+	private ArrayList<SyncWithServerListeners> listeners;
 	
 	
 	/**
 	 * Synchronizes local database to the server
 	 */
-	public void synchronizeWithSevrver(){
+	public void synchronizeWithServer(){
+		
+	}
+	
+	public void addSyncListener(){
 		
 	}
 	
 	@Override
 	public void initialize() {
 		//clientExternalIP = Processing.getLocalIpAddress();
-
+		listeners = new ArrayList<SyncWithServerListeners>();
 		//Clientis gashveba
 		client = new ServerClient();
 		new Thread(new Runnable() {
