@@ -104,9 +104,4 @@ public class DatabaseCommunicatorDB implements DatabaseCommunicator{
 		return db.getCurrentTaskCountForUser(user);
 	}
 
-	@Override
-	public Calendar DateToCalendar(Date date) {
-		return db.DateToCalendar(date);
-	}
-
 }

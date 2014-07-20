@@ -2,7 +2,6 @@ package freeuni.android.delegator.test;
 
 import freeuni.android.delegator.app.App;
 import freeuni.android.delegator.communicator.DatabaseCommunicator;
-import freeuni.android.delegator.db.DBManager;
 import freeuni.android.delegator.model.User;
 
 public class FillBase {
@@ -27,10 +26,14 @@ public class FillBase {
 		user4.setPassword("1234");
 		db.addUser(user4);
 		
+		User user5 = new User("ruska");
+		user5.setPassword("+995598002720");
+		db.addUser(user5);
+		
 		db.setSubortinate(user, user2);
 		db.setSubortinate(user, user3);
 		db.setSubortinate(user, user4);
-		
+		db.setSubortinate(user, user4);
 	}
 
 }
