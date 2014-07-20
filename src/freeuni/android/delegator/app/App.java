@@ -13,6 +13,7 @@ import freeuni.android.delegator.communicator.DatabaseCommunicator;
 import freeuni.android.delegator.communicator.DatabaseCommunicatorDB;
 import freeuni.android.delegator.communicator.FakeCommunicator;
 import freeuni.android.delegator.communicator.NetworkCommunicator;
+import freeuni.android.delegator.communicator.ServerCommunicator;
 import freeuni.android.delegator.communicator.TaskEvent;
 import freeuni.android.delegator.communicator.TaskEventListener;
 import freeuni.android.delegator.map.MapActivity;
@@ -26,7 +27,8 @@ public class App extends Application implements TaskEventListener{
 	private static Activity currentActivity = null;
 	private static Context cntxt;
 	private static DatabaseCommunicator db;
-
+	private static ServerCommunicator serverCommunicator;
+	
 	// Shared preference keys
 	private static final String IS_FIRST_INIT="isFirstInit";
 
@@ -47,6 +49,8 @@ public class App extends Application implements TaskEventListener{
 	private void initApp() {
 		cntxt = getApplicationContext(); 
 		communicator = new FakeCommunicator();
+		serverCommunicator = new ServerCommunicator();
+		serverCommunicator.initialize();
 		db = new DatabaseCommunicatorDB();
 		db.initialize();
 		fillForTest();
