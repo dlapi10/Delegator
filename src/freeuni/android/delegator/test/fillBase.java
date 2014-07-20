@@ -27,7 +27,7 @@ public class FillBase {
 		db.addUser(user4);
 		
 		User user5 = new User("ruska");
-		user5.setPassword("+995598002720");
+		user5.setPassword("1234");
 		db.addUser(user5);
 		
 		db.setSubortinate(user, user2);
