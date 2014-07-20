@@ -132,10 +132,4 @@ public class ProfileSettings extends SuperActivity {
 		String txt = App.getDb().updateUser(currentUser);
 		Toast.makeText(getApplicationContext(), txt, Toast.LENGTH_SHORT).show();
 	}
-	
-	public void onNotifBtn(View v){
-		for(int i=0;i<TaskEvent.listeners.size();i++){
-			TaskEvent.listeners.get(i).onNewTaskAssigned(null);
-		}
-	}
 }
