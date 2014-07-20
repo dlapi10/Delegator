@@ -197,9 +197,7 @@ public class ServerCommunicator implements DatabaseCommunicator, OnServerMessage
 	public void messageReceived(String header, String message) {
 		DatabaseCommunicatorDB db = (DatabaseCommunicatorDB) App.getDb();
 		// TODO Auto-generated method stub
-		if(header.equals(MSG_ADD_TASK)){
-		//	returnedTaskID = Integer.parseInt(message);
-		}else if(header.equals(MSG_SYNC_ALL)){
+		if(header.equals(MSG_SYNC_ALL)){
 			//TODO DB changes
 			Log.i("Json", message);
 			messages.add(message); //ემატება ტასკები, მანამ სანამ არ ამოიწურება ეს დინება
@@ -228,6 +226,7 @@ public class ServerCommunicator implements DatabaseCommunicator, OnServerMessage
 			Gson gson = new Gson();
 			Task task = gson.fromJson(message, Task.class);
 			db.addTask(task, true);
+			Log.i("Received Message", "header "+header+"message "+message);
 			for(int i=0;i<TaskEvent.listeners.size();i++){
 				TaskEvent.listeners.get(i).onNewTaskAssigned(task);
 			}
