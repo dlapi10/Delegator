@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 public class TaskEvent {
 	public static ArrayList<TaskEventListener> listeners = new ArrayList<>();
+	
 	public void addTaskEventListener(TaskEventListener listener){
 		if(!listeners.contains(listener))
 			listeners.add(listener);

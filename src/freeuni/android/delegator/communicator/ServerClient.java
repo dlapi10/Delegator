@@ -19,10 +19,10 @@ public class ServerClient {
 
 	// Client external IP address
 	private static String serverIP="10.0.3.2"; //Genymotion emulator IP, Needs To change dynamiclly 
-	
+
 	private boolean isRunning;
 	private String receivedServerMessage;
-	
+
 	//Listeners
 	private ArrayList<OnServerMessageReceived> messageReceivedListeners = null;
 
@@ -36,21 +36,23 @@ public class ServerClient {
 	public ServerClient(){
 		messageReceivedListeners = new ArrayList<OnServerMessageReceived>();
 	}
-	
+
 	/**
 	 * Adding Listeners
 	 * @param listener
 	 */
 	public void addListeners(OnServerMessageReceived listener){
-		messageReceivedListeners.add(listener);
+		if(!messageReceivedListeners.contains(listener))
+			messageReceivedListeners.add(listener);
 	}
-	
+
 	/**
 	 * Deleting Listener
 	 * @param listener
 	 */
 	public void deleteListener(OnServerMessageReceived listener){
-		messageReceivedListeners.remove(listener);
+		if(messageReceivedListeners.contains(listener))
+			messageReceivedListeners.remove(listener);
 	}
 
 	/**
@@ -70,7 +72,7 @@ public class ServerClient {
 	public void stopClient(){
 		isRunning = false;
 	}
-	
+
 	/**
 	 * Startup run
 	 */

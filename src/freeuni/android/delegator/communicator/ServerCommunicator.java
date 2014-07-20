@@ -22,7 +22,11 @@ public class ServerCommunicator implements DatabaseCommunicator{
 		
 	}
 	
-	public void addSyncListener(){
+	public void addSyncListener(SyncWithServerListeners listener){
+		
+	}
+	
+	public void deleteSyncListener(SyncWithServerListeners listener){
 		
 	}
 	
