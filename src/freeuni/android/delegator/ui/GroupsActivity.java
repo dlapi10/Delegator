@@ -14,7 +14,6 @@ import android.widget.ListView;
 import freeuni.android.delegator.R;
 import freeuni.android.delegator.app.App;
 import freeuni.android.delegator.communicator.DatabaseCommunicator;
-import freeuni.android.delegator.db.DBManager;
 import freeuni.android.delegator.model.Group;
 import freeuni.android.delegator.ui.model.GroupListAdapter;
 

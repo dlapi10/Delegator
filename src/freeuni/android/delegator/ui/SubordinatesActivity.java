@@ -19,7 +19,6 @@ import android.widget.Toast;
 import freeuni.android.delegator.R;
 import freeuni.android.delegator.app.App;
 import freeuni.android.delegator.communicator.DatabaseCommunicator;
-import freeuni.android.delegator.db.DBManager;
 import freeuni.android.delegator.model.Group;
 import freeuni.android.delegator.model.User;
 import freeuni.android.delegator.ui.model.UserListAdapter;

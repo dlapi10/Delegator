@@ -7,9 +7,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.Filter;
+import android.widget.Filterable;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Filterable;
 import freeuni.android.delegator.model.Task;
 
 public class TaskListAdapter extends BaseAdapter implements Filterable {
