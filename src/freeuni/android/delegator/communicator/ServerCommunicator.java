@@ -1,5 +1,7 @@
 package freeuni.android.delegator.communicator;
 
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 import freeuni.android.delegator.helpers.Processing;
@@ -119,6 +121,12 @@ public class ServerCommunicator implements DatabaseCommunicator{
 	public int getCurrentTaskCountForUser(User user) {
 		// TODO Auto-generated method stub
 		return 0;
+	}
+
+	@Override
+	public Calendar DateToCalendar(Date date) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }
