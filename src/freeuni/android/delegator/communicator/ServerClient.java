@@ -66,7 +66,6 @@ public class ServerClient {
 			Log.i("Message", header+" "+message);
 			outputStream.println(header);
 			outputStream.println(message);
-			outputStream.flush();
 		}
 	}
 
@@ -108,7 +107,7 @@ public class ServerClient {
 					receivedServerMessage = null;
 					receivedServerHeader = null;
 				}
-
+				System.out.println("Out from permanent while; runClient");
 				//Second Try catch clauses
 			}  catch (IOException e) {
 				e.printStackTrace();
