@@ -225,14 +225,11 @@ public class ServerCommunicator implements DatabaseCommunicator, OnServerMessage
 			Gson gson = new Gson();
 			Task task = gson.fromJson(message, Task.class);
 			db.addTask(task, true);
-			if(App.getCurrentUserName()!=null && task.getReporter()!=null && !task.getReporter().equals(App.getCurrentUserName())){
-				Log.i("Received Message", "header "+header+"message "+message);
-				for(int i=0;i<TaskEvent.listeners.size();i++){
-					TaskEvent.listeners.get(i).onNewTaskAssigned(task);
-				}
-			}else if(App.getCurrentUserName()!=null && task.getReporter()!=null && task.getReporter().equals(App.getCurrentUserName())){
-				//update Server id
+			Log.i("Received Message", "header "+header+"message "+message);
+			for(int i=0;i<TaskEvent.listeners.size();i++){
+				TaskEvent.listeners.get(i).onNewTaskAssigned(task);
 			}
+
 		}
 	}
 

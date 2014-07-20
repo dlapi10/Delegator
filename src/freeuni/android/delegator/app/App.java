@@ -120,11 +120,12 @@ public class App extends Application implements TaskEventListener{
 		PendingIntent viewPendingIntent =
 		        PendingIntent.getActivity(this, 0, viewIntent, 0);
 
+		String assignee = (task.getAssignee().getUserName().equals(getCurrentUserName()))?"You":task.getAssignee().getUserName();
 		NotificationCompat.Builder notificationBuilder =
 		        new NotificationCompat.Builder(this)
 		        .setSmallIcon(R.drawable.ic_new_task_notification)
 		        .setContentTitle("New Task")
-		        .setContentText("You've been assigned to task "+task.getTitle() + " by " + task.getReporter().getUserName())
+		        .setContentText("Task for "+assignee+" "+task.getTitle() + " by " + task.getReporter().getUserName())
 		        .setContentIntent(viewPendingIntent)
 		        .setPriority(1);
 
