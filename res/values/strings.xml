@@ -72,7 +72,7 @@
 	<string name="group_naming_desc">Naming created group</string>
 	
 	<!-- Profile Settings -->
-	<string name="update_avatar_txt">Group name</string>
+	<string name="update_avatar_txt">Change Image</string>
 	<string name="tel_num">Telephone Number</string>
 	<string name="new_tel_num_hint">Enter new telephone number here...</string>
 	<string name="update_pass">Update Password</string>
