@@ -60,8 +60,9 @@ public class ServerClient {
 	 * Sends message to the server
 	 * @param message
 	 */
-	public synchronized void sendMessage(String header, String message) {
+	public void sendMessage(String header, String message) {
 		if (outputStream != null && !outputStream.checkError()) {
+			Log.i("Message", header+" "+message);
 			outputStream.println(header);
 			outputStream.println(message);
 			outputStream.flush();

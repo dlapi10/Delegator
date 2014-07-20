@@ -13,16 +13,16 @@ import freeuni.android.delegator.model.User;
 public class ServerCommunicator implements DatabaseCommunicator, OnServerMessageReceived{
 	//Constants; Headers
 	public static final String MSG_SYNC_ALL="SYNC_ALL";
-	public static final String MSG_ADD_USER="ADD_USER";
+	public static final String MSG_ADD_TASK="ADD_TASK";
 	public static final String MSG_ADD_GROUP="ADD_GROUP";
 	
 	//Private variables
 	private ServerClient client;	
 	private Thread clientThread;
 	private ArrayList<SyncWithServerListeners> listeners;
-	private int returnedTaskID = 0;
-	private int returnedGroupID = 0;
-	
+//	private int returnedTaskID = 0;
+//	private int returnedGroupID = 0;
+//	
 	
 	/**
 	 * Closes client thread
@@ -144,16 +144,11 @@ public class ServerCommunicator implements DatabaseCommunicator, OnServerMessage
 			public void run() {
 				Gson gson = new GsonBuilder().create();
 				String message = gson.toJson(task);
-				client.sendMessage(MSG_ADD_USER, message);
-				System.out.println(message);
+				client.sendMessage(MSG_ADD_TASK, message);
 			}
 		});
 		t.start();
-		while(returnedTaskID==0){
-		}
-		int ans = returnedTaskID;
-		returnedTaskID = 0;
-		return ans;
+		return 0;
 	}
 
 	@Override
@@ -195,8 +190,8 @@ public class ServerCommunicator implements DatabaseCommunicator, OnServerMessage
 	@Override
 	public void messageReceived(String header, String message) {
 		// TODO Auto-generated method stub
-		if(header.equals(MSG_ADD_USER)){
-			returnedTaskID = Integer.parseInt(message);
+		if(header.equals(MSG_ADD_TASK)){
+		//	returnedTaskID = Integer.parseInt(message);
 		}else if(header.equals(MSG_SYNC_ALL)){
 			//TODO DB changes
 			for(int i=0;i<listeners.size();i++){
