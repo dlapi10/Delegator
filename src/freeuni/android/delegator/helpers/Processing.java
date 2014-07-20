@@ -2,9 +2,14 @@ package freeuni.android.delegator.helpers;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.net.InetAddress;
+import java.net.NetworkInterface;
+import java.net.SocketException;
+import java.util.Enumeration;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.text.format.Formatter;
 import android.util.Log;
 
 /**
@@ -18,6 +23,28 @@ public class Processing {
 	
 	private static final String LOG_TAG="Processing";
 
+	/**
+	 * Get the local IP address
+	 * @return
+	 */
+	public static String getLocalIpAddress() {
+	    try {
+	        for (Enumeration<NetworkInterface> en = NetworkInterface.getNetworkInterfaces(); en.hasMoreElements();) {
+	            NetworkInterface intf = en.nextElement();
+	            for (Enumeration<InetAddress> enumIpAddr = intf.getInetAddresses(); enumIpAddr.hasMoreElements();) {
+	                InetAddress inetAddress = enumIpAddr.nextElement();
+	                if (!inetAddress.isLoopbackAddress()) {
+	                	String ip = Formatter.formatIpAddress(inetAddress.hashCode());
+	                    return ip;//inetAddress.getHostAddress().toString();
+	                }
+	            }
+	        }
+	    } catch (SocketException ex) {
+	        Log.e(LOG_TAG, ex.toString());
+	    }
+	    return null;
+	}
+	
 	/**
 	 * Returns byte array from bitmap 
 	 * @param bmp Bitmap object
