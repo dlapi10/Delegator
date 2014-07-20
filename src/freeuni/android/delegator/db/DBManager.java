@@ -438,14 +438,14 @@ public class DBManager extends SQLiteOpenHelper{
 			task.setPriority(c.getInt(c.getColumnIndex(TSK_PRIORITY)));
 			task.setCompletionPercent(c.getInt(c.getColumnIndex(TSK_COMPLETION)));
 			SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd-hh.mm.ss",java.util.Locale.getDefault());
-		//	try {
-		//		if(c.getString(c.getColumnIndex(TSK_START_DATE))!=null)
-		//			task.setStartDate(Processing.DateToCalendar((Date)formatter.parse(c.getString(c.getColumnIndex(TSK_START_DATE)))));
-		//		if(c.getString(c.getColumnIndex(TSK_DEADLINE))!=null)
-		//			task.setDeadLine(Processing.DateToCalendar((Date)formatter.parse(c.getString(c.getColumnIndex(TSK_DEADLINE)))));
-		//	} catch (ParseException e) {
-		//		e.printStackTrace();
-		//	}
+			try {
+				if(c.getString(c.getColumnIndex(TSK_START_DATE))!=null)
+					task.setStartDate(Processing.DateToCalendar((Date)formatter.parse(c.getString(c.getColumnIndex(TSK_START_DATE)))));
+				if(c.getString(c.getColumnIndex(TSK_DEADLINE))!=null)
+					task.setDeadLine(Processing.DateToCalendar((Date)formatter.parse(c.getString(c.getColumnIndex(TSK_DEADLINE)))));
+			} catch (ParseException e) {
+				e.printStackTrace();
+			}
 			task.setTitle(c.getString(c.getColumnIndex(TSK_TITLE)));
 		}else{
 			return null;
