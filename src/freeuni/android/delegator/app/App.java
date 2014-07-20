@@ -40,6 +40,7 @@ public class App extends Application{
 		cntxt = getApplicationContext(); 
 		communicator = new FakeCommunicator();
 		db = new DatabaseCommunicatorDB();
+		db.initialize();
 		fillForTest();
 		avatarDimension = getResources().getDimensionPixelSize(freeuni.android.delegator.R.dimen.user_image_size);
 	}
