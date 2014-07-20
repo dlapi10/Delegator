@@ -8,7 +8,7 @@ import freeuni.android.delegator.communicator.DatabaseCommunicator;
 import freeuni.android.delegator.communicator.DatabaseCommunicatorDB;
 import freeuni.android.delegator.communicator.FakeCommunicator;
 import freeuni.android.delegator.communicator.NetworkCommunicator;
-import freeuni.android.delegator.db.DBManager;
+import freeuni.android.delegator.communicator.ServerCommunicator;
 import freeuni.android.delegator.test.FillBase;
 
 public class App extends Application{

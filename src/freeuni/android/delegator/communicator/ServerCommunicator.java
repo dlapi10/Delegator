@@ -16,7 +16,13 @@ public class ServerCommunicator implements DatabaseCommunicator{
 		//clientExternalIP = Processing.getLocalIpAddress();
 		// TODO
 		client = new ServerClient();
-		client.runClient();
+		new Thread(new Runnable() {
+			
+			@Override
+			public void run() {
+				client.runClient();
+			}
+		}).start();
 	}
 
 	@Override
