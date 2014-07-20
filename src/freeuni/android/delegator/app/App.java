@@ -153,4 +153,15 @@ public class App extends Application implements TaskEventListener{
 		return taskEvent;
 	}
 	
+	/**
+	 * Returns authorised current username, if doesn't exist null
+	 * @return
+	 */
+	public static String getCurrentUserName(){
+		SharedPreferences pref = cntxt.getSharedPreferences(App.getPrefFile(),
+				Context.MODE_PRIVATE);
+		String userName = pref.getString("active_session_username",
+				null);
+		return userName;
+	}
 }

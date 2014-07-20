@@ -4,11 +4,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 import android.app.Activity;
+import android.app.Application;
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.util.Log;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
+import freeuni.android.delegator.R;
 import freeuni.android.delegator.app.App;
 import freeuni.android.delegator.model.Group;
 import freeuni.android.delegator.model.Task;
@@ -20,30 +24,30 @@ public class ServerCommunicator implements DatabaseCommunicator, OnServerMessage
 	public static final String MSG_ADD_TASK="ADD_TASK";
 	public static final String MSG_ADD_GROUP="ADD_GROUP";
 	public static final String MSG_SYNC_OVER="SYNC_OVER";
-	
+
 	//Private variables
 	private ServerClient client;	
 	private Thread clientThread;
 	private ArrayList<SyncWithServerListeners> listeners;
 	private ArrayList<String> messages = new ArrayList<String>();
-//	private int returnedTaskID = 0;
-//	private int returnedGroupID = 0;
-//	
-	
+	//	private int returnedTaskID = 0;
+	//	private int returnedGroupID = 0;
+	//	
+
 	/**
 	 * Closes client thread
 	 */
 	public void closeServerCommunicator(){
 		client.stopClient();
 	}
-	
+
 	/**
 	 * Synchronizes local database to the server
 	 */
 	public void synchronizeWithServer(){
 		client.sendMessage(MSG_SYNC_ALL,null);
 	}
-	
+
 	/**
 	 * Adding listener of sync
 	 * @param listener
@@ -52,7 +56,7 @@ public class ServerCommunicator implements DatabaseCommunicator, OnServerMessage
 		if(!listeners.contains(listener))
 			listeners.add(listener);
 	}
-	
+
 	/**
 	 * removing sync listener
 	 * @param listener
@@ -61,7 +65,7 @@ public class ServerCommunicator implements DatabaseCommunicator, OnServerMessage
 		if(listeners.contains(listener))
 			listeners.remove(listener);
 	}
-	
+
 	@Override
 	public void initialize() {
 		//clientExternalIP = Processing.getLocalIpAddress();
@@ -70,12 +74,12 @@ public class ServerCommunicator implements DatabaseCommunicator, OnServerMessage
 		client = new ServerClient();
 		client.addListeners(this);
 		clientThread = new Thread(new Runnable() {
-			
+
 			@Override
 			public void run() {
 				client.runClient();
 			}
-			
+
 		});
 		clientThread.start();
 	}
@@ -83,7 +87,7 @@ public class ServerCommunicator implements DatabaseCommunicator, OnServerMessage
 	@Override
 	public void addUser(User user) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
@@ -107,13 +111,13 @@ public class ServerCommunicator implements DatabaseCommunicator, OnServerMessage
 	@Override
 	public void updateGroupName(Group group) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void addUserToGroup(Group group, User user) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
@@ -131,7 +135,7 @@ public class ServerCommunicator implements DatabaseCommunicator, OnServerMessage
 	@Override
 	public void setSubortinate(User manager, User subordinate) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
@@ -160,13 +164,13 @@ public class ServerCommunicator implements DatabaseCommunicator, OnServerMessage
 	@Override
 	public void updateTask(Task task) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void deleteTask(Task task) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
@@ -203,7 +207,7 @@ public class ServerCommunicator implements DatabaseCommunicator, OnServerMessage
 			messages.add(message); //ემატება ტასკები, მანამ სანამ არ ამოიწურება ეს დინება
 		}else if(header.equals(MSG_SYNC_OVER)){
 			//ლოკალურ ბაზაში უნდა გადავიდეს ტასკები
-			
+
 			// Delete all tasks
 			ArrayList<Task> allTasks = (ArrayList<Task>) db.getAllTasks();
 			for(int i=0;i<allTasks.size();i++){
@@ -215,9 +219,9 @@ public class ServerCommunicator implements DatabaseCommunicator, OnServerMessage
 				Task task = gson.fromJson(messages.get(i), Task.class);
 				db.addTask(task,true);
 			}
-			
+
 			messages.clear();
-			
+
 			//Notify listeners
 			for(int i=0;i<listeners.size();i++){
 				listeners.get(i).synced();
@@ -226,9 +230,13 @@ public class ServerCommunicator implements DatabaseCommunicator, OnServerMessage
 			Gson gson = new Gson();
 			Task task = gson.fromJson(message, Task.class);
 			db.addTask(task, true);
-			Log.i("Received Message", "header "+header+"message "+message);
-			for(int i=0;i<TaskEvent.listeners.size();i++){
-				TaskEvent.listeners.get(i).onNewTaskAssigned(task);
+			if(App.getCurrentUserName()!=null && task.getReporter()!=null && !task.getReporter().equals(App.getCurrentUserName())){
+				Log.i("Received Message", "header "+header+"message "+message);
+				for(int i=0;i<TaskEvent.listeners.size();i++){
+					TaskEvent.listeners.get(i).onNewTaskAssigned(task);
+				}
+			}else if(App.getCurrentUserName()!=null && task.getReporter()!=null && task.getReporter().equals(App.getCurrentUserName())){
+				//update Server id
 			}
 		}
 	}

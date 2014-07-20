@@ -13,6 +13,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 import freeuni.android.delegator.app.App;
+import freeuni.android.delegator.communicator.ServerCommunicator;
 import freeuni.android.delegator.helpers.Processing;
 import freeuni.android.delegator.model.Group;
 import freeuni.android.delegator.model.Task;
@@ -101,6 +102,7 @@ public class DBManager extends SQLiteOpenHelper{
 	public static final String TSK_START_DATE = "START_DATE";
 	public static final String TSK_DEADLINE = "DEADLINE";
 	public static final String TSK_TITLE = "TITLE";
+	public static final String TSK_SERVER_ID = "SERVER_ID";
 
 	private static final String TABLE_TASKS_CREATE = 
 			"CREATE TABLE " + TABLE_TASKS + " (" +
@@ -113,7 +115,8 @@ public class DBManager extends SQLiteOpenHelper{
 					TSK_COMPLETION + " INTEGER, "+
 					TSK_START_DATE + " TEXT, "+
 					TSK_DEADLINE + " TEXT, "+
-					TSK_TITLE + " TEXT )";
+					TSK_TITLE + " TEXT,"+
+					TSK_SERVER_ID+" INTEGER)";
 
 	/*
 	 * TaskCategory
@@ -391,16 +394,6 @@ public class DBManager extends SQLiteOpenHelper{
 	 * @return task id
 	 */
 	public int addTask(Task task, boolean isSync){
-		final Task forRunnable = task;
-		//Adding to the Server base
-		if(!isSync){
-			new Thread(new Runnable() {
-				@Override
-				public void run() {
-					App.getServerCommunicator().addTask(forRunnable,false);
-				}
-			}).start();
-		}
 		db.insert(TABLE_TASKS, null, prepareValues(task));
 		Log.i(LOG_TAG, "new task inserted");
 		String query="SELECT MAX("+TSK_ID+") AS Maximum FROM "+TABLE_TASKS+"";
@@ -409,9 +402,24 @@ public class DBManager extends SQLiteOpenHelper{
 		if(c.moveToFirst())
 			tskID = c.getInt(c.getColumnIndex("Maximum"));
 		c.close();
+		final Task forRunnable = task;
+		//Adding to the Server base
+		if(!isSync){
+			new Thread(new Runnable() {
+				@Override
+				public void run() {
+					ServerCommunicator com = App.getServerCommunicator(); 
+					com.addTask(forRunnable,false);
+				}
+			}).start();
+		}
 		return tskID;
 	}
 
+	public void updateServerID(Task task){
+		
+	}
+	
 	/**
 	 * Updates task
 	 * @param task
