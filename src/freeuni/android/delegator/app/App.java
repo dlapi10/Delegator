@@ -1,7 +1,5 @@
 package freeuni.android.delegator.app;
 
-import java.util.ArrayList;
-
 import android.app.Activity;
 import android.app.Application;
 import android.content.Context;
@@ -10,30 +8,29 @@ import freeuni.android.delegator.communicator.DatabaseCommunicator;
 import freeuni.android.delegator.communicator.DatabaseCommunicatorDB;
 import freeuni.android.delegator.communicator.FakeCommunicator;
 import freeuni.android.delegator.communicator.NetworkCommunicator;
-import freeuni.android.delegator.communicator.TaskEventListener;
+import freeuni.android.delegator.communicator.ServerCommunicator;
 import freeuni.android.delegator.model.Task;
 import freeuni.android.delegator.test.FillBase;
 
-public class App extends Application implements TaskEventListener{
+public class App extends Application{
 	private static int avatarDimension;
 	private static String preferenceFile;
 	private static NetworkCommunicator communicator;
 	private static Activity currentActivity = null;
 	private static Context cntxt;
 	private static DatabaseCommunicator db;
-	public static ArrayList<TaskEventListener> listeners;
 
 	// Shared preference keys
 	private static final String IS_FIRST_INIT="isFirstInit";
 
 	//Private variables
 
-
 	@Override
 	public void onCreate() {
 		super.onCreate();
 		preferenceFile = getString(freeuni.android.delegator.R.string.preference_file_key);
 		initApp();
+
 	}
 
 	/**
@@ -47,12 +44,8 @@ public class App extends Application implements TaskEventListener{
 		db.initialize();
 		fillForTest();
 		avatarDimension = getResources().getDimensionPixelSize(freeuni.android.delegator.R.dimen.user_image_size);
-		listeners = new ArrayList<>();
-		listeners.add(this);
-	
-	
 	}
-	
+
 	public static Context getAppContext(){
 		return cntxt;
 	}
@@ -67,7 +60,7 @@ public class App extends Application implements TaskEventListener{
 		}else{
 			//TODO
 		}
-		
+
 	}
 
 	/**
@@ -103,17 +96,6 @@ public class App extends Application implements TaskEventListener{
 
 	public static void setCurrentActivity(Activity cA){
 		currentActivity = cA;
-	}
-
-	@Override
-	public void onNewTaskAssigned(Task task) {
-		/*
-		 
-		  */
-	}
-	
-	public static void notif(String s){
-		
 	}
 
 }

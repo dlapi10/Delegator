@@ -128,6 +128,6 @@ public class ProfileSettings extends SuperActivity {
 	}
 	
 	public void onNotifBtn(View v){
-		App.notif("something");
+	//	App.notif("something");
 	}
 }
