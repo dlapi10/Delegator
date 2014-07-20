@@ -15,7 +15,7 @@ public class ServerClient {
 	private static final String LOG_TAG = "Server-Client";
 
 	// Client external IP address
-	private String serverIP="10.0.3.2"; //Genymotion emulator IP, Needs To change dynamiclly TODO
+	private String serverIP="10.0.3.2"; //Genymotion emulator IP, Needs To change dynamiclly 
 	// Socket port number to use
 	private static int serverPort = 2728;
 
@@ -27,7 +27,6 @@ public class ServerClient {
 	 * Constructor
 	 */
 	public ServerClient(){
-
 	}
 
 	/**
@@ -38,11 +37,15 @@ public class ServerClient {
 		Socket socket = null; 
 		try {
 			InetAddress serverAddr = InetAddress.getByName(serverIP);
-			socket = new Socket(serverAddr.toString(), serverPort);
+			Log.e("serverAddr", serverAddr.toString());
+			Log.e("TCP Client", "C: Connecting...");
+			socket = new Socket(serverAddr, serverPort);
 			
 			outputStream = new PrintWriter(socket.getOutputStream(), true);
 			inputStream = new BufferedReader( new InputStreamReader(socket.getInputStream()));;
 			
+			outputStream.println("insert into task_categories(category, color) values (\"android\",\"green\");");
+			outputStream.flush();
 			
 		} catch (UnknownHostException e) {
 			e.printStackTrace();

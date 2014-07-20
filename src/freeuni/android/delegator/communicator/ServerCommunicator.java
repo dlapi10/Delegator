@@ -2,21 +2,21 @@ package freeuni.android.delegator.communicator;
 
 import java.util.List;
 
-import freeuni.android.delegator.helpers.Processing;
 import freeuni.android.delegator.model.Group;
 import freeuni.android.delegator.model.Task;
 import freeuni.android.delegator.model.User;
 
 public class ServerCommunicator implements DatabaseCommunicator{
-
-	// Client external IP address
-	private String clientExternalIP="10.0.3.2"; //Genymotion emulator IP, need to change
 	
+	//Private variables
+	private ServerClient client;
 	
 	@Override
 	public void initialize() {
 		//clientExternalIP = Processing.getLocalIpAddress();
 		// TODO
+		client = new ServerClient();
+		client.runClient();
 	}
 
 	@Override
