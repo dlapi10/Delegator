@@ -3,31 +3,53 @@ package freeuni.android.delegator.communicator;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+
 import freeuni.android.delegator.model.Group;
 import freeuni.android.delegator.model.Task;
 import freeuni.android.delegator.model.User;
 
-public class ServerCommunicator implements DatabaseCommunicator{
+public class ServerCommunicator implements DatabaseCommunicator, OnServerMessageReceived{
+	//Constants; Headers
+	public static final String MSG_SYNC_ALL="SYNC_ALL";
+	public static final String MSG_ADD_USER="ADD_USER";
 	
 	//Private variables
 	private ServerClient client;	
 	private Thread clientThread;
 	private ArrayList<SyncWithServerListeners> listeners;
 	
+	/**
+	 * Closes client thread
+	 */
+	public void closeServerCommunicator(){
+		client.stopClient();
+	}
 	
 	/**
 	 * Synchronizes local database to the server
 	 */
 	public void synchronizeWithServer(){
-		
+		client.sendMessage(MSG_SYNC_ALL,null);
 	}
 	
+	/**
+	 * Adding listener of sync
+	 * @param listener
+	 */
 	public void addSyncListener(SyncWithServerListeners listener){
-		
+		if(!listeners.contains(listener))
+			listeners.add(listener);
 	}
 	
+	/**
+	 * removing sync listener
+	 * @param listener
+	 */
 	public void deleteSyncListener(SyncWithServerListeners listener){
-		
+		if(listeners.contains(listener))
+			listeners.remove(listener);
 	}
 	
 	@Override
@@ -36,18 +58,14 @@ public class ServerCommunicator implements DatabaseCommunicator{
 		listeners = new ArrayList<SyncWithServerListeners>();
 		//Clientis gashveba
 		client = new ServerClient();
-		new Thread(new Runnable() {
+		clientThread = new Thread(new Runnable() {
 			
 			@Override
 			public void run() {
 				client.runClient();
 			}
-		}).start();
-		
-		//Gson-is buildi
-//		Gson gson = new GsonBuilder().create();
-//		String sendMessage = gson.toJson(task);
-//		System.out.println(sendMessage);
+		});
+		clientThread.start();
 	}
 
 	@Override
@@ -110,9 +128,20 @@ public class ServerCommunicator implements DatabaseCommunicator{
 		return null;
 	}
 
+	/**
+	 * Adding task to the server
+	 */
 	@Override
-	public int addTask(Task task) {
-		client.sendMessage("Adding task");
+	public int addTask(final Task task) {
+		new Thread(new Runnable() {
+			@Override
+			public void run() {
+				Gson gson = new GsonBuilder().create();
+				String message = gson.toJson(task);
+				client.sendMessage(MSG_ADD_USER, message);
+				System.out.println(message);
+			}
+		});
 		return 0;
 	}
 
@@ -150,6 +179,12 @@ public class ServerCommunicator implements DatabaseCommunicator{
 	public int getCurrentTaskCountForUser(User user) {
 		// TODO Auto-generated method stub
 		return 0;
+	}
+
+	@Override
+	public void messageReceived(String message) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

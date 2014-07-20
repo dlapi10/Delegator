@@ -19,6 +19,7 @@ public class App extends Application{
 	private static Activity currentActivity = null;
 	private static Context cntxt;
 	private static DatabaseCommunicator db;
+	
 
 	// Shared preference keys
 	private static final String IS_FIRST_INIT="isFirstInit";
@@ -30,7 +31,7 @@ public class App extends Application{
 		super.onCreate();
 		preferenceFile = getString(freeuni.android.delegator.R.string.preference_file_key);
 		initApp();
-
+		
 	}
 
 	/**
@@ -45,7 +46,7 @@ public class App extends Application{
 		fillForTest();
 		avatarDimension = getResources().getDimensionPixelSize(freeuni.android.delegator.R.dimen.user_image_size);
 	}
-
+	
 	public static Context getAppContext(){
 		return cntxt;
 	}
@@ -60,7 +61,7 @@ public class App extends Application{
 		}else{
 			//TODO
 		}
-
+		
 	}
 
 	/**

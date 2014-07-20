@@ -59,8 +59,9 @@ public class ServerClient {
 	 * Sends message to the server
 	 * @param message
 	 */
-	public void sendMessage(String message) {
+	public synchronized void sendMessage(String header, String message) {
 		if (outputStream != null && !outputStream.checkError()) {
+			outputStream.println(header);
 			outputStream.println(message);
 			outputStream.flush();
 		}
