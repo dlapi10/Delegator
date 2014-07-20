@@ -9,6 +9,7 @@ import freeuni.android.delegator.communicator.DatabaseCommunicatorDB;
 import freeuni.android.delegator.communicator.FakeCommunicator;
 import freeuni.android.delegator.communicator.NetworkCommunicator;
 import freeuni.android.delegator.communicator.ServerCommunicator;
+import freeuni.android.delegator.model.Task;
 import freeuni.android.delegator.test.FillBase;
 
 public class App extends Application{
@@ -24,12 +25,12 @@ public class App extends Application{
 
 	//Private variables
 
-
 	@Override
 	public void onCreate() {
 		super.onCreate();
 		preferenceFile = getString(freeuni.android.delegator.R.string.preference_file_key);
 		initApp();
+		
 	}
 
 	/**

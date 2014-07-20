@@ -2,6 +2,9 @@ package freeuni.android.delegator.communicator;
 
 import java.util.List;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+
 import freeuni.android.delegator.model.Group;
 import freeuni.android.delegator.model.Task;
 import freeuni.android.delegator.model.User;
@@ -11,17 +14,26 @@ public class ServerCommunicator implements DatabaseCommunicator{
 	//Private variables
 	private ServerClient client;
 	
+	public Task task; // delete
+	
 	@Override
 	public void initialize() {
 		//clientExternalIP = Processing.getLocalIpAddress();
-		client = new ServerClient();
-		new Thread(new Runnable() {
-			
-			@Override
-			public void run() {
-				client.runClient();
-			}
-		}).start();
+
+		//Clientis gashveba
+		//		client = new ServerClient();
+//		new Thread(new Runnable() {
+//			
+//			@Override
+//			public void run() {
+//				client.runClient();
+//			}
+//		}).start();
+		
+		//Gson-is buildi
+//		Gson gson = new GsonBuilder().create();
+//		String sendMessage = gson.toJson(task);
+//		System.out.println(sendMessage);
 	}
 
 	@Override

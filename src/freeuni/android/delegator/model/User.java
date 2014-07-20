@@ -19,7 +19,6 @@ public class User {
 	@SerializedName ("lastName")
 	private String lastName;
 	
-	@SerializedName ("avatar")
 	private Bitmap avatar;
 	
 	@SerializedName ("password")

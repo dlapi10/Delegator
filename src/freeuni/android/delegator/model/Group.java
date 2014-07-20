@@ -15,7 +15,6 @@ public class Group {
 	@SerializedName ("group")
 	private List<User> group;
 	
-	@SerializedName ("groupImage")
 	private Bitmap groupImage;
 	
 	@SerializedName ("groupName")
