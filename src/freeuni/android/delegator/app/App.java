@@ -143,4 +143,5 @@ public class App extends Application implements TaskEventListener{
 	public static ServerCommunicator getServerCommunicator(){
 		return serverCommunicator;
 	}
+	
 }

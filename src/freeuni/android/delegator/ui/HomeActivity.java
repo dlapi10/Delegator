@@ -39,7 +39,7 @@ public class HomeActivity extends SuperActivity implements TaskEventListener, Sy
 
 	//Private variables
 	private ListView taskListView;
-	private ListAdapter taskListAdapter;
+	private TaskListAdapter taskListAdapter;
 	private ArrayList<Task> tasks = new ArrayList<Task>();
 	private User visibleUser = null;
 	private Menu menu;
@@ -329,14 +329,12 @@ public class HomeActivity extends SuperActivity implements TaskEventListener, Sy
 
 	@Override
 	public void onNewTaskAssigned(Task task) {
-		// TODO Auto-generated method stub
-		//aq minda taskebis notify data set changed :D
+		taskListAdapter.notifyDataSetChanged();
 	}
 
 	@Override
 	public void synced() {
-		// TODO Auto-generated method stub
-		// refresh listis
+		taskListAdapter.notifyDataSetChanged();
 	}
 
 }
