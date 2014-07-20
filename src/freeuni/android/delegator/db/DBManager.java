@@ -3,7 +3,6 @@ package freeuni.android.delegator.db;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -13,7 +12,6 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
-import android.widget.Toast;
 import freeuni.android.delegator.app.App;
 import freeuni.android.delegator.helpers.Processing;
 import freeuni.android.delegator.model.Group;
@@ -442,9 +440,9 @@ public class DBManager extends SQLiteOpenHelper{
 			SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd-hh.mm.ss",java.util.Locale.getDefault());
 			try {
 				if(c.getString(c.getColumnIndex(TSK_START_DATE))!=null)
-					task.setStartDate(DateToCalendar((Date)formatter.parse(c.getString(c.getColumnIndex(TSK_START_DATE)))));
+					task.setStartDate(Processing.DateToCalendar((Date)formatter.parse(c.getString(c.getColumnIndex(TSK_START_DATE)))));
 				if(c.getString(c.getColumnIndex(TSK_DEADLINE))!=null)
-					task.setDeadLine(DateToCalendar((Date)formatter.parse(c.getString(c.getColumnIndex(TSK_DEADLINE)))));
+					task.setDeadLine(Processing.DateToCalendar((Date)formatter.parse(c.getString(c.getColumnIndex(TSK_DEADLINE)))));
 			} catch (ParseException e) {
 				e.printStackTrace();
 			}
@@ -456,18 +454,7 @@ public class DBManager extends SQLiteOpenHelper{
 		return task;
 	}
 
-	/**
-	 * Date format to Calendar
-	 * @param date
-	 * @return
-	 */
-	public static Calendar DateToCalendar(Date date){ 
-		if(date==null)
-			return null;
-		Calendar cal = Calendar.getInstance();
-		cal.setTime(date);
-		return cal;
-	}
+	
 
 
 	/** 
