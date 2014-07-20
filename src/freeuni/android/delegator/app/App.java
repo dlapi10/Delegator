@@ -146,11 +146,11 @@ public class App extends Application implements TaskEventListener{
 	}
 	
 	/**
-	 * returning taskeven
+	 * returning taskevent
 	 * @return
 	 */
-	public static ServerCommunicator getTaskEvent(){
-		return serverCommunicator;
+	public static TaskEvent getTaskEvent(){
+		return taskEvent;
 	}
 	
 }

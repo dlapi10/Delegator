@@ -22,6 +22,7 @@ import freeuni.android.delegator.R;
 import freeuni.android.delegator.app.App;
 import freeuni.android.delegator.communicator.DatabaseCommunicator;
 import freeuni.android.delegator.communicator.SyncWithServerListeners;
+import freeuni.android.delegator.communicator.TaskEvent;
 import freeuni.android.delegator.communicator.TaskEventListener;
 import freeuni.android.delegator.model.Task;
 import freeuni.android.delegator.model.TaskStatus;
@@ -95,7 +96,7 @@ public class HomeActivity extends SuperActivity implements TaskEventListener, Sy
 		
 		//Listeners
 		App.getServerCommunicator().addSyncListener(this);
-		App.getTaskEvent().addSyncListener(this);
+		App.getTaskEvent().addTaskEventListener(this);
 		
 		Log.i(LOG_MESSAGE, "Creation Done");
 	}
@@ -153,7 +154,7 @@ public class HomeActivity extends SuperActivity implements TaskEventListener, Sy
 	@Override
 	protected void onPause() {
 		// TODO Auto-generated method stub
-		App.getTaskEvent().deleteSyncListener(this);
+		App.getTaskEvent().removeTaskEventListener(this);
 		App.getServerCommunicator().deleteSyncListener(this);
 		Log.i(LOG_MESSAGE,"onPause");
 		super.onPause();
