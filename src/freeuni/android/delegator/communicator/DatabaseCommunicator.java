@@ -20,7 +20,7 @@ public interface DatabaseCommunicator {
 	public List<Group> getUsersGroups(User user);
 	public void setSubortinate(User manager, User subordinate);
 	public List<User> getSubordinatesForManager(User manager);
-	public int addTask(Task task);
+	public int addTask(Task task, boolean isSync);
 	public void updateTask(Task task);
 	public void deleteTask(Task task);
 	public Task getTask(int id);

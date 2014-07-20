@@ -70,8 +70,8 @@ public class DatabaseCommunicatorDB implements DatabaseCommunicator{
 	}
 
 	@Override
-	public int addTask(Task task) {
-		return db.addTask(task,false);
+	public int addTask(Task task, boolean isSync) {
+		return db.addTask(task,isSync);
 	}
 
 	@Override

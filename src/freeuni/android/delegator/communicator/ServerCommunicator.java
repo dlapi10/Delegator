@@ -143,7 +143,7 @@ public class ServerCommunicator implements DatabaseCommunicator, OnServerMessage
 	 * Adding task to the server
 	 */
 	@Override
-	public int addTask(final Task task) {
+	public int addTask(final Task task, boolean isSync) {
 		Thread t = new Thread(new Runnable() {
 			@Override
 			public void run() {
@@ -213,7 +213,7 @@ public class ServerCommunicator implements DatabaseCommunicator, OnServerMessage
 			for(int i=0;i<messages.size();i++){
 				Gson gson = new Gson();
 				Task task = gson.fromJson(messages.get(i), Task.class);
-				db.addTask(task);
+				db.addTask(task,true);
 			}
 			
 			messages.clear();

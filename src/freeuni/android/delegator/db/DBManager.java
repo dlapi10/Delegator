@@ -397,7 +397,7 @@ public class DBManager extends SQLiteOpenHelper{
 			new Thread(new Runnable() {
 				@Override
 				public void run() {
-					App.getServerCommunicator().addTask(forRunnable);
+					App.getServerCommunicator().addTask(forRunnable,false);
 				}
 			}).start();
 		}

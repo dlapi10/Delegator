@@ -17,7 +17,6 @@ import freeuni.android.delegator.communicator.NetworkCommunicator;
 import freeuni.android.delegator.communicator.ServerCommunicator;
 import freeuni.android.delegator.communicator.TaskEvent;
 import freeuni.android.delegator.communicator.TaskEventListener;
-import freeuni.android.delegator.map.MapActivity;
 import freeuni.android.delegator.model.Task;
 import freeuni.android.delegator.test.FillBase;
 import freeuni.android.delegator.ui.HomeActivity;
@@ -72,9 +71,8 @@ public class App extends Application implements TaskEventListener{
 			SharedPreferences.Editor editor = sharedPref.edit();
 			editor.putBoolean(IS_FIRST_INIT, false);
 			editor.commit();
-		}else{
-			serverCommunicator.synchronizeWithServer();
 		}
+		serverCommunicator.synchronizeWithServer();
 	}
 
 	/**

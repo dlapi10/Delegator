@@ -160,7 +160,7 @@ public class TaskActivity extends SuperActivity{
 	public void saveTask(MenuItem item){
 		if(thisTask==null){
 			thisTask = new Task();
-			thisTask.setTaskID(App.getDb().addTask(thisTask));
+			thisTask.setTaskID(App.getDb().addTask(thisTask,false));
 			thisTask.setStartDate(Calendar.getInstance());
 			thisTask.setAssignee(App.getDb().getUser(assignee_name));
 		}
