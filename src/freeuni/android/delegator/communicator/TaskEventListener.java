@@ -1,5 +1,7 @@
 package freeuni.android.delegator.communicator;
 
-public interface TaskEventListener {
+import freeuni.android.delegator.model.Task;
 
+public interface TaskEventListener {
+	public void onNewTaskAssigned(Task task);
 }

@@ -22,13 +22,14 @@ import android.widget.SearchView;
 import freeuni.android.delegator.R;
 import freeuni.android.delegator.app.App;
 import freeuni.android.delegator.communicator.DatabaseCommunicator;
+import freeuni.android.delegator.communicator.TaskEventListener;
 import freeuni.android.delegator.db.DBManager;
 import freeuni.android.delegator.model.Task;
 import freeuni.android.delegator.model.TaskStatus;
 import freeuni.android.delegator.model.User;
 import freeuni.android.delegator.ui.model.TaskListAdapter;
 
-public class HomeActivity extends SuperActivity{
+public class HomeActivity extends SuperActivity implements TaskEventListener{
 
 	//Private constants
 	private static final String LOG_MESSAGE = "HOME";
@@ -323,6 +324,12 @@ public class HomeActivity extends SuperActivity{
 				return -1;
 			}
 		}
+	}
+
+	@Override
+	public void onNewTaskAssigned(Task task) {
+		// TODO Auto-generated method stub
+		//aq minda taskebis notify data set changed :D
 	}
 
 }

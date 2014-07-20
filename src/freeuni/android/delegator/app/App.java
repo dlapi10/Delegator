@@ -1,5 +1,7 @@
 package freeuni.android.delegator.app;
 
+import java.util.ArrayList;
+
 import android.app.Activity;
 import android.app.Application;
 import android.content.Context;
@@ -8,16 +10,18 @@ import freeuni.android.delegator.communicator.DatabaseCommunicator;
 import freeuni.android.delegator.communicator.DatabaseCommunicatorDB;
 import freeuni.android.delegator.communicator.FakeCommunicator;
 import freeuni.android.delegator.communicator.NetworkCommunicator;
-import freeuni.android.delegator.db.DBManager;
+import freeuni.android.delegator.communicator.TaskEventListener;
+import freeuni.android.delegator.model.Task;
 import freeuni.android.delegator.test.FillBase;
 
-public class App extends Application{
+public class App extends Application implements TaskEventListener{
 	private static int avatarDimension;
 	private static String preferenceFile;
 	private static NetworkCommunicator communicator;
 	private static Activity currentActivity = null;
 	private static Context cntxt;
 	private static DatabaseCommunicator db;
+	public static ArrayList<TaskEventListener> listeners;
 
 	// Shared preference keys
 	private static final String IS_FIRST_INIT="isFirstInit";
@@ -43,6 +47,10 @@ public class App extends Application{
 		db.initialize();
 		fillForTest();
 		avatarDimension = getResources().getDimensionPixelSize(freeuni.android.delegator.R.dimen.user_image_size);
+		listeners = new ArrayList<>();
+		listeners.add(this);
+	
+	
 	}
 	
 	public static Context getAppContext(){
@@ -95,6 +103,17 @@ public class App extends Application{
 
 	public static void setCurrentActivity(Activity cA){
 		currentActivity = cA;
+	}
+
+	@Override
+	public void onNewTaskAssigned(Task task) {
+		/*
+		 
+		  */
+	}
+	
+	public static void notif(String s){
+		
 	}
 
 }
