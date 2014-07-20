@@ -124,7 +124,7 @@ public class App extends Application implements TaskEventListener{
 		        new NotificationCompat.Builder(this)
 		        .setSmallIcon(R.drawable.ic_new_task_notification)
 		        .setContentTitle("New Task")
-		        .setContentText("You've been assigned to "+task.getTitle() + " by " + task.getReporter())
+		        .setContentText("You've been assigned to task "+task.getTitle() + " by " + task.getReporter().getUserName())
 		        .setContentIntent(viewPendingIntent)
 		        .setPriority(1);
 
