@@ -55,7 +55,8 @@ public class SuperActivity extends Activity {
 		Bitmap avatar = currentUser.getAvatar();
 		
 		((TextView) findViewById(R.id.profile_name)).setText(userName);
-		((ImageView) findViewById(R.id.profile_image)).setImageBitmap(avatar);
+		if(avatar != null)
+			((ImageView) findViewById(R.id.profile_image)).setImageBitmap(avatar);
 		// TODO To set real user profile
 		super.onCreate(savedInstanceState);
 		drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

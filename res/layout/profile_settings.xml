@@ -73,11 +73,5 @@
         android:layout_height="wrap_content"
         android:hint="Enter new password here..."
         android:inputType="textPassword" />
-    
-    <Button 
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="notification"
-        android:onClick="onNotifBtn"/>
 
 </LinearLayout>
