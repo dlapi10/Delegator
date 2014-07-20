@@ -22,6 +22,7 @@ public class ServerClient {
 
 	private boolean isRunning;
 	private String receivedServerMessage;
+	private String receivedServerHeader;
 
 	//Listeners
 	private ArrayList<OnServerMessageReceived> messageReceivedListeners = null;
@@ -91,15 +92,18 @@ public class ServerClient {
 				inputStream = new BufferedReader( new InputStreamReader(socket.getInputStream()));;
 
 				while(isRunning){
-					receivedServerMessage = inputStream.readLine();
-
+					synchronized (this) {
+						receivedServerHeader = inputStream.readLine();
+						receivedServerMessage = inputStream.readLine();
+					}
+					
 					if (receivedServerMessage != null && messageReceivedListeners != null) {
-						// call the method messageReceived from MyActivity class
 						for(int i=0;i<messageReceivedListeners.size();i++){
-							messageReceivedListeners.get(i).messageReceived(receivedServerMessage);
+							messageReceivedListeners.get(i).messageReceived(receivedServerHeader,receivedServerMessage);
 						}
 					}
 					receivedServerMessage = null;
+					receivedServerHeader = null;
 				}
 
 				//Second Try catch clauses

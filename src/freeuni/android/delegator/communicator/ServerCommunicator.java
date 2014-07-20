@@ -19,6 +19,9 @@ public class ServerCommunicator implements DatabaseCommunicator, OnServerMessage
 	private ServerClient client;	
 	private Thread clientThread;
 	private ArrayList<SyncWithServerListeners> listeners;
+	private int returnedTaskID = 0;
+	private int returnedGroupID = 0;
+	
 	
 	/**
 	 * Closes client thread
@@ -58,12 +61,14 @@ public class ServerCommunicator implements DatabaseCommunicator, OnServerMessage
 		listeners = new ArrayList<SyncWithServerListeners>();
 		//Clientis gashveba
 		client = new ServerClient();
+		client.addListeners(this);
 		clientThread = new Thread(new Runnable() {
 			
 			@Override
 			public void run() {
 				client.runClient();
 			}
+			
 		});
 		clientThread.start();
 	}
@@ -133,7 +138,7 @@ public class ServerCommunicator implements DatabaseCommunicator, OnServerMessage
 	 */
 	@Override
 	public int addTask(final Task task) {
-		new Thread(new Runnable() {
+		Thread t = new Thread(new Runnable() {
 			@Override
 			public void run() {
 				Gson gson = new GsonBuilder().create();
@@ -142,7 +147,12 @@ public class ServerCommunicator implements DatabaseCommunicator, OnServerMessage
 				System.out.println(message);
 			}
 		});
-		return 0;
+		t.start();
+		while(returnedTaskID==0){
+		}
+		int ans = returnedTaskID;
+		returnedTaskID = 0;
+		return ans;
 	}
 
 	@Override
@@ -182,9 +192,15 @@ public class ServerCommunicator implements DatabaseCommunicator, OnServerMessage
 	}
 
 	@Override
-	public void messageReceived(String message) {
+	public void messageReceived(String header, String message) {
 		// TODO Auto-generated method stub
-		
+		if(header.equals(MSG_ADD_USER)){
+			returnedTaskID = Integer.parseInt(message);
+		}else if(header.equals(MSG_SYNC_ALL)){
+			for(int i=0;i<listeners.size();i++){
+				listeners.get(i).synced();
+			}
+		}
 	}
 
 }

@@ -136,4 +136,11 @@ public class App extends Application implements TaskEventListener{
 		System.out.println("App aq shemovida");
 	}
 
+	/**
+	 * returning sevrercommunicator
+	 * @return
+	 */
+	public ServerCommunicator getServerCommunicator(){
+		return serverCommunicator;
+	}
 }

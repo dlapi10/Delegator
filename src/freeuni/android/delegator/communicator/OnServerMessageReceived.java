@@ -6,5 +6,5 @@ package freeuni.android.delegator.communicator;
  *
  */
 public interface OnServerMessageReceived {
-	public void messageReceived(String message);
+	public void messageReceived(String header, String message);
 }
