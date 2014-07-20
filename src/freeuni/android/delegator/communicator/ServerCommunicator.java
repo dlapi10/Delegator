@@ -14,6 +14,7 @@ public class ServerCommunicator implements DatabaseCommunicator, OnServerMessage
 	//Constants; Headers
 	public static final String MSG_SYNC_ALL="SYNC_ALL";
 	public static final String MSG_ADD_USER="ADD_USER";
+	public static final String MSG_ADD_GROUP="ADD_GROUP";
 	
 	//Private variables
 	private ServerClient client;	
@@ -197,9 +198,12 @@ public class ServerCommunicator implements DatabaseCommunicator, OnServerMessage
 		if(header.equals(MSG_ADD_USER)){
 			returnedTaskID = Integer.parseInt(message);
 		}else if(header.equals(MSG_SYNC_ALL)){
+			//TODO DB changes
 			for(int i=0;i<listeners.size();i++){
 				listeners.get(i).synced();
 			}
+		}else if(header.equals(MSG_ADD_GROUP)){
+			
 		}
 	}
 

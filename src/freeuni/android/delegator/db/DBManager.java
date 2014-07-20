@@ -391,6 +391,14 @@ public class DBManager extends SQLiteOpenHelper{
 	 * @return task id
 	 */
 	public int addTask(Task task){
+		final Task forRunnable = task;
+		//Adding to the Server base
+		new Thread(new Runnable() {
+			@Override
+			public void run() {
+				App.getServerCommunicator().addTask(forRunnable);
+			}
+		}).start();
 		db.insert(TABLE_TASKS, null, prepareValues(task));
 		Log.i(LOG_TAG, "new task inserted");
 		String query="SELECT MAX("+TSK_ID+") AS Maximum FROM "+TABLE_TASKS+"";

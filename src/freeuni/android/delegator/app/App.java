@@ -139,7 +139,7 @@ public class App extends Application implements TaskEventListener{
 	 * returning sevrercommunicator
 	 * @return
 	 */
-	public ServerCommunicator getServerCommunicator(){
+	public static ServerCommunicator getServerCommunicator(){
 		return serverCommunicator;
 	}
 }
